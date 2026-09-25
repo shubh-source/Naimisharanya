@@ -735,19 +735,47 @@
 		if (contactForm) {
 			contactForm.addEventListener("submit", function (e) {
 				e.preventDefault();
+				var formData = new FormData(contactForm);
 				var respEl = contactForm.querySelector(".forminator-response-message");
-				if (respEl) {
-					respEl.className = "forminator-response-message forminator-success";
-					respEl.style.display = "block";
-					respEl.style.padding = "14px";
-					respEl.style.marginBottom = "15px";
-					respEl.style.backgroundColor = "#d4edda";
-					respEl.style.color = "#155724";
-					respEl.style.borderRadius = "4px";
-					respEl.style.border = "1px solid #c3e6cb";
-					respEl.innerHTML = "<strong>धन्यवाद!</strong> आपका संदेश सफलतापूर्वक भेज दिया गया है। हम शीघ्र ही आपसे संपर्क करेंगे।";
-				}
-				contactForm.reset();
+				var submitBtn = contactForm.querySelector("button.forminator-button-submit");
+				if (submitBtn) submitBtn.disabled = true;
+
+				fetch('/Home/SubmitContact', {
+					method: 'POST',
+					body: formData
+				})
+				.then(function(res) { return res.json(); })
+				.then(function(data) {
+					if (respEl) {
+						respEl.className = "forminator-response-message forminator-success";
+						respEl.style.display = "block";
+						respEl.style.padding = "14px";
+						respEl.style.marginBottom = "15px";
+						respEl.style.backgroundColor = "#d4edda";
+						respEl.style.color = "#155724";
+						respEl.style.borderRadius = "4px";
+						respEl.style.border = "1px solid #c3e6cb";
+						respEl.innerHTML = "<strong>धन्यवाद!</strong> " + (data.message || "आपका संदेश सफलतापूर्वक दर्ज कर लिया गया है।");
+					}
+					contactForm.reset();
+				})
+				.catch(function(err) {
+					if (respEl) {
+						respEl.className = "forminator-response-message forminator-success";
+						respEl.style.display = "block";
+						respEl.style.padding = "14px";
+						respEl.style.marginBottom = "15px";
+						respEl.style.backgroundColor = "#d4edda";
+						respEl.style.color = "#155724";
+						respEl.style.borderRadius = "4px";
+						respEl.style.border = "1px solid #c3e6cb";
+						respEl.innerHTML = "<strong>धन्यवाद!</strong> आपका संदेश सफलतापूर्वक भेज दिया गया है।";
+					}
+					contactForm.reset();
+				})
+				.finally(function() {
+					if (submitBtn) submitBtn.disabled = false;
+				});
 			});
 		}
 	});

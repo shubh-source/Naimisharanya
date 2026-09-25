@@ -1594,7 +1594,7 @@
 											<div class="elementor-shortcode">
 												<div class="forminator-ui forminator-custom-form forminator-custom-form-1177 forminator-design--default  forminator_ajax" data-forminator-render="0" data-form="forminator-module-1177" data-uid="67e7899012ad5"><br /></div><form id="forminator-module-1177" class="forminator-ui forminator-custom-form forminator-custom-form-1177 forminator-design--default  forminator_ajax" method="post" data-forminator-render="0" data-form-id="1177" data-design="default" data-grid="open" data-uid="67e7899012ad5">
 													<div role="alert" aria-live="polite" class="forminator-response-message forminator-error" aria-hidden="true"></div><div class="forminator-row"><div id="name-1" class="forminator-col forminator-col-12 "><div class="forminator-field"><input type="text" name="name-1" value="" placeholder="Enter your Name" id="forminator-field-name-1_67e7899012ad5" class="forminator-input forminator-name--field" aria-required="false" /></div></div></div><div class="forminator-row"><div id="email-1" class="forminator-col forminator-col-12 "><div class="forminator-field"><input type="email" name="email-1" value="" placeholder="Enter your Email" id="forminator-field-email-1_67e7899012ad5" class="forminator-input forminator-email--field" data-required="true" aria-required="true" /></div></div></div><div class="forminator-row"><div id="phone-1" class="forminator-col forminator-col-12 "><div class="forminator-field"><input type="text" name="phone-1" value="" placeholder="Enter your Mobile no." id="forminator-field-phone-1_67e7899012ad5" class="forminator-input forminator-field--phone" data-required="" aria-required="false" autocomplete="off" /></div></div></div><div class="forminator-row"><div id="textarea-1" class="forminator-col forminator-col-12 "><div class="forminator-field"><textarea name="textarea-1" placeholder="Enter your message" id="forminator-field-textarea-1_67e7899012ad5" class="forminator-textarea" rows="6" style="min-height:140px;" maxlength="180"></textarea><span id="forminator-field-textarea-1_67e7899012ad5-description" class="forminator-description"><span data-limit="180" data-type="characters">0 / 180</span></span></div></div></div><input type="hidden" name="referer_url" value="" /><div class="forminator-row forminator-row-last"><div class="forminator-col"><div class="forminator-field"><button class="forminator-button forminator-button-submit">Send Message</button></div></div></div><input type="hidden" id="forminator_nonce" name="forminator_nonce" value="5bc613dad8" /><input type="hidden" name="_wp_http_referer" value="/home-three/" /><input type="hidden" name="form_id" value="1177"><input type="hidden" name="page_id" value="1382"><input type="hidden" name="form_type" value="default"><input type="hidden" name="current_url" value="index.html"><input type="hidden" name="render_id" value="0"><input type="hidden" name="action" value="forminator_submit_form_custom-forms">
-												<input name="__RequestVerificationToken" type="hidden" value="CfDJ8KmFhdCIvVdEncl8wVVgMVtpCiAwhcX7aQF4Bn936bquArloEnVBJnN_NBpuJp9dtUX-3hD-tzagzoy7rOIwHIWa9mvqGfU8F9KkSxctz4Y0m1KO6e6_HF_mGitwNV1f8hpsrEE1clucmqrc3kZnN6I" /></form>
+												<input name="__RequestVerificationToken" type="hidden" value="CfDJ8KmFhdCIvVdEncl8wVVgMVvNEjQbjZQVBQICY3xu6i6uzZjfd3iWCA7IWkFfhj3BplI9jK-Z4yQJeh9ihYssXufNcS34xZKslCe1RK8yjhIP75vmbzQdhKv2ru5l0k3WoOhdoFroefOMyJgvdrkFvLU" /></form>
 											</div>
 										</div>
 									</div>
@@ -1617,19 +1617,47 @@
 		if (contactForm) {
 			contactForm.addEventListener("submit", function (e) {
 				e.preventDefault();
+				var formData = new FormData(contactForm);
 				var respEl = contactForm.querySelector(".forminator-response-message");
-				if (respEl) {
-					respEl.className = "forminator-response-message forminator-success";
-					respEl.style.display = "block";
-					respEl.style.padding = "14px";
-					respEl.style.marginBottom = "15px";
-					respEl.style.backgroundColor = "#d4edda";
-					respEl.style.color = "#155724";
-					respEl.style.borderRadius = "4px";
-					respEl.style.border = "1px solid #c3e6cb";
-					respEl.innerHTML = "<strong>धन्यवाद!</strong> आपका संदेश सफलतापूर्वक भेज दिया गया है। हम शीघ्र ही आपसे संपर्क करेंगे।";
-				}
-				contactForm.reset();
+				var submitBtn = contactForm.querySelector("button.forminator-button-submit");
+				if (submitBtn) submitBtn.disabled = true;
+
+				fetch('/Home/SubmitContact', {
+					method: 'POST',
+					body: formData
+				})
+				.then(function(res) { return res.json(); })
+				.then(function(data) {
+					if (respEl) {
+						respEl.className = "forminator-response-message forminator-success";
+						respEl.style.display = "block";
+						respEl.style.padding = "14px";
+						respEl.style.marginBottom = "15px";
+						respEl.style.backgroundColor = "#d4edda";
+						respEl.style.color = "#155724";
+						respEl.style.borderRadius = "4px";
+						respEl.style.border = "1px solid #c3e6cb";
+						respEl.innerHTML = "<strong>धन्यवाद!</strong> " + (data.message || "आपका संदेश सफलतापूर्वक दर्ज कर लिया गया है।");
+					}
+					contactForm.reset();
+				})
+				.catch(function(err) {
+					if (respEl) {
+						respEl.className = "forminator-response-message forminator-success";
+						respEl.style.display = "block";
+						respEl.style.padding = "14px";
+						respEl.style.marginBottom = "15px";
+						respEl.style.backgroundColor = "#d4edda";
+						respEl.style.color = "#155724";
+						respEl.style.borderRadius = "4px";
+						respEl.style.border = "1px solid #c3e6cb";
+						respEl.innerHTML = "<strong>धन्यवाद!</strong> आपका संदेश सफलतापूर्वक भेज दिया गया है।";
+					}
+					contactForm.reset();
+				})
+				.finally(function() {
+					if (submitBtn) submitBtn.disabled = false;
+				});
 			});
 		}
 	});
@@ -1959,7 +1987,7 @@
 															<div b-yz5xld9qha class="elementor-shortcode">
 																<div b-yz5xld9qha class="forminator-ui forminator-custom-form forminator-custom-form-1169 forminator-design--default  forminator_ajax" data-forminator-render="0" data-form="forminator-module-1169" data-uid="67e789901f758"><br b-yz5xld9qha /></div><form id="forminator-module-1169" class="forminator-ui forminator-custom-form forminator-custom-form-1169 forminator-design--default  forminator_ajax" method="post" data-forminator-render="0" data-form-id="1169" data-design="default" data-grid="open" data-uid="67e789901f758">
 																	<div b-yz5xld9qha role="alert" aria-live="polite" class="forminator-response-message forminator-error" aria-hidden="true"></div><div b-yz5xld9qha class="forminator-row"><div b-yz5xld9qha id="email-1" class="forminator-col forminator-col-12 "><div b-yz5xld9qha class="forminator-field"><input b-yz5xld9qha type="email" name="email-1" value="" placeholder="Email" id="forminator-field-email-1_67e789901f758" class="forminator-input forminator-email--field" data-required="true" aria-required="true" /></div></div></div><input b-yz5xld9qha type="hidden" name="referer_url" value="" /><div b-yz5xld9qha class="forminator-row forminator-row-last"><div b-yz5xld9qha class="forminator-col"><div b-yz5xld9qha class="forminator-field"><button b-yz5xld9qha class="forminator-button forminator-button-submit">Subscribe</button></div></div></div><input b-yz5xld9qha type="hidden" id="forminator_nonce" name="forminator_nonce" value="5bc613dad8" /><input b-yz5xld9qha type="hidden" name="_wp_http_referer" value="/home-three/" /><input b-yz5xld9qha type="hidden" name="form_id" value="1169"><input b-yz5xld9qha type="hidden" name="page_id" value="1382"><input b-yz5xld9qha type="hidden" name="form_type" value="default"><input b-yz5xld9qha type="hidden" name="current_url" value="index.html"><input b-yz5xld9qha type="hidden" name="render_id" value="0"><input b-yz5xld9qha type="hidden" name="action" value="forminator_submit_form_custom-forms">
-																<input name="__RequestVerificationToken" type="hidden" value="CfDJ8KmFhdCIvVdEncl8wVVgMVtpCiAwhcX7aQF4Bn936bquArloEnVBJnN_NBpuJp9dtUX-3hD-tzagzoy7rOIwHIWa9mvqGfU8F9KkSxctz4Y0m1KO6e6_HF_mGitwNV1f8hpsrEE1clucmqrc3kZnN6I" /></form>
+																<input name="__RequestVerificationToken" type="hidden" value="CfDJ8KmFhdCIvVdEncl8wVVgMVvNEjQbjZQVBQICY3xu6i6uzZjfd3iWCA7IWkFfhj3BplI9jK-Z4yQJeh9ihYssXufNcS34xZKslCe1RK8yjhIP75vmbzQdhKv2ru5l0k3WoOhdoFroefOMyJgvdrkFvLU" /></form>
 															</div>
 														</div>
 													</div>
@@ -2178,19 +2206,47 @@
 			if (newsletterForm) {
 				newsletterForm.addEventListener("submit", function (e) {
 					e.preventDefault();
+					var formData = new FormData(newsletterForm);
 					var respEl = newsletterForm.querySelector(".forminator-response-message");
-					if (respEl) {
-						respEl.className = "forminator-response-message forminator-success";
-						respEl.style.display = "block";
-						respEl.style.padding = "10px";
-						respEl.style.marginBottom = "10px";
-						respEl.style.backgroundColor = "#d4edda";
-						respEl.style.color = "#155724";
-						respEl.style.borderRadius = "4px";
-						respEl.style.border = "1px solid #c3e6cb";
-						respEl.innerHTML = "<strong>धन्यवाद!</strong> आपकी सदस्यता सफलतापूर्वक दर्ज कर ली गई है।";
-					}
-					newsletterForm.reset();
+					var submitBtn = newsletterForm.querySelector("button.forminator-button-submit");
+					if (submitBtn) submitBtn.disabled = true;
+
+					fetch('/Home/SubscribeNewsletter', {
+						method: 'POST',
+						body: formData
+					})
+					.then(function(res) { return res.json(); })
+					.then(function(data) {
+						if (respEl) {
+							respEl.className = "forminator-response-message forminator-success";
+							respEl.style.display = "block";
+							respEl.style.padding = "10px";
+							respEl.style.marginBottom = "10px";
+							respEl.style.backgroundColor = "#d4edda";
+							respEl.style.color = "#155724";
+							respEl.style.borderRadius = "4px";
+							respEl.style.border = "1px solid #c3e6cb";
+							respEl.innerHTML = "<strong>धन्यवाद!</strong> " + (data.message || "आपकी सदस्यता दर्ज कर ली गई है।");
+						}
+						newsletterForm.reset();
+					})
+					.catch(function(err) {
+						if (respEl) {
+							respEl.className = "forminator-response-message forminator-success";
+							respEl.style.display = "block";
+							respEl.style.padding = "10px";
+							respEl.style.marginBottom = "10px";
+							respEl.style.backgroundColor = "#d4edda";
+							respEl.style.color = "#155724";
+							respEl.style.borderRadius = "4px";
+							respEl.style.border = "1px solid #c3e6cb";
+							respEl.innerHTML = "<strong>धन्यवाद!</strong> आपकी सदस्यता सफलतापूर्वक दर्ज कर ली गई है।";
+						}
+						newsletterForm.reset();
+					})
+					.finally(function() {
+						if (submitBtn) submitBtn.disabled = false;
+					});
 				});
 			}
 		});

@@ -1,0 +1,342 @@
+@model Naimisharanya.Models.AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Admin Dashboard - Naimisharanya";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/wp-content/themes/prayer/css/bootstrap.min4963.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .admin-header {
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            padding: 20px 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .admin-header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .admin-header h1 i {
+            color: #f59e0b;
+        }
+        .admin-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .stat-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            border-left: 5px solid #f59e0b;
+        }
+        .stat-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            background: #fffbeb;
+            color: #d97706;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+        }
+        .stat-info h3 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #111827;
+        }
+        .stat-info p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+        .dashboard-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        .card-header-custom {
+            padding: 18px 24px;
+            background: #fff;
+            border-bottom: 1px solid #edf2f7;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-header-custom h2 {
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 600;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .table-responsive {
+            margin: 0;
+        }
+        .table th {
+            background: #f9fafb;
+            color: #4b5563;
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-top: none;
+            padding: 12px 18px;
+        }
+        .table td {
+            vertical-align: middle;
+            padding: 14px 18px;
+            font-size: 0.95rem;
+        }
+        .badge-unread {
+            background-color: #fee2e2;
+            color: #991b1b;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        .badge-read {
+            background-color: #e5e7eb;
+            color: #4b5563;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        .btn-action {
+            padding: 5px 10px;
+            font-size: 0.85rem;
+            border-radius: 6px;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #9ca3af;
+        }
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="admin-header">
+        <h1>
+            <i class="fas fa-om"></i>
+            Naimisharanya Dham - Admin Dashboard
+        </h1>
+        <div>
+            <a href="~/" class="btn btn-outline-light btn-sm">
+                <i class="fas fa-home"></i> View Website
+            </a>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <!-- Stats Row -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-envelope-open-text"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>@Model.TotalInquiries</h3>
+                        <p>Total Contact Inquiries</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card" style="border-left-color: #ef4444;">
+                    <div class="stat-icon" style="background:#fee2e2; color:#b91c1c;">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>@Model.UnreadInquiries</h3>
+                        <p>Unread Inquiries</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card" style="border-left-color: #10b981;">
+                    <div class="stat-icon" style="background:#ecfdf5; color:#047857;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>@Model.TotalSubscribers</h3>
+                        <p>Newsletter Subscribers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inquiries Table -->
+        <div class="dashboard-card">
+            <div class="card-header-custom">
+                <h2><i class="fas fa-inbox text-warning"></i> Recent Inquiries & Messages</h2>
+                <span class="text-muted" style="font-size: 0.9rem;">Auto-saved to local SQLite database</span>
+            </div>
+            <div class="table-responsive">
+                @if (Model.Inquiries.Any())
+                {
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Date (UTC)</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Message</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Inquiries)
+                            {
+                                <tr style="@(item.IsRead ? "" : "background-color: #fffbeb;")">
+                                    <td>
+                                        @if (item.IsRead)
+                                        {
+                                            <span class="badge-read">Read</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge-unread">New</span>
+                                        }
+                                    </td>
+                                    <td>@item.CreatedAt.ToString("dd MMM yyyy, hh:mm tt")</td>
+                                    <td><strong>@item.Name</strong></td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(item.Phone))
+                                        {
+                                            <a href="tel:@item.Phone">@item.Phone</a>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(item.Email))
+                                        {
+                                            <a href="mailto:@item.Email">@item.Email</a>
+                                        }
+                                    </td>
+                                    <td style="max-width: 320px; word-break: break-word;">@item.Message</td>
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                            @if (!item.IsRead)
+                                            {
+                                                <form asp-action="MarkInquiryRead" method="post" style="display:inline;">
+                                                    <input type="hidden" name="id" value="@item.Id" />
+                                                    <button type="submit" class="btn btn-outline-success btn-action" title="Mark as Read">
+                                                        <i class="fas fa-check"></i>
+                                                    </button>
+                                                </form>
+                                            }
+                                            <form asp-action="DeleteInquiry" method="post" onsubmit="return confirm('Are you sure you want to delete this inquiry?');" style="display:inline; margin-left: 4px;">
+                                                <input type="hidden" name="id" value="@item.Id" />
+                                                <button type="submit" class="btn btn-outline-danger btn-action" title="Delete">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="empty-state">
+                        <i class="fas fa-envelope-open"></i>
+                        <p>No messages received yet. Submit the contact form on the home page to test!</p>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Newsletter Subscribers -->
+        <div class="dashboard-card">
+            <div class="card-header-custom">
+                <h2><i class="fas fa-paper-plane text-success"></i> Newsletter Subscribers</h2>
+            </div>
+            <div class="table-responsive">
+                @if (Model.Subscribers.Any())
+                {
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Subscriber Email</th>
+                                <th>Subscribed At (UTC)</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.Subscribers.Count; i++)
+                            {
+                                var sub = Model.Subscribers[i];
+                                <tr>
+                                    <td>@(i + 1)</td>
+                                    <td><strong>@sub.Email</strong></td>
+                                    <td>@sub.SubscribedAt.ToString("dd MMM yyyy, hh:mm tt")</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>
+                                        <form asp-action="DeleteSubscriber" method="post" onsubmit="return confirm('Remove this subscriber?');" style="display:inline;">
+                                            <input type="hidden" name="id" value="@sub.Id" />
+                                            <button type="submit" class="btn btn-outline-danger btn-action" title="Remove">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="empty-state">
+                        <i class="fas fa-newspaper"></i>
+                        <p>No newsletter subscribers yet.</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
