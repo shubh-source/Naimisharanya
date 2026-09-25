@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - Naimisharanya Dham</title>
+    <link rel="stylesheet" href="./wp-content/themes/prayer/css/bootstrap.min4963.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .admin-header {
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            padding: 20px 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .admin-header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .admin-header h1 i {
+            color: #f59e0b;
+        }
+        .admin-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .stat-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            border-left: 5px solid #f59e0b;
+        }
+        .stat-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            background: #fffbeb;
+            color: #d97706;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+        }
+        .stat-info h3 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #111827;
+        }
+        .stat-info p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+        .dashboard-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        .card-header-custom {
+            padding: 18px 24px;
+            background: #fff;
+            border-bottom: 1px solid #edf2f7;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .card-header-custom h2 {
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 600;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .table-responsive {
+            margin: 0;
+        }
+        .table th {
+            background: #f9fafb;
+            color: #4b5563;
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-top: none;
+            padding: 12px 18px;
+        }
+        .table td {
+            vertical-align: middle;
+            padding: 14px 18px;
+            font-size: 0.95rem;
+        }
+        .badge-unread {
+            background-color: #fee2e2;
+            color: #991b1b;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        .badge-read {
+            background-color: #e5e7eb;
+            color: #4b5563;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        .btn-action {
+            padding: 5px 10px;
+            font-size: 0.85rem;
+            border-radius: 6px;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #9ca3af;
+        }
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="admin-header">
+        <h1>
+            <i class="fas fa-om"></i>
+            Naimisharanya Dham - Admin Dashboard
+        </h1>
+        <div class="d-flex gap-2">
+            <button onclick="seedSampleData()" class="btn btn-warning btn-sm me-2">
+                <i class="fas fa-plus-circle"></i> Add Demo Data
+            </button>
+            <a href="./" class="btn btn-outline-light btn-sm">
+                <i class="fas fa-home"></i> View Website
+            </a>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <!-- Stats Row -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-envelope-open-text"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="statTotalInquiries">0</h3>
+                        <p>Total Contact Inquiries</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card" style="border-left-color: #ef4444;">
+                    <div class="stat-icon" style="background:#fee2e2; color:#b91c1c;">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="statUnreadInquiries">0</h3>
+                        <p>Unread Inquiries</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card" style="border-left-color: #10b981;">
+                    <div class="stat-icon" style="background:#ecfdf5; color:#047857;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="statTotalSubscribers">0</h3>
+                        <p>Newsletter Subscribers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inquiries Table -->
+        <div class="dashboard-card">
+            <div class="card-header-custom">
+                <h2><i class="fas fa-inbox text-warning"></i> Recent Inquiries & Messages</h2>
+                <div>
+                    <button onclick="exportInquiriesCSV()" class="btn btn-outline-secondary btn-sm me-2">
+                        <i class="fas fa-download"></i> Export CSV
+                    </button>
+                    <button onclick="clearInquiries()" class="btn btn-outline-danger btn-sm">
+                        <i class="fas fa-trash-alt"></i> Clear All
+                    </button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <div id="inquiriesTableContainer"></div>
+            </div>
+        </div>
+
+        <!-- Newsletter Subscribers -->
+        <div class="dashboard-card">
+            <div class="card-header-custom">
+                <h2><i class="fas fa-paper-plane text-success"></i> Newsletter Subscribers</h2>
+                <button onclick="clearSubscribers()" class="btn btn-outline-danger btn-sm">
+                    <i class="fas fa-trash-alt"></i> Clear All
+                </button>
+            </div>
+            <div class="table-responsive">
+                <div id="subscribersTableContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function getInquiries() {
+            var data = localStorage.getItem('naimisharanya_inquiries');
+            if (!data) {
+                // Initial sample
+                var initial = [
+                    {
+                        id: 1,
+                        name: "Shubham Pathak",
+                        phone: "+91 9935010749",
+                        email: "shubham@example.com",
+                        message: "Jai Naimisharanya! Please share darshan timings, Chakra Tirtha puja details, and accommodation options.",
+                        createdAt: new Date().toISOString(),
+                        isRead: false
+                    }
+                ];
+                localStorage.setItem('naimisharanya_inquiries', JSON.stringify(initial));
+                return initial;
+            }
+            try { return JSON.parse(data); } catch(e) { return []; }
+        }
+
+        function getSubscribers() {
+            var data = localStorage.getItem('naimisharanya_subscribers');
+            if (!data) {
+                var initial = [
+                    { id: 1, email: "pilgrim.updates@example.com", subscribedAt: new Date().toISOString() }
+                ];
+                localStorage.setItem('naimisharanya_subscribers', JSON.stringify(initial));
+                return initial;
+            }
+            try { return JSON.parse(data); } catch(e) { return []; }
+        }
+
+        function renderDashboard() {
+            var inquiries = getInquiries();
+            var subscribers = getSubscribers();
+
+            var unread = inquiries.filter(function(i) { return !i.isRead; }).length;
+
+            document.getElementById('statTotalInquiries').innerText = inquiries.length;
+            document.getElementById('statUnreadInquiries').innerText = unread;
+            document.getElementById('statTotalSubscribers').innerText = subscribers.length;
+
+            // Render Inquiries Table
+            var inqContainer = document.getElementById('inquiriesTableContainer');
+            if (inquiries.length === 0) {
+                inqContainer.innerHTML = '<div class="empty-state"><i class="fas fa-envelope-open"></i><p>No messages received yet. Submit the contact form on the home page to test!</p></div>';
+            } else {
+                var html = '<table class="table table-hover mb-0"><thead><tr><th>Status</th><th>Date</th><th>Name</th><th>Phone</th><th>Email</th><th>Message</th><th>Actions</th></tr></thead><tbody>';
+                inquiries.forEach(function(item) {
+                    var dateStr = new Date(item.createdAt).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
+                    var bg = item.isRead ? '' : 'background-color: #fffbeb;';
+                    var badge = item.isRead ? '<span class="badge-read">Read</span>' : '<span class="badge-unread">New</span>';
+                    
+                    html += '<tr style="' + bg + '">';
+                    html += '<td>' + badge + '</td>';
+                    html += '<td>' + dateStr + '</td>';
+                    html += '<td><strong>' + escapeHtml(item.name) + '</strong></td>';
+                    html += '<td>' + (item.phone ? '<a href="tel:' + escapeHtml(item.phone) + '">' + escapeHtml(item.phone) + '</a>' : '-') + '</td>';
+                    html += '<td>' + (item.email ? '<a href="mailto:' + escapeHtml(item.email) + '">' + escapeHtml(item.email) + '</a>' : '-') + '</td>';
+                    html += '<td style="max-width: 320px; word-break: break-word;">' + escapeHtml(item.message) + '</td>';
+                    html += '<td><div class="d-flex gap-1">';
+                    if (!item.isRead) {
+                        html += '<button onclick="markRead(' + item.id + ')" class="btn btn-outline-success btn-action me-1" title="Mark as Read"><i class="fas fa-check"></i></button>';
+                    }
+                    html += '<button onclick="deleteInquiry(' + item.id + ')" class="btn btn-outline-danger btn-action" title="Delete"><i class="fas fa-trash"></i></button>';
+                    html += '</div></td></tr>';
+                });
+                html += '</tbody></table>';
+                inqContainer.innerHTML = html;
+            }
+
+            // Render Subscribers Table
+            var subContainer = document.getElementById('subscribersTableContainer');
+            if (subscribers.length === 0) {
+                subContainer.innerHTML = '<div class="empty-state"><i class="fas fa-newspaper"></i><p>No subscribers yet.</p></div>';
+            } else {
+                var sHtml = '<table class="table table-hover mb-0"><thead><tr><th>#</th><th>Email</th><th>Subscribed Date</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
+                subscribers.forEach(function(sub, idx) {
+                    var sDate = new Date(sub.subscribedAt).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
+                    sHtml += '<tr>';
+                    sHtml += '<td>' + (idx + 1) + '</td>';
+                    sHtml += '<td><strong>' + escapeHtml(sub.email) + '</strong></td>';
+                    sHtml += '<td>' + sDate + '</td>';
+                    sHtml += '<td><span class="badge badge-success" style="background:#10b981; color:#fff;">Active</span></td>';
+                    sHtml += '<td><button onclick="deleteSubscriber(' + sub.id + ')" class="btn btn-outline-danger btn-action"><i class="fas fa-trash"></i></button></td>';
+                    sHtml += '</tr>';
+                });
+                sHtml += '</tbody></table>';
+                subContainer.innerHTML = sHtml;
+            }
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+        }
+
+        function markRead(id) {
+            var inquiries = getInquiries();
+            inquiries.forEach(function(item) {
+                if (item.id === id) item.isRead = true;
+            });
+            localStorage.setItem('naimisharanya_inquiries', JSON.stringify(inquiries));
+            renderDashboard();
+        }
+
+        function deleteInquiry(id) {
+            if (!confirm("Are you sure you want to delete this inquiry?")) return;
+            var inquiries = getInquiries().filter(function(i) { return i.id !== id; });
+            localStorage.setItem('naimisharanya_inquiries', JSON.stringify(inquiries));
+            renderDashboard();
+        }
+
+        function clearInquiries() {
+            if (!confirm("Clear all contact inquiries?")) return;
+            localStorage.setItem('naimisharanya_inquiries', JSON.stringify([]));
+            renderDashboard();
+        }
+
+        function deleteSubscriber(id) {
+            if (!confirm("Remove this subscriber?")) return;
+            var subscribers = getSubscribers().filter(function(s) { return s.id !== id; });
+            localStorage.setItem('naimisharanya_subscribers', JSON.stringify(subscribers));
+            renderDashboard();
+        }
+
+        function clearSubscribers() {
+            if (!confirm("Clear all subscribers?")) return;
+            localStorage.setItem('naimisharanya_subscribers', JSON.stringify([]));
+            renderDashboard();
+        }
+
+        function seedSampleData() {
+            var sampleNames = ["Vikram Singh", "Priya Sharma", "Rajesh Kumar", "Anjali Verma"];
+            var randomName = sampleNames[Math.floor(Math.random() * sampleNames.length)];
+            var inquiries = getInquiries();
+            inquiries.unshift({
+                id: Date.now(),
+                name: randomName,
+                phone: "+91 98" + Math.floor(10000000 + Math.random() * 90000000),
+                email: randomName.toLowerCase().replace(" ", ".") + "@example.com",
+                message: "Hari Om! We are planning a family pilgrimage to Naimisharanya next weekend. Please provide tour guide assistance.",
+                createdAt: new Date().toISOString(),
+                isRead: false
+            });
+            localStorage.setItem('naimisharanya_inquiries', JSON.stringify(inquiries));
+            renderDashboard();
+        }
+
+        function exportInquiriesCSV() {
+            var inquiries = getInquiries();
+            if (inquiries.length === 0) {
+                alert("No inquiries to export!");
+                return;
+            }
+            var csv = "ID,Name,Phone,Email,Message,Date,Status\n";
+            inquiries.forEach(function(i) {
+                csv += '"' + i.id + '","' + (i.name||'').replace(/"/g, '""') + '","' + (i.phone||'') + '","' + (i.email||'') + '","' + (i.message||'').replace(/"/g, '""') + '","' + i.createdAt + '","' + (i.isRead ? "Read" : "New") + '"\n';
+            });
+            var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            var link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute("download", "naimisharanya_inquiries.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        document.addEventListener("DOMContentLoaded", renderDashboard);
+    </script>
+</body>
+</html>
