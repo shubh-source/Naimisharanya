@@ -1,114 +1,136 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "मुख्य पृष्ठ";
 }
 
 <div data-elementor-type="wp-page" data-elementor-id="1382" class="elementor elementor-1382">
 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<style>
+		/* Custom slider styling */
+		#carouselExampleControls {
+			width: 100%;
+			max-height: 460px;
+			overflow: hidden;
+			position: relative;
+		}
+		#carouselExampleControls .carousel-inner {
+			height: 460px;
+		}
+		#carouselExampleControls .carousel-item img {
+			height: 460px;
+			width: 100%;
+			object-fit: cover;
+		}
+		.carousel-hero-overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 5;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			background: rgba(0, 0, 0, 0.45);
+			text-align: center;
+			padding: 20px;
+		}
+		.carousel-hero-overlay h2 {
+			color: #ff9900;
+			font-size: 2.4rem;
+			font-weight: 700;
+			text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
+			margin-bottom: 12px;
+			min-height: 55px;
+		}
+		.carousel-hero-overlay p {
+			color: #ffffff;
+			font-size: 1.3rem;
+			font-style: italic;
+			text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
+			margin: 0;
+			min-height: 35px;
+		}
+		@@media (max-width: 768px) {
+			#carouselExampleControls, #carouselExampleControls .carousel-inner, #carouselExampleControls .carousel-item img {
+				max-height: 300px;
+				height: 300px;
+			}
+			.carousel-hero-overlay h2 {
+				font-size: 1.4rem;
+				min-height: 40px;
+			}
+			.carousel-hero-overlay p {
+				font-size: 0.95rem;
+				min-height: 25px;
+			}
+		}
+	</style>
 	<script type="text/javascript">
-		jQuery(document).ready(function () {
-			jQuery(".elementor-element-063b8d6").prepend('<div class="eae-section-bs"><div class="eae-section-bs-inner"></div></div>');
-			if ('yes' === 'yes') {
-
-				var bgoverlay = '../wp-content/plugins/addon-elements-for-elementor-page-builder/assets/lib/vegas/overlays/00.png';
-			} else {
-				if ('') {
-					var bgoverlay = '../wp-content/plugins/addon-elements-for-elementor-page-builder/assets/lib/vegas/overlays/.html';
-				} else {
-					var bgoverlay = '../wp-content/plugins/addon-elements-for-elementor-page-builder/assets/lib/vegas/overlays/00.png';
-				}
+		var welcomeText = "हमारे नैमिषारण्य धाम में आपका स्वागत है|";
+		var taglineText = "\"नैमिषारण्य धाम – जहां ज्ञान, भक्ति और मोक्ष का संगम होता है।\"";
+		var speed = 40;
+		var initialDelay = 600;
+		function typeWriter(text, elementId, index) {
+			var el = document.getElementById(elementId);
+			if (!el) return;
+			if (index < text.length) {
+				el.innerHTML += text.charAt(index);
+				setTimeout(function () {
+					typeWriter(text, elementId, index + 1);
+				}, speed);
 			}
-
-
-			jQuery(".elementor-element-063b8d6").children('.eae-section-bs').children('.eae-section-bs-inner').vegas({
-				slides: [{"src":"https:\/\/prayer-wordpress.wrmlabs.com\/wp-content\/uploads\/2023\/10\/pexels-prabhala.jpg"},{"src":"https:\/\/prayer-wordpress.wrmlabs.com\/wp-content\/uploads\/2023\/10\/tanuj-adhikary-scaled.jpg"}],
-				transition: 'fade',
-				animation: 'kenburns',
-				overlay: bgoverlay,
-				cover: true,
-				delay: 7000,
-				timer: false				});
-			if ('yes' === 'yes') {
-				jQuery(".elementor-element-063b8d6").children('.eae-section-bs').children('.eae-section-bs-inner').children('.vegas-overlay').css('background-image', '');
-			}
-		});
+		}
+		function initTypewriter() {
+			var wEl = document.getElementById("welcomeText");
+			var tEl = document.getElementById("taglineText");
+			if (wEl) wEl.innerHTML = "";
+			if (tEl) tEl.innerHTML = "";
+			setTimeout(function () {
+				typeWriter(welcomeText, "welcomeText", 0);
+				setTimeout(function () {
+					typeWriter(taglineText, "taglineText", 0);
+				}, welcomeText.length * speed + 300);
+			}, initialDelay);
+		}
+		if (document.readyState === "loading") {
+			document.addEventListener("DOMContentLoaded", initTypewriter);
+		} else {
+			initTypewriter();
+		}
 	</script>
-	<section class="has_eae_slider elementor-section elementor-top-section elementor-element elementor-element-063b8d6 main-slider elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="063b8d6" data-element_type="section">
-		<div class="elementor-container elementor-column-gap-default">
-			<div class="has_eae_slider elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-7f06665" data-id="7f06665" data-element_type="column">
-				<div class="elementor-widget-wrap elementor-element-populated">
-					<section class="has_eae_slider elementor-section elementor-inner-section elementor-element elementor-element-a800c3a elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="a800c3a" data-element_type="section">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="has_eae_slider elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-eec9007" data-id="eec9007" data-element_type="column">
-								<div class="elementor-widget-wrap elementor-element-populated">
-									<div class="elementor-element elementor-element-cd83391 elementor-widget elementor-widget-heading" data-id="cd83391" data-element_type="widget" data-widget_type="heading.default">
-										<div class="elementor-widget-container">
-											<style>
-												/*! elementor - v3.14.0 - 26-06-2023 */
-												.elementor-heading-title {
-													padding: 0;
-													margin: 0;
-													line-height: 1
-												}
-
-												.elementor-widget-heading .elementor-heading-title[class*=elementor-size-] > a {
-													color: inherit;
-													font-size: inherit;
-													line-height: inherit
-												}
-
-												.elementor-widget-heading .elementor-heading-title.elementor-size-small {
-													font-size: 15px
-												}
-
-												.elementor-widget-heading .elementor-heading-title.elementor-size-medium {
-													font-size: 19px
-												}
-
-												.elementor-widget-heading .elementor-heading-title.elementor-size-large {
-													font-size: 29px
-												}
-
-												.elementor-widget-heading .elementor-heading-title.elementor-size-xl {
-													font-size: 39px
-												}
-
-												.elementor-widget-heading .elementor-heading-title.elementor-size-xxl {
-													font-size: 59px
-												}</style><h5 class="elementor-heading-title elementor-size-default">Welcome to our tempale</h5>
-										</div>
-									</div>
-									<div class="elementor-element elementor-element-7e0564b elementor-widget elementor-widget-heading" data-id="7e0564b" data-element_type="widget" data-widget_type="heading.default">
-										<div class="elementor-widget-container">
-											<h2 class="elementor-heading-title elementor-size-default">
-												Some Important Life
-												<br> Lessons From Gita
-											</h2>
-										</div>
-									</div>
-									<div class="elementor-element elementor-element-398ba11 elementor-align-left elementor-widget elementor-widget-button" data-id="398ba11" data-element_type="widget" data-widget_type="button.default">
-										<div class="elementor-widget-container">
-											<div class="elementor-button-wrapper">
-												<a class="elementor-button elementor-button-link elementor-size-md elementor-animation-wobble-bottom" href="#">
-													<span class="elementor-button-content-wrapper">
-														<span class="elementor-button-text">Join Today</span>
-													</span>
-												</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="has_eae_slider elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-013de28" data-id="013de28" data-element_type="column">
-								<div class="elementor-widget-wrap">
-								</div>
-							</div>
-						</div>
-					</section>
-				</div>
+	<!-- Slider start -->
+	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="4500">
+		<div class="carousel-hero-overlay">
+			<h2 id="welcomeText"></h2>
+			<p id="taglineText"></p>
+		</div>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img src="~/wp-content/uploads/2022/07/gr.jpg" alt="नैमिषारण्य धाम" />
+			</div>
+			<div class="carousel-item">
+				<img src="~/wp-content/uploads/2022/07/slider3.jpg" alt="पवित्र तपोभूमि" />
+			</div>
+			<div class="carousel-item">
+				<img src="~/wp-content/uploads/2022/07/slider2.jpg" alt="चक्रतीर्थ दर्शन" />
 			</div>
 		</div>
-	</section>
-	<section class="has_eae_slider elementor-section elementor-top-section elementor-element elementor-element-a4a53b8 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="a4a53b8" data-element_type="section">
+		<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev" style="z-index: 10;">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next" style="z-index: 10;">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
+	<!-- Slider end -->
+	<section id="about-section" class="has_eae_slider elementor-section elementor-top-section elementor-element elementor-element-a4a53b8 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="a4a53b8" data-element_type="section">
 		<div class="elementor-container elementor-column-gap-default">
 			<div class="has_eae_slider elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-61c80af" data-id="61c80af" data-element_type="column">
 				<div class="elementor-widget-wrap elementor-element-populated">
@@ -135,7 +157,7 @@
 													.elementor-widget-image img {
 														vertical-align: middle;
 														display: inline-block
-													}</style>												<img fetchpriority="high" decoding="async" width="774" height="770" src="../wp-content/uploads/2023/10/Group-1.png" class="attachment-full size-full wp-image-1392" alt="" srcset="https://prayer-wordpress.wrmlabs.com/wp-content/uploads/2023/10/Group-1.png 774w, https://prayer-wordpress.wrmlabs.com/wp-content/uploads/2023/10/Group-1-300x298.png 300w, https://prayer-wordpress.wrmlabs.com/wp-content/uploads/2023/10/Group-1-150x150.png 150w, https://prayer-wordpress.wrmlabs.com/wp-content/uploads/2023/10/Group-1-768x764.png 768w" sizes="(max-width: 774px) 100vw, 774px" />
+													}</style>												<img fetchpriority="high" decoding="async" width="774" height="770" src="~/wp-content/uploads/2023/10/Group-1.png" class="attachment-full size-full wp-image-1392" alt="नैमिषारण्य धाम" />
 										</div>
 									</div>
 								</div>
@@ -144,12 +166,14 @@
 								<div class="elementor-widget-wrap elementor-element-populated">
 									<div class="elementor-element elementor-element-1da6f27 elementor-widget elementor-widget-heading" data-id="1da6f27" data-element_type="widget" data-widget_type="heading.default">
 										<div class="elementor-widget-container">
-											<h5 class="elementor-heading-title elementor-size-default">We are a Prayer</h5>
+											<h5 class="elementor-heading-title elementor-size-default">
+												हम एक प्रार्थना हैं|
+											</h5>
 										</div>
 									</div>
 									<div class="elementor-element elementor-element-6a770dd elementor-widget elementor-widget-heading" data-id="6a770dd" data-element_type="widget" data-widget_type="heading.default">
 										<div class="elementor-widget-container">
-											<h2 class="elementor-heading-title elementor-size-default">We are a Hindu </h2>
+											<h2 class="elementor-heading-title elementor-size-default">हम हिंदू हैं|</h2>
 										</div>
 									</div>
 									<div class="elementor-element elementor-element-7da4ae9 elementor-widget elementor-widget-text-editor" data-id="7da4ae9" data-element_type="widget" data-widget_type="text-editor.default">
@@ -185,7 +209,7 @@
 
 												.elementor-widget-text-editor .elementor-drop-cap-letter {
 													display: inline-block
-												}</style>				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+												}</style>				<p>नैमिषारण्य धाम – एक पवित्र तपोभूमि, जहां ऋषि-मुनियों ने वेदों की रचना की, जहां चक्रतीर्थ की निर्मल धारा बहती है, जहां भगवान विष्णु की कृपा सदा बनी रहती है, जहां देवी ललिता का दिव्य आशीर्वाद प्राप्त होता है, जहां कालचक्र स्थिर हो जाता है, जहां पवित्र कुंड में स्नान करने से सभी पाप नष्ट हो जाते हैं, जहां महर्षि व्यास ने पुराणों की रचना की, जहां हनुमानजी की चरण रज आज भी भक्तों को आशीर्वाद देती है, जहां वेदव्यास गद्दी की महिमा अपरंपार है, जहां श्री हरि का वास है, जहां अखंड रामायण पाठ की परंपरा अनादि काल से चली आ रही है, जहां नवग्रहों का शांति स्थल स्थित है, जहां शिव-पार्वती का अद्भुत संगम है, जहां पवित्र तुलसी का वास है|</p>
 										</div>
 									</div>
 									<div class="elementor-element elementor-element-180975c elementor-position-left elementor-view-default elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="180975c" data-element_type="widget" data-widget_type="icon-box.default">
@@ -199,11 +223,11 @@
 												<div class="elementor-icon-box-content">
 													<h3 class="elementor-icon-box-title">
 														<span>
-															Praise & Worship
+															स्तुति एवं आराधना|
 														</span>
 													</h3>
 													<p class="elementor-icon-box-description">
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+														एक आध्यात्मिक प्रक्रिया है जिसमें भक्त अपने आराध्य देव की भक्ति, प्रेम और समर्पण व्यक्त करता है। यह मंत्रोच्चारण, भजन, कीर्तन, ध्यान और पूजा के माध्यम से की जाती है। आराधना से सकारात्मक ऊर्जा का संचार होता है|
 													</p>
 												</div>
 											</div>
@@ -220,17 +244,17 @@
 												<div class="elementor-icon-box-content">
 													<h3 class="elementor-icon-box-title">
 														<span>
-															Hindus celebrate
+															हिंदू जश्न मनाते हैं|
 														</span>
 													</h3>
 													<p class="elementor-icon-box-description">
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+														नैमिषारण्य धाम में हिंदू भव्य उत्सवों और धार्मिक अनुष्ठानों के साथ जश्न मनाते हैं। यहाँ अखंड रामायण पाठ, नवरात्रि पूजन, महा यज्ञ, सत्संग, और संकीर्तन जैसे आयोजनों से वातावरण पवित्र हो जाता है।
 													</p>
 												</div>
 											</div>
 										</div>
 									</div>
-									<div class="elementor-element elementor-element-0b7ceb7 elementor-align-left elementor-widget elementor-widget-button" data-id="0b7ceb7" data-element_type="widget" data-widget_type="button.default">
+									@* <div class="elementor-element elementor-element-0b7ceb7 elementor-align-left elementor-widget elementor-widget-button" data-id="0b7ceb7" data-element_type="widget" data-widget_type="button.default">
 										<div class="elementor-widget-container">
 											<div class="elementor-button-wrapper">
 												<a class="elementor-button elementor-button-link elementor-size-md elementor-animation-wobble-bottom" href="#">
@@ -240,7 +264,7 @@
 												</a>
 											</div>
 										</div>
-									</div>
+									</div> *@
 								</div>
 							</div>
 						</div>
@@ -249,7 +273,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="has_eae_slider elementor-section elementor-top-section elementor-element elementor-element-41a1841 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="41a1841" data-element_type="section">
+	<section id="Services-section" class="has_eae_slider elementor-section elementor-top-section elementor-element elementor-element-41a1841 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="41a1841" data-element_type="section">
 		<div class="elementor-container elementor-column-gap-default">
 			<div class="has_eae_slider elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-4af785f" data-id="4af785f" data-element_type="column">
 				<div class="elementor-widget-wrap elementor-element-populated">
@@ -280,10 +304,9 @@
 
 										<div class="item">
 											<div class="service-box  wow slideInUp" data-wow-delay="0ms" data-wow-duration="1200ms">
-												<span class="img-ser"><img decoding="async" src="../wp-content/uploads/2022/08/si-3-1.png" alt="" /></span>
-												<h3><a href="https://prayer-wordpress.wrmlabs.com/service/car-pooja/">Car Pooja</a></h3>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-												<a href="https://prayer-wordpress.wrmlabs.com/service/car-pooja/" class="read-more">Read More...</a>
+												<span class="img-ser"><img decoding="async" src="~/wp-content/uploads/2022/08/si-3-1.png" alt="" /></span>
+												<h3><a href="#">Darshan</a></h3>
+												<p>Daily Darshan of Pauranik Temples.</p>
 											</div>
 										</div>
 
@@ -292,10 +315,9 @@
 
 										<div class="item">
 											<div class="service-box  wow slideInUp" data-wow-delay="0ms" data-wow-duration="1200ms">
-												<span class="img-ser"><img decoding="async" src="../wp-content/uploads/2022/08/si-2-1.png" alt="" /></span>
-												<h3><a href="https://prayer-wordpress.wrmlabs.com/service/bhoomi-pooja/">Bhoomi Pooja</a></h3>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-												<a href="https://prayer-wordpress.wrmlabs.com/service/bhoomi-pooja/" class="read-more">Read More...</a>
+												<span class="img-ser"><img decoding="async" src="~/wp-content/uploads/2022/08/si-2-1.png" alt="" /></span>
+												<h3><a href="#">Anushthanam </a></h3>
+												<p>Special online Anushthanam.</p>
 											</div>
 										</div>
 
@@ -304,10 +326,9 @@
 
 										<div class="item">
 											<div class="service-box  wow slideInUp" data-wow-delay="0ms" data-wow-duration="1200ms">
-												<span class="img-ser"><img decoding="async" src="../wp-content/uploads/2022/08/si-1.png" alt="" /></span>
-												<h3><a href="https://prayer-wordpress.wrmlabs.com/service/prashad/">Prashad</a></h3>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-												<a href="https://prayer-wordpress.wrmlabs.com/service/prashad/" class="read-more">Read More...</a>
+												<span class="img-ser"><img decoding="async" src="~/wp-content/uploads/2022/08/si-1.png" alt="" /></span>
+												<h3><a href="#">Aarti </a></h3>
+												<p>Special online Divya Aarti.</p>
 											</div>
 										</div>
 
@@ -316,10 +337,9 @@
 
 										<div class="item">
 											<div class="service-box  wow slideInUp" data-wow-delay="0ms" data-wow-duration="1200ms">
-												<span class="img-ser"><img decoding="async" src="../wp-content/uploads/2022/08/si-3-1.png" alt="" /></span>
-												<h3><a href="https://prayer-wordpress.wrmlabs.com/service/marriage/">Marriage</a></h3>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-												<a href="https://prayer-wordpress.wrmlabs.com/service/marriage/" class="read-more">Read More...</a>
+												<span class="img-ser"><img decoding="async" src="~/wp-content/uploads/2022/08/si-3-1.png" alt="" /></span>
+												<h3><a href="#">Prasadam</a></h3>
+												<p>Prasadam for special events.</p>
 											</div>
 										</div>
 
@@ -328,10 +348,9 @@
 
 										<div class="item">
 											<div class="service-box  wow slideInUp" data-wow-delay="0ms" data-wow-duration="1200ms">
-												<span class="img-ser"><img decoding="async" src="../wp-content/uploads/2022/08/si-2-1.png" alt="" /></span>
-												<h3><a href="https://prayer-wordpress.wrmlabs.com/service/darshon/">Darshon</a></h3>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-												<a href="https://prayer-wordpress.wrmlabs.com/service/darshon/" class="read-more">Read More...</a>
+												<span class="img-ser"><img decoding="async" src="~/wp-content/uploads/2022/08/si-2-1.png" alt="" /></span>
+												<h3><a href="#">Satyanarayn Katha</a></h3>
+												<p>Online Sri Satyanarayn Katha.</p>
 											</div>
 										</div>
 
@@ -340,10 +359,9 @@
 
 										<div class="item">
 											<div class="service-box  wow slideInUp" data-wow-delay="0ms" data-wow-duration="1200ms">
-												<span class="img-ser"><img decoding="async" src="../wp-content/uploads/2022/08/si-1.png" alt="" /></span>
-												<h3><a href="https://prayer-wordpress.wrmlabs.com/service/pooja/">Pooja</a></h3>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-												<a href="https://prayer-wordpress.wrmlabs.com/service/pooja/" class="read-more">Read More...</a>
+												<span class="img-ser"><img decoding="async" src="~/wp-content/uploads/2022/08/si-1.png" alt="" /></span>
+												<h3><a href="#">Sahastranam Patham</a></h3>
+												<p>Online Sri Vishnu Sahastranam Patham.</p>
 											</div>
 										</div>
 
@@ -472,7 +490,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="has_eae_slider elementor-section elementor-top-section elementor-element elementor-element-5d83f46 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="5d83f46" data-element_type="section">
+	<section id="Events-section" class="has_eae_slider elementor-section elementor-top-section elementor-element elementor-element-5d83f46 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="5d83f46" data-element_type="section">
 		<div class="elementor-container elementor-column-gap-default">
 			<div class="has_eae_slider elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-d481815" data-id="d481815" data-element_type="column">
 				<div class="elementor-widget-wrap elementor-element-populated">
@@ -498,11 +516,11 @@
 
 										<div class="item">
 											<div class="event-s">
-												<a href="https://prayer-wordpress.wrmlabs.com/events/it-is-a-long-established-fact-that/">
-													<img decoding="async" width="302" height="384" src="../wp-content/uploads/2022/08/event-4-1.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" />
+												<a href="#">
+													<img decoding="async" width="302" height="384" src="~/wp-content/uploads/2022/08/event-4-1.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" />
 												</a>
 												<div class="feature-bottom">
-													<h3><a href="https://prayer-wordpress.wrmlabs.com/events/it-is-a-long-established-fact-that/">It is a long established fact that a reader</a></h3>
+													<h3><a href="#">It is a long established fact that a reader</a></h3>
 													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</p>
 												</div>
 											</div>
@@ -512,11 +530,11 @@
 
 										<div class="item">
 											<div class="event-s">
-												<a href="https://prayer-wordpress.wrmlabs.com/events/it-is-a-long-established/">
-													<img decoding="async" width="302" height="384" src="../wp-content/uploads/2022/08/event-3.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" />
+												<a href="#">
+													<img decoding="async" width="302" height="384" src="~/wp-content/uploads/2022/08/event-3.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" />
 												</a>
 												<div class="feature-bottom">
-													<h3><a href="https://prayer-wordpress.wrmlabs.com/events/it-is-a-long-established/">Watch and listen to our sermons</a></h3>
+													<h3><a href="#">Watch and listen to our sermons</a></h3>
 													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</p>
 												</div>
 											</div>
@@ -526,11 +544,11 @@
 
 										<div class="item">
 											<div class="event-s">
-												<a href="https://prayer-wordpress.wrmlabs.com/events/watch-and-listen-to-our-sermons-copy/">
-													<img loading="lazy" decoding="async" width="302" height="384" src="../wp-content/uploads/2022/08/event-2-1.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" />
+												<a href="#">
+													<img loading="lazy" decoding="async" width="302" height="384" src="~/wp-content/uploads/2022/08/event-2-1.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" />
 												</a>
 												<div class="feature-bottom">
-													<h3><a href="https://prayer-wordpress.wrmlabs.com/events/watch-and-listen-to-our-sermons-copy/">Many desktop publishing packages and web page editors now use</a></h3>
+													<h3><a href="#">Many desktop publishing packages and web page editors now use</a></h3>
 													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</p>
 												</div>
 											</div>
@@ -540,11 +558,11 @@
 
 										<div class="item">
 											<div class="event-s">
-												<a href="https://prayer-wordpress.wrmlabs.com/events/when-an-unknown-printer/">
-													<img loading="lazy" decoding="async" width="302" height="384" src="../wp-content/uploads/2022/08/event-1-1.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" />
+												<a href="#">
+													<img loading="lazy" decoding="async" width="302" height="384" src="~/wp-content/uploads/2022/08/event-1-1.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" />
 												</a>
 												<div class="feature-bottom">
-													<h3><a href="https://prayer-wordpress.wrmlabs.com/events/when-an-unknown-printer/">When an unknown printer took a galley of type and scrambled</a></h3>
+													<h3><a href="#">When an unknown printer took a galley of type and scrambled</a></h3>
 													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</p>
 												</div>
 											</div>
@@ -633,7 +651,7 @@
 														<div class="event-list">
 															<div class="event-det1">
 																<h5>Upcoming Event</h5>
-																<h3 class="upcase"><a href="https://prayer-wordpress.wrmlabs.com/upcoming_event/watch-and-listen-to-our-sermons/">Watch and listen to our sermons</a></h3>
+																<h3 class="upcase"><a href="#">Watch and listen to our sermons</a></h3>
 																<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
 																<ul>
 																	<li>
@@ -645,7 +663,7 @@
 																		No 233 Main St. New York, United States
 																	</li>
 																</ul>
-																<a href="https://prayer-wordpress.wrmlabs.com/upcoming_event/watch-and-listen-to-our-sermons/" class="read-m-we  btn-white">Visit Now!</a>
+																<a href="#" class="read-m-we  btn-white">Visit Now!</a>
 															</div>
 														</div>
 
@@ -672,7 +690,7 @@
 			</div>
 			<div class="has_eae_slider elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-498b8cc" data-id="498b8cc" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
 				<div class="elementor-widget-wrap elementor-element-populated">
-					<section class="has_eae_slider elementor-section elementor-inner-section elementor-element elementor-element-555d923 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="555d923" data-element_type="section">
+					<section id="Contact-section" class="has_eae_slider elementor-section elementor-inner-section elementor-element elementor-element-555d923 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="555d923" data-element_type="section">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="has_eae_slider elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-18292e0" data-id="18292e0" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
 								<div class="elementor-widget-wrap elementor-element-populated">
@@ -691,7 +709,7 @@
 																																																														   data-form-id="1177"
 																																																														   data-design="default"
 																																																														   data-grid="open"
-																																																														   style="display: none;"
+																																																														   
 																																																														   data-uid="67e7899012ad5">
 													<div role="alert" aria-live="polite" class="forminator-response-message forminator-error" aria-hidden="true"></div><div class="forminator-row"><div id="name-1" class="forminator-col forminator-col-12 "><div class="forminator-field"><input type="text" name="name-1" value="" placeholder="Enter your Name" id="forminator-field-name-1_67e7899012ad5" class="forminator-input forminator-name--field" aria-required="false" /></div></div></div><div class="forminator-row"><div id="email-1" class="forminator-col forminator-col-12 "><div class="forminator-field"><input type="email" name="email-1" value="" placeholder="Enter your Email" id="forminator-field-email-1_67e7899012ad5" class="forminator-input forminator-email--field" data-required="true" aria-required="true" /></div></div></div><div class="forminator-row"><div id="phone-1" class="forminator-col forminator-col-12 "><div class="forminator-field"><input type="text" name="phone-1" value="" placeholder="Enter your Mobile no." id="forminator-field-phone-1_67e7899012ad5" class="forminator-input forminator-field--phone" data-required="" aria-required="false" autocomplete="off" /></div></div></div><div class="forminator-row"><div id="textarea-1" class="forminator-col forminator-col-12 "><div class="forminator-field"><textarea name="textarea-1" placeholder="Enter your message" id="forminator-field-textarea-1_67e7899012ad5" class="forminator-textarea" rows="6" style="min-height:140px;" maxlength="180"></textarea><span id="forminator-field-textarea-1_67e7899012ad5-description" class="forminator-description"><span data-limit="180" data-type="characters">0 / 180</span></span></div></div></div><input type="hidden" name="referer_url" value="" /><div class="forminator-row forminator-row-last"><div class="forminator-col"><div class="forminator-field"><button class="forminator-button forminator-button-submit">Send Message</button></div></div></div><input type="hidden" id="forminator_nonce" name="forminator_nonce" value="5bc613dad8" /><input type="hidden" name="_wp_http_referer" value="/home-three/" /><input type="hidden" name="form_id" value="1177"><input type="hidden" name="page_id" value="1382"><input type="hidden" name="form_type" value="default"><input type="hidden" name="current_url" value="index.html"><input type="hidden" name="render_id" value="0"><input type="hidden" name="action" value="forminator_submit_form_custom-forms">
 												</form>
@@ -711,3 +729,26 @@
 		</div>
 	</section>
 </div>
+<script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", function () {
+		var contactForm = document.getElementById("forminator-module-1177");
+		if (contactForm) {
+			contactForm.addEventListener("submit", function (e) {
+				e.preventDefault();
+				var respEl = contactForm.querySelector(".forminator-response-message");
+				if (respEl) {
+					respEl.className = "forminator-response-message forminator-success";
+					respEl.style.display = "block";
+					respEl.style.padding = "14px";
+					respEl.style.marginBottom = "15px";
+					respEl.style.backgroundColor = "#d4edda";
+					respEl.style.color = "#155724";
+					respEl.style.borderRadius = "4px";
+					respEl.style.border = "1px solid #c3e6cb";
+					respEl.innerHTML = "<strong>धन्यवाद!</strong> आपका संदेश सफलतापूर्वक भेज दिया गया है। हम शीघ्र ही आपसे संपर्क करेंगे।";
+				}
+				contactForm.reset();
+			});
+		}
+	});
+</script>

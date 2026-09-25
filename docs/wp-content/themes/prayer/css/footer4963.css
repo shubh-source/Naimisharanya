@@ -1,0 +1,220 @@
+.footer-min {
+    background-color: #222429;
+}
+.img-l-size img{ width:80px;}
+
+ 
+
+    .footer-min .footer-cont p {
+        font-size: 16px !IMPORTANT;
+        display: inline-block;
+        line-height: 24px;
+        margin-bottom: 22px;
+        font-weight: normal;
+        color: #999999;
+    }
+
+    .footer-min .footer-logo {
+        margin-top: 5px !important
+    }
+
+    .footer-min .wi-100 li a {
+        color: #999999;
+        font-size: 15px;
+        padding: 8px 0px;
+        display: block;
+        font-weight: 500;
+    }
+.menu-footer-con li {
+    color: #999999;
+    font-size: 15px;
+    padding: 8px 0px !IMPORTANT;
+    display: block;
+    font-weight: 500;
+}
+.menu-footer li i {
+    font-size: 22px;
+    margin-right: 10px;
+    color: #de8d38;
+    font-weight: 600;
+}
+.footer-min .wi-100 li a:hover {
+    color: #de8d38;
+    padding-left: 5px;
+}
+.news-f1 button.btn.upcase {
+    width: 100%;
+    padding: 13px;
+    color: #fff;
+    background: #de8d38;
+    font-size: 19px;
+    margin-bottom: 20px;
+    text-align: center;
+    display: block;
+}
+.footer-min .footer-cont h3 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #de8d38;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 22px;
+}
+
+    .footer-min .footer-cont h3:before {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 3px;
+        background: #de8d38;
+        bottom: 0;
+    }
+
+.footer-min .footer-cont h4 {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 29px;
+    margin-bottom: 20px;
+    color: #de8d38;
+}
+
+    .footer-min input.fill {
+        background: #cccccc;
+        border: none;
+        padding: 10px 20px;
+        min-height: 55px;
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+
+
+     
+
+    .footer-min .copy-one {
+        border: none
+    }
+
+.b-b {
+    border-bottom: 1px solid #ccc;
+}
+
+.min-subs h4 {
+    color: #fff;
+    font-weight: 500;
+    font-size: 28px;
+    text-align: center;
+    line-height: 38px;
+    margin-bottom: 35px;
+}
+
+.form-sub {
+    position: relative
+}
+
+    .form-sub input {
+        width: 100%;
+        min-height: 57px;
+        padding: 10px;
+        border-radius: 0;
+        border: none;
+    }
+
+    .form-sub button {
+        position: absolute;
+        top: 0px;
+        right: 0;
+        background: #de8d38;
+        color: #fff;
+        border: none;
+        width: 57px;
+        height: 57px;
+        border-radius: 0;
+        font-size: 33px;
+        line-height: 56px;
+    }
+
+.back-home {
+    position: absolute;
+    right: 0;
+    top: -9px;
+}
+
+    .back-home i {
+        margin-right: 10px !important;
+        margin-left: 0px;
+    }
+
+    .back-home:hover {
+        color: #fff;
+    }
+.footer-min .copy-one {
+    border: none;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.copy-one {
+    padding: 1em;
+    border-top: 1px solid #575757;
+}
+    .copy-one .social-t {
+        margin: 0px;
+    }
+
+.social-t {
+    width: auto;
+    text-align: center;
+    display: inline-block;
+    float: none;
+    margin-top: 20px;
+}
+    .social-t li {
+        float: left;
+    }
+        .social-t li:first-child a {
+            margin-left: 0px !important;
+        }
+
+        .social-t li a {
+            float: left;
+            width: 40px;
+            height: 40px;
+            box-shadow: 0px 5px 19.53px 1.47px rgb(85 80 98 / 19%);
+            display: inline-block;
+            margin-left: 16px;
+            border-radius: 50%;
+            line-height: 40px;
+            color: #fff;
+        }
+.facebook-change-co {
+    background: #23a1cf;
+    color: #fff;
+}
+
+.twitter-change-co {
+    background: #88d9f7;
+    color: #fff;
+}
+
+.pinterest-change-co {
+    background: #f5235d;
+    color: #fff;
+}
+
+.linkedin-change-co {
+    background: #1893da;
+    color: #fff;
+}
+ 
+.footer-min .wi-100 li{ padding:0px;}
+.b-top {
+    border-top: 1px solid #999;
+}
+.copy-one p {
+    margin: 0px;
+    color: #999;
+    font-weight: normal;
+    font-size: 15px;
+    text-align: center;
+}
