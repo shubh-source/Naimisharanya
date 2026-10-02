@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>@(ViewData["Title"] != null ? ViewData["Title"] + " - " : "")नैमिषारण्य तीर्थ धाम (Naimisharanya Dham)</title>
-  <meta name="description" content="Official pilgrimage portal to Naimisharanya (Neemsar) Dham. Explore Chakra Tirtha, Maa Lalita Devi Shaktipeeth, Vyas Gaddi, daily aarti timings, and book authentic Pujas and Dharamshala stay." />
-  <meta name="keywords" content="Naimisharanya, Neemsar, Chakra Tirtha, Lalita Devi Shaktipeeth, Vyas Gaddi, Hanuman Garhi, Sitapur, Puja Booking, Dharamshala" />
+  <title>@(ViewData["Title"] != null ? ViewData["Title"] + " - " : "")नैमिषारण्य तपोभूमि | नैमिष टूरिस्ट सर्विसेज "नैमिषारण्य प्रवासम"</title>
+  <meta name="description" content="नैमिषारण्य तीर्थ - सतयुग का प्रधान तीर्थ, 108 शक्तिपीठ माँ ललिता देवी, काशी विश्वनाथ, व्यास गद्दी। ऑनलाइन दर्शन, अनुष्ठान, सत्यनारायण कथा, प्रवास व टूर पैकेज।" />
+  <meta name="keywords" content="नैमिषारण्य, चक्रतीर्थ, ललिता देवी, काशी विश्वनाथ, भूतेश्वर नाथ, व्यास गद्दी, हनुमान गढ़ी, सत्यनारायण कथा, नाभि गया, दधीचि कुंड, पं पुरुषोत्तम शास्त्री, आनंद गुप्ता" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="~/wp-content/uploads/2022/07/fav-1-1.png" />
@@ -24,9 +24,9 @@
       {
         "@@type": "TouristAttraction",
         "@@id": "https://shubh-source.github.io/Naimisharanya/#attraction",
-        "name": "Chakra Tirtha - Naimisharanya",
-        "alternateName": "नैमिषारण्य चक्र तीर्थ",
-        "description": "The sacred circular water kund created where Lord Brahma's manomaya chakra touched earth. Epicenter of spiritual purification and 84 Kosi Parikrama.",
+        "name": "Chakra Tirtha & Naimisharanya Tapobhoomi",
+        "alternateName": "नैमिषारण्य तपोभूमि चक्रतीर्थ",
+        "description": "The sacred epicenter where Lord Brahma's manomaya chakra touched earth. Abode of 88,000 Rishis, origin of Sri Satyanarayan Vrat Katha, and Nabhi Gaya.",
         "url": "https://shubh-source.github.io/Naimisharanya/",
         "image": "https://shubh-source.github.io/Naimisharanya/wp-content/uploads/2022/07/slider1.jpg",
         "address": {
@@ -36,7 +36,7 @@
           "postalCode": "261402",
           "addressCountry": "IN"
         },
-        "telephone": "+91-9935010749"
+        "telephone": "+91-9935935573"
       }
     ]
   }
@@ -48,14 +48,15 @@
   <div class="top-bar">
     <div class="container">
       <div class="top-bar-left">
-        <span><i class="fa-solid fa-om" style="color:var(--gold);"></i> ॐ नमो भगवते वासुदेवाय</span>
-        <span class="top-bar-marquee"><i class="fa-solid fa-bell"></i> 84 कोसी परिक्रमा एवं सोमवती अमावस्या पावन स्नान</span>
+        <span><i class="fa-solid fa-om" style="color:var(--gold);"></i> ॐ नमो भगवते वासुदेवाय | सतयुग का प्रधान तीर्थ</span>
+        <span class="top-bar-marquee"><i class="fa-solid fa-shield-halved"></i> अधिकृत टूरिस्ट गाइड उ. प्र. पर्यटन विभाग</span>
       </div>
       <div class="top-bar-right">
-        <a href="tel:+919935010749"><i class="fa-solid fa-phone"></i> +91 9935010749</a>
-        <a href="tel:+919935935573"><i class="fa-solid fa-phone"></i> +91 9935935573</a>
-        <a href="https://wa.me/919935010749" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" style="color:#25D366;"></i> WhatsApp</a>
-        <a asp-controller="Home" asp-action="Admin" style="color:var(--gold); font-weight:700;"><i class="fa-solid fa-shield-halved"></i> Admin Portal</a>
+        <a href="tel:+919935935573" title="पं पुरुषोत्तम शास्त्री"><i class="fa-solid fa-phone"></i> 09935935573</a>
+        <a href="tel:09918188484"><i class="fa-solid fa-phone"></i> 09918188484</a>
+        <a href="tel:09919588884" title="आनंद गुप्ता"><i class="fa-solid fa-phone"></i> 09919588884</a>
+        <a href="https://wa.me/919935935573" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" style="color:#25D366;"></i> WhatsApp</a>
+        <a asp-controller="Home" asp-action="Admin" style="color:var(--gold); font-weight:700;"><i class="fa-solid fa-lock"></i> Admin Portal</a>
       </div>
     </div>
   </div>
@@ -63,11 +64,11 @@
   <!-- Main Navigation & Theme Switcher -->
   <header class="main-header" role="banner">
     <div class="container nav-container">
-      <a asp-controller="Home" asp-action="Index" class="brand-logo" aria-label="Naimisharanya Dham Home">
+      <a asp-controller="Home" asp-action="Index" class="brand-logo" aria-label="नैमिषारण्य धाम मुख्य पृष्ठ">
         <img src="~/wp-content/uploads/2022/07/LogoNamisarnya.jpg" alt="नैमिषारण्य तीर्थ Crest" width="52" height="52" />
         <div class="brand-text">
-          <h1>नैमिषारण्य धाम</h1>
-          <span>Naimisharanya Teerth Kshetra</span>
+          <h1>नैमिषारण्य तपोभूमि</h1>
+          <span>नैमिष टूरिस्ट सर्विसेज "नैमिषारण्य प्रवासम" (स्था. 2005)</span>
         </div>
       </a>
 
@@ -75,32 +76,33 @@
       <nav aria-label="Main Navigation">
         <ul class="nav-menu" id="nav-menu">
           <li><a href="#hero" class="nav-link active">Home</a></li>
-          <li><a href="#tirthas" class="nav-link">Sacred Sites</a></li>
-          <li><a href="#aarti-schedule" class="nav-link">Aarti Timings</a></li>
-          <li><a href="#booking" class="nav-link">Book Puja & Stay</a></li>
-          <li><a href="#how-to-reach" class="nav-link">How to Reach</a></li>
-          <li><a href="#gallery" class="nav-link">Darshan Gallery</a></li>
-          <li><a href="#faq" class="nav-link">Pilgrim FAQ</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li><a href="#history" class="nav-link">तपोभूमि महिमा</a></li>
+          <li><a href="#tirthas" class="nav-link">प्रमुख दर्शनीय स्थल</a></li>
+          <li><a href="#services" class="nav-link">हमारी सेवाएं</a></li>
+          <li><a href="#facilities" class="nav-link">सुविधाएं व पैकेज</a></li>
+          <li><a href="#about-us" class="nav-link">हमारे बारे में</a></li>
+          <li><a href="#aarti-schedule" class="nav-link">आरती समय</a></li>
+          <li><a href="#booking" class="nav-link">बुकिंग</a></li>
+          <li><a href="#contact" class="nav-link">संपर्क</a></li>
         </ul>
       </nav>
 
       <!-- Theme Switcher & Actions -->
       <div class="nav-actions">
-        <div class="theme-switcher-group" role="group" aria-label="Theme Selection">
-          <button class="theme-btn active" data-theme-choice="divine" title="Divine Sacred Saffron Theme" aria-pressed="true">
+        <div class="theme-switcher-group" role="group" aria-label="थीम चुनें">
+          <button class="theme-btn active" data-theme-choice="divine" title="दिव्य भगवा स्वर्ण थीम" aria-pressed="true">
             <i class="fa-solid fa-sun"></i> <span class="theme-text">Divine</span>
           </button>
-          <button class="theme-btn" data-theme-choice="dark" title="Luxury Obsidian Dark Theme" aria-pressed="false">
+          <button class="theme-btn" data-theme-choice="dark" title="रॉयल डार्क स्वर्ण थीम" aria-pressed="false">
             <i class="fa-solid fa-moon"></i> <span class="theme-text">Dark</span>
           </button>
-          <button class="theme-btn" data-theme-choice="clean" title="Clean Ivory Modern Theme" aria-pressed="false">
+          <button class="theme-btn" data-theme-choice="clean" title="क्लीन मॉडर्न आइवरी थीम" aria-pressed="false">
             <i class="fa-solid fa-feather"></i> <span class="theme-text">Ivory</span>
           </button>
         </div>
 
         <a href="#booking" class="btn btn-primary" style="padding:0.55rem 1.15rem; font-size:0.88rem;">
-          <i class="fa-solid fa-hands-praying"></i> Book Puja
+          <i class="fa-solid fa-hands-praying"></i> अनुष्ठान / यात्रा बुक करें
         </a>
 
         <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -119,69 +121,70 @@
   <footer class="main-footer" role="contentinfo">
     <div class="container">
       <div class="footer-grid">
-        <!-- Brand Summary -->
         <div class="footer-brand">
-          <h3>नैमिषारण्य तीर्थ धाम</h3>
-          <span>The Tapobhoomi of 88,000 Rishis</span>
+          <h3>नैमिषारण्य तपोभूमि</h3>
+          <span>नैमिष टूरिस्ट सर्विसेज "नैमिषारण्य प्रवासम" (स्था. 2005)</span>
           <p>
-            The supreme spiritual epicenter where the divine wheel of Brahma rested, the 18 Maha Puranas were recorded by Maharishi Ved Vyas, and Maa Lalita Devi showers eternal grace.
+            वेद, शास्त्र, पुराणों की आधारभूमि एवं सतयुग का प्रधान तीर्थ। अधिकृत आचार्यों द्वारा सत्यनारायण कथा, रुद्राभिषेक, चंडी पाठ, पितृ तर्पण एवं सम्पूर्ण उत्तर प्रदेश व नेपाल टूर पैकेज।
           </p>
           <div style="margin-top:1.25rem;">
             <a asp-controller="Home" asp-action="Admin" style="color:var(--gold); font-size:0.9rem; font-weight:700;">
-              <i class="fa-solid fa-lock"></i> Temple Sewak Admin Portal
+              <i class="fa-solid fa-lock"></i> तीर्थ सेवक एडमिन पोर्टल
             </a>
           </div>
         </div>
 
-        <!-- Sacred Shrines Links -->
         <div class="footer-links-col">
-          <h4>Sacred Shrines</h4>
+          <h4>प्रमुख दर्शनीय स्थल</h4>
           <ul class="footer-links">
-            <li><a href="#tirthas">Chakra Tirtha</a></li>
-            <li><a href="#tirthas">Maa Lalita Devi Mandir</a></li>
-            <li><a href="#tirthas">Maharishi Vyas Gaddi</a></li>
-            <li><a href="#tirthas">Hanuman Garhi Balaji</a></li>
-            <li><a href="#tirthas">Soot Gaddi</a></li>
-            <li><a href="#tirthas">Dadhichi Kund (Mishrikh)</a></li>
+            <li><a href="#tirthas">चक्रतीर्थ (Chakra Tirtha)</a></li>
+            <li><a href="#tirthas">माँ ललिता देवी शक्तिपीठ</a></li>
+            <li><a href="#tirthas">भूतेश्वर नाथ महादेव</a></li>
+            <li><a href="#tirthas">काशी विश्वनाथ विश्वेश्वर</a></li>
+            <li><a href="#tirthas">हनुमान गढ़ी व बालाजी मंदिर</a></li>
+            <li><a href="#tirthas">व्यास गद्दी व अक्षयवट</a></li>
+            <li><a href="#tirthas">मनु-शतरूपा तपस्थानम्</a></li>
+            <li><a href="#tirthas">रुद्रावर्तम व दधीचि कुंड</a></li>
+            <li><a href="#tirthas">हत्या हरण तीर्थ</a></li>
           </ul>
         </div>
 
-        <!-- Pilgrim Services -->
         <div class="footer-links-col">
-          <h4>Devotee Services</h4>
+          <h4>तीर्थ सेवाएं व सुविधाएं</h4>
           <ul class="footer-links">
-            <li><a href="#booking">Book Puja & Sankalpa</a></li>
-            <li><a href="#booking">Dharamshala Booking</a></li>
-            <li><a href="#aarti-schedule">Aarti Timings</a></li>
-            <li><a href="#how-to-reach">How to Reach</a></li>
-            <li><a href="#gallery">Virtual Darshan</a></li>
-            <li><a href="#faq">Pilgrim FAQ</a></li>
+            <li><a href="#services">ऑनलाइन दर्शन व आरती</a></li>
+            <li><a href="#services">ऑनलाइन अनुष्ठान संकल्प</a></li>
+            <li><a href="#services">घर बैठे प्रसाद सेवा</a></li>
+            <li><a href="#services">सत्यनारायण कथा (हिंदी/तेलगु)</a></li>
+            <li><a href="#facilities">एसी / नॉन एसी रूम व हॉल</a></li>
+            <li><a href="#facilities">कार, बस एवं टूर पैकेज</a></li>
+            <li><a href="#facilities">श्रीमद्भागवत सप्ताह महायज्ञ</a></li>
+            <li><a href="#aarti-schedule">दैनिक आरती समय सारिणी</a></li>
           </ul>
         </div>
 
-        <!-- Newsletter & Helpline -->
         <div class="footer-links-col">
-          <h4>Devotee Newsletter</h4>
+          <h4>संपर्क एवं समाचार पत्र</h4>
           <p style="font-size:0.88rem; color:var(--footer-muted); margin-bottom:1rem;">
-            Subscribe to receive holy Amavasya, Purnima and Navratri festival announcements.
+            अमावस्या, पूर्णिमा एवं धार्मिक पर्वों की पूर्व सूचना हेतु जुड़े:
           </p>
           <form id="newsletter-form" style="display:flex; gap:0.5rem; margin-bottom:1.5rem;">
-            <input type="email" name="email-1" placeholder="Your Email Address" required style="padding:0.65rem 0.85rem; border-radius:6px; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.06); color:#fff; font-size:0.88rem; outline:none; width:100%;" />
-            <button type="submit" class="btn btn-gold" style="padding:0.65rem 1rem; font-size:0.88rem;">Join</button>
+            <input type="email" name="email-1" placeholder="आपका ईमेल" required style="padding:0.65rem 0.85rem; border-radius:6px; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.06); color:#fff; font-size:0.88rem; outline:none; width:100%;" />
+            <button type="submit" class="btn btn-gold" style="padding:0.65rem 1rem; font-size:0.88rem;">जुड़ें</button>
           </form>
 
           <ul class="footer-contact-list">
             <li>
               <i class="fa-solid fa-phone"></i>
-              <a href="tel:+919935010749">+91 9935010749 / +91 9935935573</a>
+              <a href="tel:09935935573">09935935573 / 09918188484</a>
             </li>
             <li>
-              <i class="fa-solid fa-envelope"></i>
-              <span>contact@naimisharanya.org</span>
+              <i class="fa-solid fa-phone"></i>
+              <a href="tel:09919588884">09919588884 (आनंद गुप्ता)</a>
             </li>
             <li>
               <i class="fa-solid fa-location-dot"></i>
-              <span>Naimisharanya, Sitapur, UP 261402</span>
+              <span>काशी विश्वनाथ मंदिर, नैमिषारण्य - 261402</span>
             </li>
           </ul>
         </div>
@@ -189,10 +192,10 @@
 
       <div class="footer-bottom">
         <div>
-          © 2026 नैमिषारण्य तीर्थ धाम (Naimisharanya Dham). All rights reserved. Consecrated for Dharma & Devotees.
+          © 2026 नैमिष टूरिस्ट सर्विसेज "नैमिषारण्य प्रवासम" | सर्वाधिकार सुरक्षित।
         </div>
         <div style="display:flex; gap:1.25rem;">
-          <a href="#hero">Back to Top <i class="fa-solid fa-arrow-up"></i></a>
+          <a href="#hero">वापस ऊपर जाएं <i class="fa-solid fa-arrow-up"></i></a>
         </div>
       </div>
     </div>
@@ -201,32 +204,23 @@
   <!-- Booking Confirmation Modal -->
   <div class="modal-overlay" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-container">
-      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close booking confirmation modal">&times;</button>
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="बंद करें">&times;</button>
       <div class="modal-icon"><i class="fa-solid fa-om"></i></div>
-      <h3 class="modal-title" id="modal-title">दर्शन एवं पूजा संकल्प दर्ज</h3>
+      <h3 class="modal-title" id="modal-title">दर्शन एवं अनुष्ठान संकल्प दर्ज</h3>
       <p style="color:var(--text-muted); font-size:0.95rem;">
-        Your Puja / Darshan booking inquiry has been recorded successfully.
+        आपका बुकिंग अनुरोध सफलतापूर्वक दर्ज कर लिया गया है।
       </p>
       <div>
-        <span style="font-size:0.8rem; text-transform:uppercase; color:var(--text-light); font-weight:700;">Booking Reference Code:</span><br />
+        <span style="font-size:0.8rem; text-transform:uppercase; color:var(--text-light); font-weight:700;">बुकिंग संदर्भ कोड (Reference Code):</span><br />
         <span class="modal-token" id="modal-booking-ref">ND-2026-XXXX</span>
       </div>
       <p id="modal-booking-summary" style="font-size:0.92rem; color:var(--text-main); margin-top:0.5rem;"></p>
       <div style="background:var(--bg-alt); padding:0.85rem; border-radius:8px; font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem;">
-        Our verified Teerth Purohit will contact you on WhatsApp / Phone within 2 hours to confirm your rituals and muhurta.
+        नैमिष टूरिस्ट सर्विसेज के अधिकृत प्रतिनिधि शीघ्र ही आपसे फोन / WhatsApp पर संपर्क करेंगे।
       </div>
       <button type="button" class="btn btn-primary" onclick="document.getElementById('booking-modal').classList.remove('open'); document.body.style.overflow='';" style="width:100%;">
         जय नैमिषारण्य धाम (Done)
       </button>
-    </div>
-  </div>
-
-  <!-- Gallery Lightbox Preview -->
-  <div class="lightbox-overlay" id="gallery-lightbox" role="dialog" aria-modal="true">
-    <div class="lightbox-content">
-      <button class="lightbox-close" id="lightbox-close" aria-label="Close image preview">&times;</button>
-      <img id="lightbox-img" src="" alt="Enlarged photo preview" />
-      <div class="lightbox-caption" id="lightbox-caption"></div>
     </div>
   </div>
 
