@@ -19,7 +19,20 @@ namespace Naimisharanya.Controllers
 
         public IActionResult Index()
         {
+            ViewData["Theme"] = "divine";
             return View();
+        }
+
+        public IActionResult Dark()
+        {
+            ViewData["Theme"] = "dark";
+            return View("Index");
+        }
+
+        public IActionResult Ivory()
+        {
+            ViewData["Theme"] = "clean";
+            return View("Index");
         }
 
         public IActionResult Privacy()
@@ -106,55 +119,6 @@ namespace Naimisharanya.Controllers
                 _logger.LogError(ex, "Error saving newsletter subscriber");
                 return Json(new { success = false, message = "त्रुटि हुई। कृपया पुनः प्रयास करें।" });
             }
-        }
-
-        // Admin Dashboard to view all inquiries and subscribers
-        [HttpGet]
-        public async Task<IActionResult> Admin()
-        {
-            var model = new AdminDashboardViewModel
-            {
-                Inquiries = await _db.ContactInquiries.OrderByDescending(i => i.CreatedAt).ToListAsync(),
-                Subscribers = await _db.NewsletterSubscribers.OrderByDescending(s => s.SubscribedAt).ToListAsync()
-            };
-
-            return View(model);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> MarkInquiryRead(int id)
-        {
-            var item = await _db.ContactInquiries.FindAsync(id);
-            if (item != null)
-            {
-                item.IsRead = true;
-                await _db.SaveChangesAsync();
-            }
-            return RedirectToAction(nameof(Admin));
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> DeleteInquiry(int id)
-        {
-            var item = await _db.ContactInquiries.FindAsync(id);
-            if (item != null)
-            {
-                _db.ContactInquiries.Remove(item);
-                await _db.SaveChangesAsync();
-            }
-            return RedirectToAction(nameof(Admin));
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> DeleteSubscriber(int id)
-        {
-            var item = await _db.NewsletterSubscribers.FindAsync(id);
-            if (item != null)
-            {
-                _db.NewsletterSubscribers.Remove(item);
-                await _db.SaveChangesAsync();
-            }
-            return RedirectToAction(nameof(Admin));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

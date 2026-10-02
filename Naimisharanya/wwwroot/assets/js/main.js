@@ -13,22 +13,33 @@
   const defaultTheme = 'divine';
 
   function initTheme() {
-    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || defaultTheme;
-    applyTheme(savedTheme);
+    const lockedTheme = document.documentElement.getAttribute('data-theme-locked');
+    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+    const initialTheme = lockedTheme || savedTheme || document.documentElement.getAttribute('data-theme') || defaultTheme;
+
+    applyTheme(initialTheme);
 
     const themeButtons = document.querySelectorAll('[data-theme-choice]');
     themeButtons.forEach(btn => {
       btn.addEventListener('click', (e) => {
-        e.preventDefault();
         const chosen = btn.getAttribute('data-theme-choice');
+        if (chosen) {
+          localStorage.setItem(THEME_STORAGE_KEY, chosen);
+        }
+        const href = btn.getAttribute('href');
+        if (href && !href.startsWith('#')) {
+          // Allow normal navigation to the standalone theme page
+          return;
+        }
+        e.preventDefault();
         applyTheme(chosen);
       });
     });
   }
 
   function applyTheme(themeName) {
+    if (!themeName) return;
     document.documentElement.setAttribute('data-theme', themeName);
-    localStorage.setItem(THEME_STORAGE_KEY, themeName);
 
     const themeButtons = document.querySelectorAll('[data-theme-choice]');
     themeButtons.forEach(btn => {

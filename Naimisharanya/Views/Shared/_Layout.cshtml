@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hi-IN" data-theme="divine">
+<html lang="hi-IN" data-theme="@(ViewData["Theme"] ?? "divine")" data-theme-locked="@(ViewData["Theme"] ?? "divine")">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -56,7 +56,6 @@
         <a href="tel:09918188484"><i class="fa-solid fa-phone"></i> 09918188484</a>
         <a href="tel:09919588884" title="आनंद गुप्ता"><i class="fa-solid fa-phone"></i> 09919588884</a>
         <a href="https://wa.me/919935935573" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" style="color:#25D366;"></i> WhatsApp</a>
-        <a asp-controller="Home" asp-action="Admin" style="color:var(--gold); font-weight:700;"><i class="fa-solid fa-lock"></i> Admin Portal</a>
       </div>
     </div>
   </div>
@@ -90,15 +89,15 @@
       <!-- Theme Switcher & Actions -->
       <div class="nav-actions">
         <div class="theme-switcher-group" role="group" aria-label="थीम चुनें">
-          <button class="theme-btn active" data-theme-choice="divine" title="दिव्य भगवा स्वर्ण थीम" aria-pressed="true">
+          <a asp-controller="Home" asp-action="Index" class="theme-btn @((ViewData["Theme"]?.ToString() ?? "divine") == "divine" ? "active" : "")" data-theme-choice="divine" title="दिव्य भगवा स्वर्ण थीम (Divine Saffron)">
             <i class="fa-solid fa-sun"></i> <span class="theme-text">Divine</span>
-          </button>
-          <button class="theme-btn" data-theme-choice="dark" title="रॉयल डार्क स्वर्ण थीम" aria-pressed="false">
+          </a>
+          <a asp-controller="Home" asp-action="Dark" class="theme-btn @(ViewData["Theme"]?.ToString() == "dark" ? "active" : "")" data-theme-choice="dark" title="रॉयल डार्क स्वर्ण थीम (Obsidian Dark)">
             <i class="fa-solid fa-moon"></i> <span class="theme-text">Dark</span>
-          </button>
-          <button class="theme-btn" data-theme-choice="clean" title="क्लीन मॉडर्न आइवरी थीम" aria-pressed="false">
+          </a>
+          <a asp-controller="Home" asp-action="Ivory" class="theme-btn @(ViewData["Theme"]?.ToString() == "clean" ? "active" : "")" data-theme-choice="clean" title="क्लीन मॉडर्न आइवरी थीम (Clean Ivory)">
             <i class="fa-solid fa-feather"></i> <span class="theme-text">Ivory</span>
-          </button>
+          </a>
         </div>
 
         <a href="#booking" class="btn btn-primary" style="padding:0.55rem 1.15rem; font-size:0.88rem;">
@@ -127,11 +126,6 @@
           <p>
             वेद, शास्त्र, पुराणों की आधारभूमि एवं सतयुग का प्रधान तीर्थ। अधिकृत आचार्यों द्वारा सत्यनारायण कथा, रुद्राभिषेक, चंडी पाठ, पितृ तर्पण एवं सम्पूर्ण उत्तर प्रदेश व नेपाल टूर पैकेज।
           </p>
-          <div style="margin-top:1.25rem;">
-            <a asp-controller="Home" asp-action="Admin" style="color:var(--gold); font-size:0.9rem; font-weight:700;">
-              <i class="fa-solid fa-lock"></i> तीर्थ सेवक एडमिन पोर्टल
-            </a>
-          </div>
         </div>
 
         <div class="footer-links-col">
