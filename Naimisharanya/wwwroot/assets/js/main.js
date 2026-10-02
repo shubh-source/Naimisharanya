@@ -437,6 +437,23 @@
   }
 
   /* ==========================================================================
+     9. STRICT MOBILE HORIZONTAL OVERFLOW & SLIDE GUARD
+     ========================================================================== */
+  function initMobileOverflowGuard() {
+    window.addEventListener('scroll', () => {
+      if (window.scrollX !== 0) {
+        window.scrollTo(0, window.scrollY);
+      }
+    }, { passive: true });
+
+    window.addEventListener('orientationchange', () => {
+      setTimeout(() => {
+        window.scrollTo(0, window.scrollY);
+      }, 100);
+    });
+  }
+
+  /* ==========================================================================
      INITIALIZATION ON DOM LOAD
      ========================================================================== */
   document.addEventListener('DOMContentLoaded', () => {
@@ -446,6 +463,7 @@
     initBookingEngine();
     initContactAndNewsletter();
     initFAQ();
+    initMobileOverflowGuard();
     updateLiveAartiStatus();
     setInterval(updateLiveAartiStatus, 60000); // Check every minute
   });

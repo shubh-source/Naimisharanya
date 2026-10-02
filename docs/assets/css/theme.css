@@ -168,8 +168,11 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   width: 100%;
-  max-width: 100vw;
+  max-width: 100%;
   overflow-x: hidden;
+  overflow-x: clip;
+  touch-action: pan-y;
+  overscroll-behavior-x: none;
 }
 
 body {
@@ -179,9 +182,13 @@ body {
   line-height: 1.65;
   transition: background-color 0.3s ease, color 0.3s ease;
   width: 100%;
-  max-width: 100vw;
+  max-width: 100%;
   overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
+  touch-action: pan-y;
+  overscroll-behavior-x: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -1647,6 +1654,7 @@ img {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
+  max-width: calc(100% - 2rem);
   background: var(--bg-surface);
   color: var(--text-main);
   padding: 1rem 1.5rem;
@@ -1657,16 +1665,17 @@ img {
   display: none;
   align-items: center;
   gap: 0.85rem;
-  animation: slideInRight 0.3s ease;
+  animation: slideInUp 0.3s ease;
+  box-sizing: border-box;
 }
 
 .toast-msg.show {
   display: flex;
 }
 
-@keyframes slideInRight {
-  from { transform: translateX(100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+@keyframes slideInUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 /* Lightbox Image Preview */
@@ -2063,9 +2072,17 @@ img {
 @media (max-width: 768px) {
   html, body {
     width: 100% !important;
-    max-width: 100vw !important;
+    max-width: 100% !important;
     overflow-x: hidden !important;
+    overflow-x: clip !important;
     position: relative;
+    touch-action: pan-y !important;
+    overscroll-behavior-x: none !important;
+  }
+
+  main, section, header, footer, .container, .hero-section {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   body {
@@ -2213,13 +2230,15 @@ img {
   .facilities-grid,
   .packages-grid,
   .history-grid,
-  .about-leadership-grid,
+  .leadership-grid,
+  .travel-modes-grid,
   .faq-grid,
   .footer-grid,
   .booking-card-wrap,
   .booking-form-grid {
     grid-template-columns: 100% !important;
     width: 100% !important;
+    max-width: 100% !important;
     box-sizing: border-box !important;
   }
 
@@ -2227,11 +2246,57 @@ img {
   .tirtha-card,
   .package-card,
   .facility-pill-card,
-  .booking-form-card {
-    padding: 1.25rem !important;
+  .booking-form-card,
+  .leader-card,
+  .travel-card {
+    padding: 1.25rem 1rem !important;
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
+  }
+
+  /* History Showcase Mobile Fix */
+  .history-showcase {
+    padding: 1.5rem 1.15rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .history-showcase::before {
+    display: none !important;
+  }
+
+  /* Booking & Tables Mobile Fix */
+  .booking-info-pane,
+  .booking-form-pane {
+    padding: 1.5rem 1.15rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .distance-chart-wrap,
+  .aarti-schedule-wrapper {
+    padding: 1.25rem 0.85rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .distance-chart-wrap > div[style*="overflow-x:auto"],
+  .aarti-schedule-wrapper > div[style*="overflow-x:auto"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    display: block !important;
+    min-width: 0 !important;
+  }
+
+  .distance-table,
+  .aarti-table {
+    min-width: 480px;
   }
 
   .modal-container {
