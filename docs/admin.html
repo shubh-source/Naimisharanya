@@ -1,410 +1,525 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="divine">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard - Naimisharanya Dham</title>
-    <link rel="stylesheet" href="./wp-content/themes/prayer/css/bootstrap.min4963.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <style>
-        body {
-            background-color: #f4f6f9;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        .admin-header {
-            background: linear-gradient(135deg, #1f2937, #111827);
-            color: #fff;
-            padding: 20px 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .admin-header h1 {
-            font-size: 1.5rem;
-            margin: 0;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .admin-header h1 i {
-            color: #f59e0b;
-        }
-        .admin-container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-        .stat-card {
-            background: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 25px;
-            border-left: 5px solid #f59e0b;
-        }
-        .stat-icon {
-            width: 55px;
-            height: 55px;
-            border-radius: 12px;
-            background: #fffbeb;
-            color: #d97706;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-        }
-        .stat-info h3 {
-            margin: 0;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #111827;
-        }
-        .stat-info p {
-            margin: 0;
-            color: #6b7280;
-            font-size: 0.95rem;
-        }
-        .dashboard-card {
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            margin-bottom: 30px;
-            overflow: hidden;
-        }
-        .card-header-custom {
-            padding: 18px 24px;
-            background: #fff;
-            border-bottom: 1px solid #edf2f7;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .card-header-custom h2 {
-            font-size: 1.25rem;
-            margin: 0;
-            font-weight: 600;
-            color: #1f2937;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .table-responsive {
-            margin: 0;
-        }
-        .table th {
-            background: #f9fafb;
-            color: #4b5563;
-            font-weight: 600;
-            font-size: 0.88rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border-top: none;
-            padding: 12px 18px;
-        }
-        .table td {
-            vertical-align: middle;
-            padding: 14px 18px;
-            font-size: 0.95rem;
-        }
-        .badge-unread {
-            background-color: #fee2e2;
-            color: #991b1b;
-            font-weight: 600;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-        .badge-read {
-            background-color: #e5e7eb;
-            color: #4b5563;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-        .btn-action {
-            padding: 5px 10px;
-            font-size: 0.85rem;
-            border-radius: 6px;
-        }
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
-            color: #9ca3af;
-        }
-        .empty-state i {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teerth Seva Admin Portal - Naimisharanya Dham</title>
+  <link rel="icon" type="image/png" href="./wp-content/uploads/2022/07/fav-1-1.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="./assets/css/theme.css" />
+  <style>
+    .admin-body {
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .admin-navbar {
+      background: var(--footer-bg);
+      color: #fff;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-md);
+      border-bottom: 2px solid var(--gold);
+    }
+    .admin-navbar a {
+      color: #fff;
+    }
+    .admin-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      font-family: var(--font-serif);
+    }
+    .admin-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin: 2.5rem 0;
+    }
+    .admin-stat-card {
+      background: var(--bg-surface);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid var(--border-subtle);
+      border-left: 5px solid var(--gold);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .admin-stat-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
+      background: var(--gold-light);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+    .admin-stat-info h3 {
+      font-size: 1.8rem;
+      margin: 0;
+      line-height: 1;
+    }
+    .admin-stat-info p {
+      margin: 0.25rem 0 0 0;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .admin-tabs {
+      display: flex;
+      gap: 0.75rem;
+      border-bottom: 2px solid var(--border-subtle);
+      margin-bottom: 1.75rem;
+      overflow-x: auto;
+    }
+    .admin-tab-btn {
+      background: transparent;
+      border: none;
+      padding: 0.85rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+    .admin-tab-btn:hover {
+      color: var(--text-main);
+    }
+    .admin-tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+    .admin-panel {
+      background: var(--bg-surface);
+      border-radius: 14px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+      padding: 1.75rem;
+      margin-bottom: 3rem;
+    }
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .admin-table th, .admin-table td {
+      padding: 1rem 1.25rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .admin-table th {
+      background: var(--bg-alt);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      color: var(--text-main);
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .status-badge.confirmed {
+      background: #DCFCE7;
+      color: #15803D;
+    }
+    .status-badge.pending {
+      background: #FEF3C7;
+      color: #B45309;
+    }
+    .btn-action {
+      background: transparent;
+      border: 1px solid var(--border-strong);
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--text-main);
+    }
+    .btn-action:hover {
+      background: var(--bg-alt);
+      color: var(--primary);
+    }
+    .btn-action.delete:hover {
+      background: #FEE2E2;
+      color: #DC2626;
+      border-color: #F87171;
+    }
+  </style>
 </head>
-<body>
+<body class="admin-body">
 
-    <header class="admin-header">
-        <h1>
-            <i class="fas fa-om"></i>
-            Naimisharanya Dham - Admin Dashboard
-        </h1>
-        <div class="d-flex gap-2">
-            <button onclick="seedSampleData()" class="btn btn-warning btn-sm me-2">
-                <i class="fas fa-plus-circle"></i> Add Demo Data
-            </button>
-            <a href="./" class="btn btn-outline-light btn-sm">
-                <i class="fas fa-home"></i> View Website
-            </a>
-        </div>
-    </header>
+  <!-- Admin Navbar -->
+  <header class="admin-navbar">
+    <div class="admin-nav-brand">
+      <i class="fa-solid fa-om" style="color:var(--gold);"></i>
+      <span>Naimisharanya Dham — Teerth Seva Admin Portal</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:1.25rem;">
+      <!-- Theme Switcher -->
+      <div class="theme-switcher-group">
+        <button class="theme-btn active" data-theme-choice="divine" title="Divine"><i class="fa-solid fa-sun"></i></button>
+        <button class="theme-btn" data-theme-choice="dark" title="Dark"><i class="fa-solid fa-moon"></i></button>
+        <button class="theme-btn" data-theme-choice="clean" title="Clean"><i class="fa-solid fa-feather"></i></button>
+      </div>
 
-    <div class="admin-container">
-        <!-- Stats Row -->
-        <div class="row">
-            <div class="col-md-4">
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-envelope-open-text"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3 id="statTotalInquiries">0</h3>
-                        <p>Total Contact Inquiries</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="stat-card" style="border-left-color: #ef4444;">
-                    <div class="stat-icon" style="background:#fee2e2; color:#b91c1c;">
-                        <i class="fas fa-bell"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3 id="statUnreadInquiries">0</h3>
-                        <p>Unread Inquiries</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="stat-card" style="border-left-color: #10b981;">
-                    <div class="stat-icon" style="background:#ecfdf5; color:#047857;">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3 id="statTotalSubscribers">0</h3>
-                        <p>Newsletter Subscribers</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <a href="./index.html" class="btn btn-outline-white" style="padding:0.45rem 1rem; font-size:0.85rem;">
+        <i class="fa-solid fa-arrow-left"></i> View Live Website
+      </a>
+    </div>
+  </header>
 
-        <!-- Inquiries Table -->
-        <div class="dashboard-card">
-            <div class="card-header-custom">
-                <h2><i class="fas fa-inbox text-warning"></i> Recent Inquiries & Messages</h2>
-                <div>
-                    <button onclick="exportInquiriesCSV()" class="btn btn-outline-secondary btn-sm me-2">
-                        <i class="fas fa-download"></i> Export CSV
-                    </button>
-                    <button onclick="clearInquiries()" class="btn btn-outline-danger btn-sm">
-                        <i class="fas fa-trash-alt"></i> Clear All
-                    </button>
-                </div>
-            </div>
-            <div class="table-responsive">
-                <div id="inquiriesTableContainer"></div>
-            </div>
+  <div class="container" style="flex:1;">
+    <!-- Quick Stats -->
+    <div class="admin-stats-grid">
+      <div class="admin-stat-card">
+        <div class="admin-stat-icon"><i class="fa-solid fa-hands-praying"></i></div>
+        <div class="admin-stat-info">
+          <h3 id="stat-bookings">0</h3>
+          <p>Puja & Stay Bookings</p>
         </div>
-
-        <!-- Newsletter Subscribers -->
-        <div class="dashboard-card">
-            <div class="card-header-custom">
-                <h2><i class="fas fa-paper-plane text-success"></i> Newsletter Subscribers</h2>
-                <button onclick="clearSubscribers()" class="btn btn-outline-danger btn-sm">
-                    <i class="fas fa-trash-alt"></i> Clear All
-                </button>
-            </div>
-            <div class="table-responsive">
-                <div id="subscribersTableContainer"></div>
-            </div>
+      </div>
+      <div class="admin-stat-card" style="border-left-color:var(--primary);">
+        <div class="admin-stat-icon" style="background:var(--primary-light); color:var(--primary);">
+          <i class="fa-solid fa-envelope-open-text"></i>
         </div>
+        <div class="admin-stat-info">
+          <h3 id="stat-inquiries">0</h3>
+          <p>Direct Inquiries</p>
+        </div>
+      </div>
+      <div class="admin-stat-card" style="border-left-color:#10B981;">
+        <div class="admin-stat-icon" style="background:#DCFCE7; color:#16A34A;">
+          <i class="fa-solid fa-bell"></i>
+        </div>
+        <div class="admin-stat-info">
+          <h3 id="stat-subscribers">0</h3>
+          <p>Newsletter Devotees</p>
+        </div>
+      </div>
     </div>
 
-    <script>
-        function getInquiries() {
-            var data = localStorage.getItem('naimisharanya_inquiries');
-            if (!data) {
-                // Initial sample
-                var initial = [
-                    {
-                        id: 1,
-                        name: "Shubham Pathak",
-                        phone: "+91 9935010749",
-                        email: "shubham@example.com",
-                        message: "Jai Naimisharanya! Please share darshan timings, Chakra Tirtha puja details, and accommodation options.",
-                        createdAt: new Date().toISOString(),
-                        isRead: false
-                    }
-                ];
-                localStorage.setItem('naimisharanya_inquiries', JSON.stringify(initial));
-                return initial;
-            }
-            try { return JSON.parse(data); } catch(e) { return []; }
-        }
+    <!-- Tabbed Navigation -->
+    <div class="admin-tabs">
+      <button class="admin-tab-btn active" onclick="switchAdminTab('bookings', this)">
+        <i class="fa-solid fa-calendar-check"></i> Puja & Stay Bookings (<span id="tab-cnt-bookings">0</span>)
+      </button>
+      <button class="admin-tab-btn" onclick="switchAdminTab('inquiries', this)">
+        <i class="fa-solid fa-comments"></i> Devotee Inquiries (<span id="tab-cnt-inquiries">0</span>)
+      </button>
+      <button class="admin-tab-btn" onclick="switchAdminTab('subscribers', this)">
+        <i class="fa-solid fa-users"></i> Newsletter Subscribers (<span id="tab-cnt-subscribers">0</span>)
+      </button>
+    </div>
 
-        function getSubscribers() {
-            var data = localStorage.getItem('naimisharanya_subscribers');
-            if (!data) {
-                var initial = [
-                    { id: 1, email: "pilgrim.updates@example.com", subscribedAt: new Date().toISOString() }
-                ];
-                localStorage.setItem('naimisharanya_subscribers', JSON.stringify(initial));
-                return initial;
-            }
-            try { return JSON.parse(data); } catch(e) { return []; }
-        }
+    <!-- Panel 1: Bookings -->
+    <div class="admin-panel" id="panel-bookings">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem; flex-wrap:wrap; gap:1rem;">
+        <h3 style="font-size:1.2rem; margin:0;"><i class="fa-solid fa-list-check" style="color:var(--gold);"></i> Puja, Darshan & Pravas Bookings</h3>
+        <div style="display:flex; gap:0.5rem;">
+          <button class="btn-action" onclick="exportBookingsCSV()"><i class="fa-solid fa-file-csv"></i> Export CSV</button>
+          <button class="btn-action" onclick="addSampleBooking()"><i class="fa-solid fa-plus"></i> Add Sample Booking</button>
+        </div>
+      </div>
 
-        function renderDashboard() {
-            var inquiries = getInquiries();
-            var subscribers = getSubscribers();
+      <div style="overflow-x:auto;">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Ref Code</th>
+              <th>Devotee Name</th>
+              <th>Puja / Service</th>
+              <th>Visit Date</th>
+              <th>Pilgrims</th>
+              <th>Contact Phone</th>
+              <th>Special Note</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="bookings-table-body">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-            var unread = inquiries.filter(function(i) { return !i.isRead; }).length;
+    <!-- Panel 2: Inquiries -->
+    <div class="admin-panel" id="panel-inquiries" style="display:none;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem;">
+        <h3 style="font-size:1.2rem; margin:0;"><i class="fa-solid fa-envelope" style="color:var(--primary);"></i> Contact Messages</h3>
+        <button class="btn-action" onclick="exportInquiriesCSV()"><i class="fa-solid fa-file-csv"></i> Export CSV</button>
+      </div>
 
-            document.getElementById('statTotalInquiries').innerText = inquiries.length;
-            document.getElementById('statUnreadInquiries').innerText = unread;
-            document.getElementById('statTotalSubscribers').innerText = subscribers.length;
+      <div style="overflow-x:auto;">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Message</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="inquiries-table-body">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-            // Render Inquiries Table
-            var inqContainer = document.getElementById('inquiriesTableContainer');
-            if (inquiries.length === 0) {
-                inqContainer.innerHTML = '<div class="empty-state"><i class="fas fa-envelope-open"></i><p>No messages received yet. Submit the contact form on the home page to test!</p></div>';
-            } else {
-                var html = '<table class="table table-hover mb-0"><thead><tr><th>Status</th><th>Date</th><th>Name</th><th>Phone</th><th>Email</th><th>Message</th><th>Actions</th></tr></thead><tbody>';
-                inquiries.forEach(function(item) {
-                    var dateStr = new Date(item.createdAt).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
-                    var bg = item.isRead ? '' : 'background-color: #fffbeb;';
-                    var badge = item.isRead ? '<span class="badge-read">Read</span>' : '<span class="badge-unread">New</span>';
-                    
-                    html += '<tr style="' + bg + '">';
-                    html += '<td>' + badge + '</td>';
-                    html += '<td>' + dateStr + '</td>';
-                    html += '<td><strong>' + escapeHtml(item.name) + '</strong></td>';
-                    html += '<td>' + (item.phone ? '<a href="tel:' + escapeHtml(item.phone) + '">' + escapeHtml(item.phone) + '</a>' : '-') + '</td>';
-                    html += '<td>' + (item.email ? '<a href="mailto:' + escapeHtml(item.email) + '">' + escapeHtml(item.email) + '</a>' : '-') + '</td>';
-                    html += '<td style="max-width: 320px; word-break: break-word;">' + escapeHtml(item.message) + '</td>';
-                    html += '<td><div class="d-flex gap-1">';
-                    if (!item.isRead) {
-                        html += '<button onclick="markRead(' + item.id + ')" class="btn btn-outline-success btn-action me-1" title="Mark as Read"><i class="fas fa-check"></i></button>';
-                    }
-                    html += '<button onclick="deleteInquiry(' + item.id + ')" class="btn btn-outline-danger btn-action" title="Delete"><i class="fas fa-trash"></i></button>';
-                    html += '</div></td></tr>';
-                });
-                html += '</tbody></table>';
-                inqContainer.innerHTML = html;
-            }
+    <!-- Panel 3: Subscribers -->
+    <div class="admin-panel" id="panel-subscribers" style="display:none;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem;">
+        <h3 style="font-size:1.2rem; margin:0;"><i class="fa-solid fa-newspaper" style="color:#16A34A;"></i> Newsletter Devotees</h3>
+        <button class="btn-action" onclick="exportSubscribersCSV()"><i class="fa-solid fa-file-csv"></i> Export CSV</button>
+      </div>
 
-            // Render Subscribers Table
-            var subContainer = document.getElementById('subscribersTableContainer');
-            if (subscribers.length === 0) {
-                subContainer.innerHTML = '<div class="empty-state"><i class="fas fa-newspaper"></i><p>No subscribers yet.</p></div>';
-            } else {
-                var sHtml = '<table class="table table-hover mb-0"><thead><tr><th>#</th><th>Email</th><th>Subscribed Date</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
-                subscribers.forEach(function(sub, idx) {
-                    var sDate = new Date(sub.subscribedAt).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
-                    sHtml += '<tr>';
-                    sHtml += '<td>' + (idx + 1) + '</td>';
-                    sHtml += '<td><strong>' + escapeHtml(sub.email) + '</strong></td>';
-                    sHtml += '<td>' + sDate + '</td>';
-                    sHtml += '<td><span class="badge badge-success" style="background:#10b981; color:#fff;">Active</span></td>';
-                    sHtml += '<td><button onclick="deleteSubscriber(' + sub.id + ')" class="btn btn-outline-danger btn-action"><i class="fas fa-trash"></i></button></td>';
-                    sHtml += '</tr>';
-                });
-                sHtml += '</tbody></table>';
-                subContainer.innerHTML = sHtml;
-            }
-        }
+      <div style="overflow-x:auto;">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Subscriber Email</th>
+              <th>Subscribed Date</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="subscribers-table-body">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-        function escapeHtml(text) {
-            if (!text) return '';
-            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-        }
+  <footer style="background:var(--footer-bg); color:var(--footer-muted); padding:1.5rem 0; text-align:center; font-size:0.85rem; border-top:1px solid var(--border-gold);">
+    नैमिषारण्य तीर्थ धाम • Official Administrator Console • Synchronized with LocalStorage & ASP.NET Core EF Core
+  </footer>
 
-        function markRead(id) {
-            var inquiries = getInquiries();
-            inquiries.forEach(function(item) {
-                if (item.id === id) item.isRead = true;
-            });
-            localStorage.setItem('naimisharanya_inquiries', JSON.stringify(inquiries));
-            renderDashboard();
-        }
+  <script src="./assets/js/main.js"></script>
+  <script>
+    // Tab switching
+    function switchAdminTab(tabName, btn) {
+      document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-bookings').style.display = tabName === 'bookings' ? 'block' : 'none';
+      document.getElementById('panel-inquiries').style.display = tabName === 'inquiries' ? 'block' : 'none';
+      document.getElementById('panel-subscribers').style.display = tabName === 'subscribers' ? 'block' : 'none';
+    }
 
-        function deleteInquiry(id) {
-            if (!confirm("Are you sure you want to delete this inquiry?")) return;
-            var inquiries = getInquiries().filter(function(i) { return i.id !== id; });
-            localStorage.setItem('naimisharanya_inquiries', JSON.stringify(inquiries));
-            renderDashboard();
-        }
+    // Load and render records
+    function loadAdminData() {
+      // 1. Bookings
+      let bookings = JSON.parse(localStorage.getItem('naimisharanya_bookings') || '[]');
+      if (bookings.length === 0) {
+        // Initial sample seed so dashboard is immediately rich & showcase ready!
+        bookings = [
+          {
+            token: 'ND-2026-9042',
+            service: 'Maa Lalita Devi Chandi Paath & Shringar',
+            name: 'राजेश कुमार त्रिपाठी',
+            phone: '+91 9935010749',
+            email: 'rajesh.tripathi@gmail.com',
+            date: '2026-10-18',
+            pilgrims: '4',
+            message: 'विशेष चंडी पाठ एवं वस्त्र शृंगार हेतु गोत्र: भारद्वाज',
+            status: 'Confirmed'
+          },
+          {
+            token: 'ND-2026-7815',
+            service: 'Rudrabhishek & Mahamrityunjay Japa',
+            name: 'आनंद वर्धन अग्निहोत्री',
+            phone: '+91 9935935573',
+            email: 'anand.agnihotri@yahoo.com',
+            date: '2026-10-22',
+            pilgrims: '2',
+            message: 'देवदेवेश्वर महादेव मंदिर में रुद्राभिषेक',
+            status: 'Confirmed'
+          },
+          {
+            token: 'ND-2026-6140',
+            service: 'Chakra Snan Sankalpa & Pitru Tarpan',
+            name: 'विष्णु कांत शुक्ल',
+            phone: '+91 9919588884',
+            email: 'vk.shukla@outlook.com',
+            date: '2026-10-25',
+            pilgrims: '5',
+            message: 'सोमवती अमावस्या स्नान एवं पितृ तर्पण संकल्प',
+            status: 'Pending'
+          }
+        ];
+        localStorage.setItem('naimisharanya_bookings', JSON.stringify(bookings));
+      }
 
-        function clearInquiries() {
-            if (!confirm("Clear all contact inquiries?")) return;
-            localStorage.setItem('naimisharanya_inquiries', JSON.stringify([]));
-            renderDashboard();
-        }
+      document.getElementById('stat-bookings').innerText = bookings.length;
+      document.getElementById('tab-cnt-bookings').innerText = bookings.length;
 
-        function deleteSubscriber(id) {
-            if (!confirm("Remove this subscriber?")) return;
-            var subscribers = getSubscribers().filter(function(s) { return s.id !== id; });
-            localStorage.setItem('naimisharanya_subscribers', JSON.stringify(subscribers));
-            renderDashboard();
-        }
+      const bookingsTbody = document.getElementById('bookings-table-body');
+      bookingsTbody.innerHTML = bookings.map((b, idx) => `
+        <tr>
+          <td><span style="font-family:monospace; font-weight:700; color:var(--primary);">${b.token || 'ND-2026'}</span></td>
+          <td><strong>${b.name}</strong></td>
+          <td>${b.service}</td>
+          <td>${b.date || 'TBD'}</td>
+          <td>${b.pilgrims} Pilgrim(s)</td>
+          <td><a href="tel:${b.phone}" style="font-weight:600;"><i class="fa-solid fa-phone"></i> ${b.phone}</a></td>
+          <td><span style="font-size:0.82rem; color:var(--text-muted);">${b.message || '—'}</span></td>
+          <td><span class="status-badge ${b.status === 'Confirmed' ? 'confirmed' : 'pending'}">${b.status || 'Confirmed'}</span></td>
+          <td>
+            <button class="btn-action delete" onclick="deleteBooking(${idx})"><i class="fa-solid fa-trash"></i></button>
+          </td>
+        </tr>
+      `).join('');
 
-        function clearSubscribers() {
-            if (!confirm("Clear all subscribers?")) return;
-            localStorage.setItem('naimisharanya_subscribers', JSON.stringify([]));
-            renderDashboard();
-        }
+      // 2. Inquiries
+      let inquiries = JSON.parse(localStorage.getItem('naimisharanya_inquiries') || '[]');
+      if (inquiries.length === 0) {
+        inquiries = [
+          { id: 1, name: 'सुरेश नारायण द्विवेदी', phone: '+91 9450012345', email: 'suresh@gmail.com', message: 'कृपया 84 कोसी परिक्रमा की तिथियाँ एवं रुकने की व्यवस्था की जानकारी दें।', date: '2026-10-01' }
+        ];
+        localStorage.setItem('naimisharanya_inquiries', JSON.stringify(inquiries));
+      }
+      document.getElementById('stat-inquiries').innerText = inquiries.length;
+      document.getElementById('tab-cnt-inquiries').innerText = inquiries.length;
 
-        function seedSampleData() {
-            var sampleNames = ["Vikram Singh", "Priya Sharma", "Rajesh Kumar", "Anjali Verma"];
-            var randomName = sampleNames[Math.floor(Math.random() * sampleNames.length)];
-            var inquiries = getInquiries();
-            inquiries.unshift({
-                id: Date.now(),
-                name: randomName,
-                phone: "+91 98" + Math.floor(10000000 + Math.random() * 90000000),
-                email: randomName.toLowerCase().replace(" ", ".") + "@example.com",
-                message: "Hari Om! We are planning a family pilgrimage to Naimisharanya next weekend. Please provide tour guide assistance.",
-                createdAt: new Date().toISOString(),
-                isRead: false
-            });
-            localStorage.setItem('naimisharanya_inquiries', JSON.stringify(inquiries));
-            renderDashboard();
-        }
+      const inquiriesTbody = document.getElementById('inquiries-table-body');
+      inquiriesTbody.innerHTML = inquiries.map((inq, idx) => `
+        <tr>
+          <td>${inq.date || 'Recent'}</td>
+          <td><strong>${inq.name}</strong></td>
+          <td><a href="tel:${inq.phone}"><i class="fa-solid fa-phone"></i> ${inq.phone}</a></td>
+          <td>${inq.email || '—'}</td>
+          <td>${inq.message}</td>
+          <td><button class="btn-action delete" onclick="deleteInquiry(${idx})"><i class="fa-solid fa-trash"></i></button></td>
+        </tr>
+      `).join('');
 
-        function exportInquiriesCSV() {
-            var inquiries = getInquiries();
-            if (inquiries.length === 0) {
-                alert("No inquiries to export!");
-                return;
-            }
-            var csv = "ID,Name,Phone,Email,Message,Date,Status\n";
-            inquiries.forEach(function(i) {
-                csv += '"' + i.id + '","' + (i.name||'').replace(/"/g, '""') + '","' + (i.phone||'') + '","' + (i.email||'') + '","' + (i.message||'').replace(/"/g, '""') + '","' + i.createdAt + '","' + (i.isRead ? "Read" : "New") + '"\n';
-            });
-            var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-            var link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.setAttribute("download", "naimisharanya_inquiries.csv");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
+      // 3. Subscribers
+      let subs = JSON.parse(localStorage.getItem('naimisharanya_subscribers') || '[]');
+      if (subs.length === 0) {
+        subs = [
+          { id: 1, email: 'devotee.sharma@gmail.com', date: '2026-10-01' },
+          { id: 2, email: 'pranama.naimish@dham.in', date: '2026-10-01' }
+        ];
+        localStorage.setItem('naimisharanya_subscribers', JSON.stringify(subs));
+      }
+      document.getElementById('stat-subscribers').innerText = subs.length;
+      document.getElementById('tab-cnt-subscribers').innerText = subs.length;
 
-        document.addEventListener("DOMContentLoaded", renderDashboard);
-    </script>
+      const subsTbody = document.getElementById('subscribers-table-body');
+      subsTbody.innerHTML = subs.map((s, idx) => `
+        <tr>
+          <td><strong>${s.email}</strong></td>
+          <td>${s.date || 'Recent'}</td>
+          <td><span class="status-badge confirmed">Active</span></td>
+          <td><button class="btn-action delete" onclick="deleteSubscriber(${idx})"><i class="fa-solid fa-trash"></i></button></td>
+        </tr>
+      `).join('');
+    }
+
+    function deleteBooking(idx) {
+      if (confirm('Are you sure you want to delete this booking entry?')) {
+        let bookings = JSON.parse(localStorage.getItem('naimisharanya_bookings') || '[]');
+        bookings.splice(idx, 1);
+        localStorage.setItem('naimisharanya_bookings', JSON.stringify(bookings));
+        loadAdminData();
+      }
+    }
+
+    function deleteInquiry(idx) {
+      if (confirm('Delete this inquiry?')) {
+        let inquiries = JSON.parse(localStorage.getItem('naimisharanya_inquiries') || '[]');
+        inquiries.splice(idx, 1);
+        localStorage.setItem('naimisharanya_inquiries', JSON.stringify(inquiries));
+        loadAdminData();
+      }
+    }
+
+    function deleteSubscriber(idx) {
+      if (confirm('Delete subscriber?')) {
+        let subs = JSON.parse(localStorage.getItem('naimisharanya_subscribers') || '[]');
+        subs.splice(idx, 1);
+        localStorage.setItem('naimisharanya_subscribers', JSON.stringify(subs));
+        loadAdminData();
+      }
+    }
+
+    function addSampleBooking() {
+      const code = 'ND-2026-' + Math.floor(1000 + Math.random() * 9000);
+      let bookings = JSON.parse(localStorage.getItem('naimisharanya_bookings') || '[]');
+      bookings.unshift({
+        token: code,
+        service: 'Rudrabhishek & Mahamrityunjay Japa',
+        name: 'अमित कुमार बाजपेई',
+        phone: '+91 9935010749',
+        email: 'amit.bajpai@gmail.com',
+        date: new Date().toISOString().split('T')[0],
+        pilgrims: '3',
+        message: 'परिवार सहित विशेष दर्शन व रुद्राभिषेक',
+        status: 'Confirmed'
+      });
+      localStorage.setItem('naimisharanya_bookings', JSON.stringify(bookings));
+      loadAdminData();
+    }
+
+    function exportBookingsCSV() {
+      let bookings = JSON.parse(localStorage.getItem('naimisharanya_bookings') || '[]');
+      let csv = "RefCode,Name,Service,Date,Pilgrims,Phone,Email,Message,Status\n";
+      bookings.forEach(b => {
+        csv += `"${b.token}","${b.name}","${b.service}","${b.date}","${b.pilgrims}","${b.phone}","${b.email}","${b.message}","${b.status}"\n`;
+      });
+      downloadFile(csv, 'naimisharanya_bookings.csv', 'text/csv');
+    }
+
+    function exportInquiriesCSV() {
+      let inqs = JSON.parse(localStorage.getItem('naimisharanya_inquiries') || '[]');
+      let csv = "Date,Name,Phone,Email,Message\n";
+      inqs.forEach(i => {
+        csv += `"${i.date}","${i.name}","${i.phone}","${i.email}","${i.message}"\n`;
+      });
+      downloadFile(csv, 'naimisharanya_inquiries.csv', 'text/csv');
+    }
+
+    function exportSubscribersCSV() {
+      let subs = JSON.parse(localStorage.getItem('naimisharanya_subscribers') || '[]');
+      let csv = "Date,Email\n";
+      subs.forEach(s => {
+        csv += `"${s.date}","${s.email}"\n`;
+      });
+      downloadFile(csv, 'naimisharanya_subscribers.csv', 'text/csv');
+    }
+
+    function downloadFile(content, fileName, mimeType) {
+      const a = document.createElement('a');
+      const blob = new Blob([content], { type: mimeType });
+      a.href = URL.createObjectURL(blob);
+      a.download = fileName;
+      a.click();
+    }
+
+    document.addEventListener('DOMContentLoaded', loadAdminData);
+  </script>
 </body>
 </html>
