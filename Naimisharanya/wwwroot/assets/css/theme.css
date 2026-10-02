@@ -167,6 +167,9 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
@@ -175,7 +178,10 @@ body {
   color: var(--text-main);
   line-height: 1.65;
   transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%;
+  max-width: 100vw;
   overflow-x: hidden;
+  position: relative;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -183,11 +189,15 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-main);
   font-weight: 700;
   line-height: 1.25;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 p {
   color: var(--text-muted);
   margin-bottom: 1rem;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 a {
@@ -211,6 +221,13 @@ img {
   max-width: 1240px;
   margin: 0 auto;
   padding: 0 1.25rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
 }
 
 .section-padding {
@@ -458,6 +475,10 @@ img {
   text-decoration: none;
 }
 
+.mobile-menu-cta {
+  display: none;
+}
+
 .mobile-nav-toggle {
   display: none;
   background: transparent;
@@ -469,21 +490,65 @@ img {
 }
 
 @media (max-width: 992px) {
+  .nav-container {
+    padding: 0.65rem 1rem;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .brand-logo {
+    gap: 0.65rem;
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .brand-logo img {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+  }
+
+  .brand-text {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .brand-text h1 {
+    font-size: 1.15rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .brand-text span {
+    display: none !important;
+  }
+
+  /* Critical: Hide the wide desktop button in nav-actions so it never expands header width beyond screen */
+  .nav-actions .btn {
+    display: none !important;
+  }
+
   .nav-menu {
     position: fixed;
-    top: 72px;
+    top: 65px;
     left: 0;
     right: 0;
     background: var(--bg-surface);
     flex-direction: column;
-    padding: 2rem 1.5rem;
-    gap: 1.25rem;
-    border-bottom: 1px solid var(--border-subtle);
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-120%);
+    padding: 1.75rem 1.5rem 2rem 1.5rem;
+    gap: 1.1rem;
+    border-bottom: 2px solid var(--border-gold);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    transform: translateY(-130%);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.35s ease;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 999;
   }
 
   .nav-menu.open {
@@ -492,12 +557,34 @@ img {
     visibility: visible;
   }
 
-  .mobile-nav-toggle {
+  .nav-menu .nav-link {
+    font-size: 1.05rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+    width: 100%;
     display: block;
   }
 
-  .theme-switcher-group .theme-text {
-    display: none;
+  .mobile-menu-cta {
+    display: block !important;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .mobile-nav-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 8px;
+    border: 1px solid var(--border-gold);
+    background: var(--bg-surface-elevated);
+    color: var(--primary);
+    font-size: 1.35rem;
+    cursor: pointer;
+    flex-shrink: 0;
   }
 }
 
@@ -625,19 +712,23 @@ img {
 }
 
 .hero-title {
-  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-size: clamp(1.85rem, 5vw, 4.2rem);
   font-weight: 900;
   color: #FFFFFF;
-  line-height: 1.12;
+  line-height: 1.18;
   margin-bottom: 1.25rem;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .hero-title span {
   background: linear-gradient(135deg, #FDE68A 0%, #F59E0B 70%, #F97316 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  display: inline-block;
+  display: inline;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .hero-desc {
@@ -1970,91 +2061,183 @@ img {
 
 /* Tablet & Mobile (<= 768px) */
 @media (max-width: 768px) {
+  html, body {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    position: relative;
+  }
+
   body {
     padding-bottom: 60px; /* Space for mobile sticky quick bar */
   }
 
   .top-bar {
-    padding: 0.4rem 0.5rem;
-    font-size: 0.76rem;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.74rem;
   }
 
   .top-bar .container {
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     text-align: center;
-    gap: 0.4rem;
+    gap: 0.25rem;
+    padding: 0 0.5rem;
+    width: 100%;
+    max-width: 100%;
   }
 
-  .top-bar-left, .top-bar-right {
+  .top-bar-left {
     justify-content: center;
-    gap: 0.75rem;
+    text-align: center;
+    width: 100%;
+    font-size: 0.72rem;
+    gap: 0.35rem;
+    white-space: normal;
   }
 
   .top-bar-marquee {
-    font-size: 0.72rem;
-    padding: 0.15rem 0.5rem;
+    display: none !important;
+  }
+
+  .top-bar-right {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 0.85rem;
+    font-size: 0.76rem;
+  }
+
+  .top-bar-right a:nth-child(2),
+  .top-bar-right a:nth-child(3) {
+    display: none !important;
   }
 
   .nav-container {
-    padding: 0.65rem 1rem;
+    padding: 0.6rem 0.85rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .brand-logo img {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
   }
 
   .brand-text h1 {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
 
   .brand-text span {
-    display: none; /* Keep header compact on mobile screens */
-  }
-
-  .nav-actions .btn {
-    padding: 0.45rem 0.85rem;
-    font-size: 0.82rem;
+    display: none !important;
   }
 
   .hero-section {
-    padding: 4.5rem 0 3.5rem 0;
+    padding: 3.5rem 0 2.5rem 0;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    box-sizing: border-box;
   }
 
   .hero-shloka {
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 0.85rem;
     margin-bottom: 1.25rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .hero-shloka p {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
   }
 
   .hero-title {
-    font-size: clamp(2rem, 6vw, 2.75rem);
+    font-size: clamp(1.75rem, 5.5vw, 2.5rem) !important;
     line-height: 1.2;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .hero-title span {
+    display: inline !important;
+    font-size: inherit;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   .hero-desc {
-    font-size: 1.05rem;
-    margin-bottom: 1.75rem;
+    font-size: 0.98rem;
+    line-height: 1.55;
+    margin-bottom: 1.5rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   .hero-ctas {
     flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 2.5rem;
+    gap: 0.65rem;
+    width: 100%;
+    margin-bottom: 2rem;
   }
 
   .hero-ctas .btn {
     width: 100%;
     justify-content: center;
+    box-sizing: border-box;
   }
 
   .hero-stats-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 1.25rem;
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem;
+    padding: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Universal Mobile Grid Safety */
+  .tirthas-grid,
+  .services-grid,
+  .facilities-grid,
+  .packages-grid,
+  .history-grid,
+  .about-leadership-grid,
+  .faq-grid,
+  .footer-grid,
+  .booking-card-wrap,
+  .booking-form-grid {
+    grid-template-columns: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .service-card,
+  .tirtha-card,
+  .package-card,
+  .facility-pill-card,
+  .booking-form-card {
+    padding: 1.25rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .modal-container {
+    width: 92% !important;
+    padding: 1.5rem 1.2rem !important;
+    box-sizing: border-box !important;
   }
 
   /* Sticky Mobile Quick Action Bar (Call, WhatsApp, Book) */
@@ -2072,6 +2255,8 @@ img {
     gap: 0.5rem;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .mobile-quick-btn {
@@ -2080,13 +2265,14 @@ img {
     align-items: center;
     justify-content: center;
     gap: 0.35rem;
-    padding: 0.65rem 0.4rem;
+    padding: 0.65rem 0.3rem;
     border-radius: 8px;
-    font-size: 0.85rem;
+    font-size: 0.84rem;
     font-weight: 700;
     text-decoration: none !important;
     white-space: nowrap;
     transition: transform 0.15s ease;
+    box-sizing: border-box;
   }
 
   .mobile-quick-btn:active {
@@ -2109,46 +2295,16 @@ img {
   }
 }
 
-/* Small Smartphone (<= 576px) */
-@media (max-width: 576px) {
-  .tirthas-grid,
-  .services-grid,
-  .facilities-grid,
-  .packages-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  .service-card,
-  .tirtha-card,
-  .package-card,
-  .facility-pill-card {
-    padding: 1.35rem !important;
-  }
-
-  .about-leadership-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  .modal-container {
-    width: 92% !important;
-    padding: 1.5rem !important;
-  }
-}
-
 /* Extra Small (<= 420px) */
 @media (max-width: 420px) {
-  .nav-actions .btn {
-    display: none; /* On tiny phones, the CTA is always accessible via mobile menu and bottom sticky bar */
-  }
-
   .brand-text h1 {
-    font-size: 1.05rem;
+    font-size: 1.02rem;
   }
 
   .mobile-quick-btn {
-    font-size: 0.78rem;
-    padding: 0.6rem 0.25rem;
-    gap: 0.25rem;
+    font-size: 0.76rem;
+    padding: 0.58rem 0.2rem;
+    gap: 0.2rem;
   }
 }
 
