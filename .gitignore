@@ -366,3 +366,7 @@ FodyWeavers.xsd
 *.db-shm
 *.db-wal
 
+# Raw media uploads and local scratch artifacts
+scratch_*
+public/
+
