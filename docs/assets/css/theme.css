@@ -2582,3 +2582,185 @@ img {
   }
 }
 
+/* ==========================================================================
+   SOCIAL MEDIA ICONS & BUTTONS STYLING
+   ========================================================================== */
+.top-bar-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-left: 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.top-bar-social a {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #F8FAFC !important;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.top-bar-social a:hover {
+  background: var(--gold);
+  color: #0F172A !important;
+  transform: translateY(-1px);
+}
+
+/* Mobile Menu Social */
+.mobile-menu-social {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mobile-social-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.mobile-social-icons {
+  display: flex;
+  gap: 0.65rem;
+}
+
+.mobile-social-icons a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #FFFFFF !important;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.mobile-social-icons a:hover {
+  transform: scale(1.1);
+}
+
+/* Brand specific colors */
+.social-icon.yt, .footer-social-btn.yt, .social-pill-btn.sp-youtube { background: #E11D48; color: #FFFFFF !important; }
+.social-icon.fb, .footer-social-btn.fb, .social-pill-btn.sp-facebook { background: #1877F2; color: #FFFFFF !important; }
+.social-icon.ig, .footer-social-btn.ig, .social-pill-btn.sp-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); color: #FFFFFF !important; }
+.social-icon.tw, .footer-social-btn.tw, .social-pill-btn.sp-x { background: #0F1419; color: #FFFFFF !important; border: 1px solid rgba(255, 255, 255, 0.2); }
+.social-icon.in, .footer-social-btn.in, .social-pill-btn.sp-linkedin { background: #0A66C2; color: #FFFFFF !important; }
+
+/* Contact section social pills */
+.contact-social-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.social-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  transition: all 0.2s ease;
+}
+
+.social-pill-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  filter: brightness(1.1);
+}
+
+/* Footer social buttons */
+.footer-social-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.footer-social-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.footer-social-btn:hover {
+  transform: translateY(-3px) scale(1.08);
+}
+
+.footer-bottom-social {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-bottom-social a {
+  color: var(--footer-muted);
+  font-size: 1rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-flex;
+}
+
+.footer-bottom-social a:hover {
+  color: var(--gold);
+  transform: translateY(-1px);
+}
+
+/* Leader social buttons */
+.leader-social-box {
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--border-subtle);
+}
+
+.leader-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+.leader-social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.leader-social-btn.yt { background: #FEE2E2; color: #B91C1C; border: 1px solid #FECACA; }
+.leader-social-btn.yt:hover { background: #DC2626; color: #FFFFFF; }
+.leader-social-btn.fb { background: #DBEAFE; color: #1D4ED8; border: 1px solid #BFDBFE; }
+.leader-social-btn.fb:hover { background: #2563EB; color: #FFFFFF; }
+.leader-social-btn.ig { background: #FCE7F3; color: #BE185D; border: 1px solid #FBCFE8; }
+.leader-social-btn.ig:hover { background: #DB2777; color: #FFFFFF; }
+
+
