@@ -6,14 +6,7 @@
      HERO SECTION - DIVINE PILGRIMAGE DESTINATION
      ========================================================================== -->
 <section class="hero-section" id="hero" aria-label="Hero Introduction">
-  <!-- Background Image Slideshow (from smallsizephotoes) -->
-  <div class="hero-bg-slider" id="hero-slider" aria-hidden="true">
-    <div class="hero-slide active" style="background-image: url('@Url.Content("~/assets/images/hero-01.jpg")');"></div>
-    <div class="hero-slide" style="background-image: url('@Url.Content("~/assets/images/hero-02.jpg")');"></div>
-    <div class="hero-slide" style="background-image: url('@Url.Content("~/assets/images/hero-03.jpg")');"></div>
-    <div class="hero-slide" style="background-image: url('@Url.Content("~/assets/images/hero-04.jpg")');"></div>
-  </div>
-  <div class="hero-overlay"></div>
+  <div class="hero-backdrop"></div>
   <div class="container hero-content">
     <!-- Sacred Badge -->
     <div class="hero-sacred-badge">
@@ -32,6 +25,53 @@
       88,000 ऋषियों की पावन ज्ञानभूमि • चक्रतीर्थ एवं माँ ललिता देवी शक्तिपीठ धाम
     </p>
 
+    <!-- Sacred Photo Cards (from smallsizephotoes) -->
+    <div class="hero-cards-grid">
+      <a href="#tirthas" class="hero-photo-card" aria-label="भूतेश्वर नाथ महादेव">
+        <div class="hero-card-img-wrap">
+          <img src="~/assets/images/hero-01.jpg" alt="भूतेश्वर नाथ महादेव" loading="eager" />
+          <span class="hero-card-tag"><i class="fa-solid fa-om"></i> स्वयंभू</span>
+        </div>
+        <div class="hero-card-body">
+          <h3 class="hero-card-title">भूतेश्वर नाथ</h3>
+          <p class="hero-card-desc">प्राचीन स्वयंभू शिवलिंग</p>
+        </div>
+      </a>
+
+      <a href="#tirthas" class="hero-photo-card" aria-label="श्री हनुमान गढ़ी">
+        <div class="hero-card-img-wrap">
+          <img src="~/assets/images/hero-02.jpg" alt="श्री हनुमान गढ़ी" loading="eager" />
+          <span class="hero-card-tag"><i class="fa-solid fa-hands-praying"></i> सिद्धपीठ</span>
+        </div>
+        <div class="hero-card-body">
+          <h3 class="hero-card-title">हनुमान गढ़ी</h3>
+          <p class="hero-card-desc">दक्षिणमुखी पाताल विजय</p>
+        </div>
+      </a>
+
+      <a href="#tirthas" class="hero-photo-card" aria-label="मनु शतरूपा तपस्थान">
+        <div class="hero-card-img-wrap">
+          <img src="~/assets/images/hero-03.jpg" alt="मनु शतरूपा तपस्थान" loading="eager" />
+          <span class="hero-card-tag"><i class="fa-solid fa-mountain-sun"></i> 23,000 वर्ष</span>
+        </div>
+        <div class="hero-card-body">
+          <h3 class="hero-card-title">मनु शतरूपा</h3>
+          <p class="hero-card-desc">प्रथम मानव तपस्थली</p>
+        </div>
+      </a>
+
+      <a href="#tirthas" class="hero-photo-card" aria-label="व्यास गद्दी">
+        <div class="hero-card-img-wrap">
+          <img src="~/assets/images/hero-04.jpg" alt="व्यास गद्दी" loading="eager" />
+          <span class="hero-card-tag"><i class="fa-solid fa-scroll"></i> 18 पुराण</span>
+        </div>
+        <div class="hero-card-body">
+          <h3 class="hero-card-title">व्यास गद्दी</h3>
+          <p class="hero-card-desc">वेद-पुराण रचना स्थली</p>
+        </div>
+      </a>
+    </div>
+
     <!-- Streamlined Action CTAs -->
     <div class="hero-actions">
       <div class="hero-actions-primary">
@@ -43,14 +83,6 @@
         </a>
       </div>
     </div>
-  </div>
-
-  <!-- Slider Navigation Dots -->
-  <div class="hero-slider-dots" id="hero-slider-dots" role="tablist" aria-label="Hero background controls">
-    <button class="hero-dot active" aria-label="Slide 1: भूतेश्वर नाथ महादेव" data-slide="0"></button>
-    <button class="hero-dot" aria-label="Slide 2: हनुमान गढ़ी" data-slide="1"></button>
-    <button class="hero-dot" aria-label="Slide 3: मनु शतरूपा तपस्थान" data-slide="2"></button>
-    <button class="hero-dot" aria-label="Slide 4: व्यास गद्दी" data-slide="3"></button>
   </div>
 </section>
 

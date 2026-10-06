@@ -692,88 +692,164 @@ img {
   justify-content: center;
   padding: 5.5rem 0 4.5rem 0;
   overflow: hidden;
-  background-color: #0b0705;
+  background: radial-gradient(circle at 50% 12%, rgba(217, 119, 6, 0.22) 0%, rgba(14, 8, 4, 0.96) 65%), #0c0704;
 }
 
-/* Background Image Slideshow (smallsizephotoes) */
-.hero-bg-slider {
+.hero-backdrop {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 0;
-}
-
-.hero-slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center 30%;
-  background-repeat: no-repeat;
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(1.04);
-  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 6s ease-out, visibility 1.2s;
-}
-
-.hero-slide.active {
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1);
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(14, 8, 4, 0.62) 0%, rgba(14, 8, 4, 0.75) 55%, rgba(14, 8, 4, 0.90) 100%);
-  backdrop-filter: blur(1.5px);
-  -webkit-backdrop-filter: blur(1.5px);
+  background: radial-gradient(ellipse at 50% 0%, rgba(245, 158, 11, 0.15) 0%, transparent 70%);
+  pointer-events: none;
   z-index: 1;
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 820px;
+  max-width: 1080px;
   color: #FFFFFF;
   text-align: center;
   margin: 0 auto;
+  width: 100%;
 }
 
-.hero-slider-dots {
-  position: absolute;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+/* Sacred Photo Cards (from smallsizephotoes) */
+.hero-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.15rem;
+  margin: 1.85rem auto 2.25rem auto;
+  width: 100%;
+  max-width: 1040px;
+}
+
+.hero-photo-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(38, 22, 14, 0.9) 0%, rgba(20, 11, 6, 0.98) 100%);
+  border: 1.5px solid rgba(245, 158, 11, 0.35);
+  border-radius: 14px;
+  overflow: hidden;
   display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  z-index: 3;
+  flex-direction: column;
+  text-align: left;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  text-decoration: none;
+  color: inherit;
 }
 
-.hero-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1.5px solid var(--gold);
-  background: rgba(255, 255, 255, 0.25);
-  cursor: pointer;
-  padding: 0;
-  transition: all 0.3s ease;
+.hero-photo-card:hover {
+  transform: translateY(-6px);
+  border-color: #F59E0B;
+  box-shadow: 0 14px 32px rgba(245, 158, 11, 0.3), 0 0 20px rgba(217, 119, 6, 0.2);
 }
 
-.hero-dot:hover {
-  background: rgba(255, 255, 255, 0.6);
+.hero-card-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #0f0804;
 }
 
-.hero-dot.active {
-  width: 28px;
+.hero-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+}
+
+.hero-photo-card:hover .hero-card-img-wrap img {
+  transform: scale(1.08);
+}
+
+.hero-card-tag {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(14, 8, 4, 0.82);
+  border: 1px solid rgba(245, 158, 11, 0.65);
+  color: #FDE68A;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
   border-radius: 9999px;
-  background: var(--gold);
-  box-shadow: 0 0 12px var(--gold-glow);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  z-index: 2;
+}
+
+.hero-card-body {
+  padding: 0.85rem 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  background: linear-gradient(180deg, rgba(28, 16, 10, 0.9) 0%, rgba(18, 10, 6, 0.98) 100%);
+  flex-grow: 1;
+}
+
+.hero-card-title {
+  font-family: var(--font-hindi);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.25;
+  transition: color 0.2s ease;
+}
+
+.hero-photo-card:hover .hero-card-title {
+  color: #FBBF24;
+}
+
+.hero-card-desc {
+  font-size: 0.78rem;
+  color: #CBD5E1;
+  margin: 0;
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 992px) {
+  .hero-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-section {
+    padding: 3.5rem 0 3rem 0;
+    min-height: auto;
+  }
+  .hero-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.65rem;
+    margin: 1.35rem auto 1.65rem auto;
+  }
+  .hero-card-body {
+    padding: 0.55rem 0.6rem;
+  }
+  .hero-card-title {
+    font-size: 0.88rem;
+  }
+  .hero-card-desc {
+    font-size: 0.68rem;
+  }
+  .hero-card-tag {
+    top: 0.35rem;
+    right: 0.35rem;
+    font-size: 0.62rem;
+    padding: 0.15rem 0.4rem;
+  }
 }
 
 .hero-sacred-badge {
