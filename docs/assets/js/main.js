@@ -97,7 +97,7 @@
   const AARTI_SCHEDULE = [
     { id: 'mangala', name: 'Mangala Aarti & Pratah Darshan', start: '05:00', end: '05:45' },
     { id: 'snan', name: 'Chakra Snan & Sarva Devata Darshan', start: '06:00', end: '11:45' },
-    { id: 'bhog', name: 'Madhyahna Bhog & Rajbhog Aarti', start: '12:00', end: '12:45' },
+    { id: 'bhog', name: 'Madhyahna Bhog (Lalita Devi Temple Closed 12:00-12:30)', start: '12:00', end: '12:30' },
     { id: 'vishram', name: 'Madhyahna Vishram (Temple Closed)', start: '13:00', end: '15:59' },
     { id: 'sandhya', name: 'Maha Sandhya Aarti & Deep Daan', start: '18:30', end: '19:30' },
     { id: 'shayan', name: 'Shayan Aarti & Temple Closing', start: '21:00', end: '21:30' }
