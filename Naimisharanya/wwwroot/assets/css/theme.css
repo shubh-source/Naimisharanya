@@ -690,165 +690,272 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5.5rem 0 4.5rem 0;
+  padding: 5rem 0;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 12%, rgba(217, 119, 6, 0.22) 0%, rgba(14, 8, 4, 0.96) 65%), #0c0704;
+  background: radial-gradient(circle at 50% 20%, rgba(217, 119, 6, 0.25) 0%, rgba(14, 8, 4, 0.98) 75%), #0a0604;
 }
 
 .hero-backdrop {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 0%, rgba(245, 158, 11, 0.15) 0%, transparent 70%);
+  background: radial-gradient(ellipse at 50% 50%, rgba(245, 158, 11, 0.12) 0%, transparent 65%);
   pointer-events: none;
+  z-index: 0;
+}
+
+/* CARDS DECK BEHIND THE TEXT */
+.hero-behind-cards {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 1150px;
+  height: 480px;
+  z-index: 1;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-deck-card {
+  position: absolute;
+  width: 250px;
+  height: 360px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #140b06;
+  border: 2px solid rgba(245, 158, 11, 0.45);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 25px rgba(217, 119, 6, 0.18);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  user-select: none;
+}
+
+.hero-deck-card .deck-card-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-deck-card .deck-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s ease;
+}
+
+.hero-deck-card .deck-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(14, 8, 4, 0.2) 0%, rgba(14, 8, 4, 0.4) 40%, rgba(14, 8, 4, 0.92) 100%);
+  transition: background 0.3s ease;
+}
+
+.hero-deck-card .deck-card-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.hero-deck-card .deck-tag {
+  align-self: flex-start;
+  background: rgba(245, 158, 11, 0.25);
+  border: 1px solid var(--gold);
+  color: #FEF3C7;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(4px);
+}
+
+.hero-deck-card .deck-card-label h4 {
+  font-family: var(--font-hindi);
+  color: #FFFFFF;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* Fanned out placement behind the center text on Desktop */
+.hero-deck-card.card-1 {
+  left: calc(50% - 470px);
+  transform: rotate(-10deg) translateY(10px) scale(0.92);
   z-index: 1;
 }
 
+.hero-deck-card.card-2 {
+  left: calc(50% - 230px);
+  transform: rotate(-4deg) translateY(-10px) scale(0.97);
+  z-index: 2;
+}
+
+.hero-deck-card.card-3 {
+  left: calc(50% - 20px);
+  transform: rotate(4deg) translateY(-10px) scale(0.97);
+  z-index: 2;
+}
+
+.hero-deck-card.card-4 {
+  left: calc(50% + 220px);
+  transform: rotate(10deg) translateY(10px) scale(0.92);
+  z-index: 1;
+}
+
+.hero-deck-card:hover,
+.hero-deck-card.active {
+  z-index: 5 !important;
+  border-color: #FBBF24;
+  box-shadow: 0 22px 55px rgba(245, 158, 11, 0.45), 0 0 35px rgba(217, 119, 6, 0.35);
+}
+
+.hero-deck-card:hover .deck-card-img img,
+.hero-deck-card.active .deck-card-img img {
+  transform: scale(1.08);
+}
+
+.hero-deck-card.card-1:hover, .hero-deck-card.card-1.active {
+  transform: rotate(-4deg) translateY(-25px) scale(1.04);
+}
+.hero-deck-card.card-2:hover, .hero-deck-card.card-2.active {
+  transform: rotate(0deg) translateY(-30px) scale(1.06);
+}
+.hero-deck-card.card-3:hover, .hero-deck-card.card-3.active {
+  transform: rotate(0deg) translateY(-30px) scale(1.06);
+}
+.hero-deck-card.card-4:hover, .hero-deck-card.card-4.active {
+  transform: rotate(4deg) translateY(-25px) scale(1.04);
+}
+
+/* FOREGROUND: TEXT GLASS SHIELD DIRECTLY IN FRONT */
 .hero-content {
   position: relative;
-  z-index: 2;
-  max-width: 1080px;
+  z-index: 6;
+  max-width: 860px;
   color: #FFFFFF;
   text-align: center;
   margin: 0 auto;
   width: 100%;
 }
 
-/* Sacred Photo Cards (from smallsizephotoes) */
-.hero-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.15rem;
-  margin: 1.85rem auto 2.25rem auto;
-  width: 100%;
-  max-width: 1040px;
+.hero-text-glass-shield {
+  background: rgba(14, 8, 4, 0.74);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(245, 158, 11, 0.45);
+  border-radius: 24px;
+  padding: 2.4rem 2.5rem 2rem 2.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 35px rgba(217, 119, 6, 0.15);
+  margin: 0 auto;
 }
 
-.hero-photo-card {
-  position: relative;
-  background: linear-gradient(180deg, rgba(38, 22, 14, 0.9) 0%, rgba(20, 11, 6, 0.98) 100%);
-  border: 1.5px solid rgba(245, 158, 11, 0.35);
-  border-radius: 14px;
-  overflow: hidden;
+.hero-deck-nav {
   display: flex;
-  flex-direction: column;
-  text-align: left;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
-  text-decoration: none;
-  color: inherit;
-}
-
-.hero-photo-card:hover {
-  transform: translateY(-6px);
-  border-color: #F59E0B;
-  box-shadow: 0 14px 32px rgba(245, 158, 11, 0.3), 0 0 20px rgba(217, 119, 6, 0.2);
-}
-
-.hero-card-img-wrap {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  background: #0f0804;
-}
-
-.hero-card-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  display: block;
-}
-
-.hero-photo-card:hover .hero-card-img-wrap img {
-  transform: scale(1.08);
-}
-
-.hero-card-tag {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  background: rgba(14, 8, 4, 0.82);
-  border: 1px solid rgba(245, 158, 11, 0.65);
-  color: #FDE68A;
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 0.2rem 0.55rem;
-  border-radius: 9999px;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  z-index: 2;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
 }
 
-.hero-card-body {
-  padding: 0.85rem 0.95rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  background: linear-gradient(180deg, rgba(28, 16, 10, 0.9) 0%, rgba(18, 10, 6, 0.98) 100%);
-  flex-grow: 1;
+.deck-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
 }
 
-.hero-card-title {
-  font-family: var(--font-hindi);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  margin: 0;
-  line-height: 1.25;
-  transition: color 0.2s ease;
+.deck-dot.active {
+  width: 26px;
+  border-radius: 9999px;
+  background: var(--gold);
+  box-shadow: 0 0 10px var(--gold-glow);
 }
 
-.hero-photo-card:hover .hero-card-title {
-  color: #FBBF24;
-}
-
-.hero-card-desc {
-  font-size: 0.78rem;
-  color: #CBD5E1;
-  margin: 0;
-  line-height: 1.35;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
+/* Tablet & Mobile Responsiveness */
 @media (max-width: 992px) {
-  .hero-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    max-width: 600px;
+  .hero-behind-cards {
+    max-width: 800px;
+    height: 420px;
+  }
+  .hero-deck-card {
+    width: 210px;
+    height: 310px;
+  }
+  .hero-deck-card.card-1 {
+    left: calc(50% - 340px);
+  }
+  .hero-deck-card.card-2 {
+    left: calc(50% - 170px);
+  }
+  .hero-deck-card.card-3 {
+    left: calc(50% - 10px);
+  }
+  .hero-deck-card.card-4 {
+    left: calc(50% + 150px);
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .hero-section {
-    padding: 3.5rem 0 3rem 0;
+    padding: 3.5rem 0;
     min-height: auto;
   }
-  .hero-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.65rem;
-    margin: 1.35rem auto 1.65rem auto;
+  .hero-behind-cards {
+    position: absolute;
+    width: 100%;
+    max-width: 320px;
+    height: 320px;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
-  .hero-card-body {
-    padding: 0.55rem 0.6rem;
+  .hero-deck-card {
+    position: absolute;
+    width: 240px;
+    height: 290px;
+    top: 50%;
+    left: 50%;
+    opacity: 0.45;
   }
-  .hero-card-title {
-    font-size: 0.88rem;
+  .hero-deck-card.card-1 {
+    transform: translate(-50%, -50%) rotate(-8deg) scale(0.9);
+    z-index: 1;
   }
-  .hero-card-desc {
-    font-size: 0.68rem;
+  .hero-deck-card.card-2 {
+    transform: translate(-50%, -50%) rotate(-3deg) scale(0.95);
+    z-index: 2;
   }
-  .hero-card-tag {
-    top: 0.35rem;
-    right: 0.35rem;
-    font-size: 0.62rem;
-    padding: 0.15rem 0.4rem;
+  .hero-deck-card.card-3 {
+    transform: translate(-50%, -50%) rotate(3deg) scale(0.95);
+    z-index: 2;
+  }
+  .hero-deck-card.card-4 {
+    transform: translate(-50%, -50%) rotate(8deg) scale(0.9);
+    z-index: 1;
+  }
+  .hero-deck-card.active {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1) !important;
+    z-index: 4 !important;
+  }
+  .hero-text-glass-shield {
+    padding: 1.75rem 1.15rem 1.5rem 1.15rem;
+    border-radius: 18px;
+    background: rgba(14, 8, 4, 0.78);
   }
 }
 

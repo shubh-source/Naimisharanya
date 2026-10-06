@@ -454,54 +454,69 @@
   }
 
   /* ==========================================================================
-     10. HERO BACKGROUND SLIDER (smallsizephotoes)
+     10. HERO BEHIND CARDS DECK (smallsizephotoes)
      ========================================================================== */
-  function initHeroBackgroundSlider() {
-    const slides = document.querySelectorAll('.hero-slide');
-    const dots = document.querySelectorAll('.hero-dot');
-    if (!slides.length) return;
+  function initHeroBehindCards() {
+    const cards = document.querySelectorAll('.hero-deck-card');
+    const dots = document.querySelectorAll('.deck-dot');
+    if (!cards.length) return;
 
     let currentIndex = 0;
     let timer = null;
 
-    function goToSlide(index) {
-      slides[currentIndex].classList.remove('active');
-      if (dots[currentIndex]) {
-        dots[currentIndex].classList.remove('active');
-        dots[currentIndex].setAttribute('aria-selected', 'false');
-      }
-      currentIndex = (index + slides.length) % slides.length;
-      slides[currentIndex].classList.add('active');
-      if (dots[currentIndex]) {
-        dots[currentIndex].classList.add('active');
-        dots[currentIndex].setAttribute('aria-selected', 'true');
-      }
+    function activateCard(index) {
+      cards.forEach((c, idx) => {
+        if (idx === index) {
+          c.classList.add('active');
+        } else {
+          c.classList.remove('active');
+        }
+      });
+
+      dots.forEach((d, idx) => {
+        if (idx === index) {
+          d.classList.add('active');
+          d.setAttribute('aria-selected', 'true');
+        } else {
+          d.classList.remove('active');
+          d.setAttribute('aria-selected', 'false');
+        }
+      });
+      currentIndex = index;
     }
 
     function startAutoPlay() {
       stopAutoPlay();
       timer = setInterval(() => {
-        goToSlide(currentIndex + 1);
-      }, 5000);
+        const next = (currentIndex + 1) % cards.length;
+        activateCard(next);
+      }, 4200);
     }
 
     function stopAutoPlay() {
       if (timer) clearInterval(timer);
     }
 
+    // Tap/Click on cards to bring them to focus
+    cards.forEach((card, idx) => {
+      card.addEventListener('click', () => {
+        activateCard(idx);
+        startAutoPlay();
+      });
+      card.addEventListener('mouseenter', () => {
+        activateCard(idx);
+        stopAutoPlay();
+      });
+      card.addEventListener('mouseleave', startAutoPlay);
+    });
+
+    // Click on indicator dots
     dots.forEach((dot, idx) => {
       dot.addEventListener('click', () => {
-        goToSlide(idx);
+        activateCard(idx);
         startAutoPlay();
       });
     });
-
-    // Pause on hover over hero content for comfort
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
-      heroContent.addEventListener('mouseenter', stopAutoPlay);
-      heroContent.addEventListener('mouseleave', startAutoPlay);
-    }
 
     startAutoPlay();
   }
@@ -512,7 +527,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initNavigation();
-    initHeroBackgroundSlider();
+    initHeroBehindCards();
     initGallery();
     initBookingEngine();
     initContactAndNewsletter();
