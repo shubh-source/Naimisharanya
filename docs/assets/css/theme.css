@@ -441,6 +441,22 @@ img {
   width: 100%;
 }
 
+.nav-acharya-link {
+  color: var(--gold) !important;
+  font-weight: 700 !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.nav-acharya-link i {
+  color: var(--gold);
+}
+
+.nav-acharya-link:hover {
+  color: #FBBF24 !important;
+}
+
 .nav-actions {
   display: flex;
   align-items: center;
