@@ -454,68 +454,60 @@
   }
 
   /* ==========================================================================
-     10. HERO BEHIND CARDS DECK (smallsizephotoes)
+     10. HERO PHOTO SLIDER & SHRINE CARDS DOCK
      ========================================================================== */
-  function initHeroBehindCards() {
-    const cards = document.querySelectorAll('.hero-deck-card');
-    const dots = document.querySelectorAll('.deck-dot');
-    if (!cards.length) return;
+  function initHeroPhotoSlider() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const buttons = document.querySelectorAll('.hero-shrine-btn');
+    if (!slides.length) return;
 
     let currentIndex = 0;
     let timer = null;
 
-    function activateCard(index) {
-      cards.forEach((c, idx) => {
+    function goToSlide(index) {
+      slides.forEach((s, idx) => {
         if (idx === index) {
-          c.classList.add('active');
+          s.classList.add('active');
         } else {
-          c.classList.remove('active');
+          s.classList.remove('active');
         }
       });
 
-      dots.forEach((d, idx) => {
+      buttons.forEach((btn, idx) => {
         if (idx === index) {
-          d.classList.add('active');
-          d.setAttribute('aria-selected', 'true');
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
         } else {
-          d.classList.remove('active');
-          d.setAttribute('aria-selected', 'false');
+          btn.classList.remove('active');
+          btn.setAttribute('aria-selected', 'false');
         }
       });
+
       currentIndex = index;
     }
 
     function startAutoPlay() {
       stopAutoPlay();
       timer = setInterval(() => {
-        const next = (currentIndex + 1) % cards.length;
-        activateCard(next);
-      }, 4200);
+        const next = (currentIndex + 1) % slides.length;
+        goToSlide(next);
+      }, 5000);
     }
 
     function stopAutoPlay() {
       if (timer) clearInterval(timer);
     }
 
-    // Tap/Click on cards to bring them to focus
-    cards.forEach((card, idx) => {
-      card.addEventListener('click', () => {
-        activateCard(idx);
+    buttons.forEach((btn, idx) => {
+      btn.addEventListener('click', () => {
+        goToSlide(idx);
         startAutoPlay();
       });
-      card.addEventListener('mouseenter', () => {
-        activateCard(idx);
+      btn.addEventListener('mouseenter', () => {
+        goToSlide(idx);
         stopAutoPlay();
       });
-      card.addEventListener('mouseleave', startAutoPlay);
-    });
-
-    // Click on indicator dots
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => {
-        activateCard(idx);
-        startAutoPlay();
-      });
+      btn.addEventListener('mouseleave', startAutoPlay);
     });
 
     startAutoPlay();
@@ -527,7 +519,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initNavigation();
-    initHeroBehindCards();
+    initHeroPhotoSlider();
     initGallery();
     initBookingEngine();
     initContactAndNewsletter();

@@ -6,93 +6,90 @@
      HERO SECTION - DIVINE PILGRIMAGE DESTINATION
      ========================================================================== -->
 <section class="hero-section" id="hero" aria-label="Hero Introduction">
-  <div class="hero-backdrop"></div>
-
-  <!-- Sacred Cards positioned BEHIND the "नैमिषारण्य" headline -->
-  <div class="hero-behind-cards" id="hero-cards-deck" aria-label="नैमिषारण्य पवित्र दर्शन कार्ड्स">
-    <div class="hero-deck-card card-1 active" data-index="0" title="भूतेश्वर नाथ महादेव">
-      <div class="deck-card-img">
-        <img src="~/assets/images/hero-01.jpg" alt="भूतेश्वर नाथ महादेव" loading="eager" />
-        <div class="deck-card-overlay"></div>
-      </div>
-      <div class="deck-card-label">
-        <span class="deck-tag"><i class="fa-solid fa-om"></i> स्वयंभू</span>
-        <h4>भूतेश्वर नाथ महादेव</h4>
-      </div>
-    </div>
-
-    <div class="hero-deck-card card-2" data-index="1" title="श्री हनुमान गढ़ी">
-      <div class="deck-card-img">
-        <img src="~/assets/images/hero-02.jpg" alt="श्री हनुमान गढ़ी" loading="eager" />
-        <div class="deck-card-overlay"></div>
-      </div>
-      <div class="deck-card-label">
-        <span class="deck-tag"><i class="fa-solid fa-hands-praying"></i> सिद्धपीठ</span>
-        <h4>श्री हनुमान गढ़ी</h4>
-      </div>
-    </div>
-
-    <div class="hero-deck-card card-3" data-index="2" title="मनु शतरूपा तपस्थान">
-      <div class="deck-card-img">
-        <img src="~/assets/images/hero-03.jpg" alt="मनु शतरूपा तपस्थान" loading="eager" />
-        <div class="deck-card-overlay"></div>
-      </div>
-      <div class="deck-card-label">
-        <span class="deck-tag"><i class="fa-solid fa-mountain-sun"></i> 23,000 वर्ष</span>
-        <h4>मनु शतरूपा तपस्थान</h4>
-      </div>
-    </div>
-
-    <div class="hero-deck-card card-4" data-index="3" title="व्यास गद्दी">
-      <div class="deck-card-img">
-        <img src="~/assets/images/hero-04.jpg" alt="व्यास गद्दी" loading="eager" />
-        <div class="deck-card-overlay"></div>
-      </div>
-      <div class="deck-card-label">
-        <span class="deck-tag"><i class="fa-solid fa-scroll"></i> 18 पुराण</span>
-        <h4>व्यास गद्दी</h4>
-      </div>
-    </div>
+  <!-- Full Background Image Slideshow (smallsizephotoes) -->
+  <div class="hero-bg-slider" id="hero-slider" aria-hidden="true">
+    <div class="hero-slide active" style="background-image: url('@Url.Content("~/assets/images/hero-01.jpg")');"></div>
+    <div class="hero-slide" style="background-image: url('@Url.Content("~/assets/images/hero-02.jpg")');"></div>
+    <div class="hero-slide" style="background-image: url('@Url.Content("~/assets/images/hero-03.jpg")');"></div>
+    <div class="hero-slide" style="background-image: url('@Url.Content("~/assets/images/hero-04.jpg")');"></div>
   </div>
+  <div class="hero-overlay"></div>
 
-  <!-- FOREGROUND: The Grand Title & Text overlay sitting in front of the cards -->
+  <!-- Foreground Clean Content -->
   <div class="container hero-content">
-    <div class="hero-text-glass-shield">
-      <!-- Sacred Badge -->
-      <div class="hero-sacred-badge">
-        <i class="fa-solid fa-om"></i>
-        <span>सतयुग का प्रधान तीर्थ</span>
+    <!-- Sacred Badge -->
+    <div class="hero-sacred-badge">
+      <i class="fa-solid fa-om"></i>
+      <span>सतयुग का प्रधान तीर्थ</span>
+    </div>
+
+    <!-- Grand Main Heading -->
+    <h1 class="hero-title">
+      नैमिषारण्य तपोभूमि
+      <span class="hero-subtitle">वेद, शास्त्र एवं पुराणों की आधारभूमि</span>
+    </h1>
+
+    <!-- Short Crisp Line -->
+    <p class="hero-desc">
+      88,000 ऋषियों की पावन ज्ञानभूमि • चक्रतीर्थ एवं माँ ललिता देवी शक्तिपीठ धाम
+    </p>
+
+    <!-- Streamlined Action CTAs -->
+    <div class="hero-actions">
+      <a href="#booking" class="btn btn-hero-gold">
+        <i class="fa-solid fa-hands-praying"></i> दर्शन / अनुष्ठान बुक करें
+      </a>
+      <a href="#tirthas" class="btn btn-hero-glass">
+        <i class="fa-solid fa-gopuram"></i> प्रमुख दर्शनीय स्थल देखें
+      </a>
+    </div>
+
+    <!-- 4 Sacred Shrine Photo Cards Dock -->
+    <div class="hero-shrine-dock">
+      <div class="hero-dock-header">
+        <i class="fa-solid fa-location-dot" style="color:var(--gold);"></i>
+        <span>प्रमुख दर्शन स्थल (क्लिक करके फोटो बदलें):</span>
       </div>
+      <div class="hero-shrine-cards" role="tablist" aria-label="प्रमुख दर्शन स्थल">
+        <button class="hero-shrine-btn active" data-slide-index="0" aria-label="भूतेश्वर नाथ महादेव">
+          <div class="hero-shrine-thumb">
+            <img src="~/assets/images/hero-01.jpg" alt="भूतेश्वर नाथ" loading="eager" />
+          </div>
+          <div class="hero-shrine-meta">
+            <span class="hero-shrine-name">भूतेश्वर नाथ</span>
+            <span class="hero-shrine-tag">स्वयंभू शिवलिंग</span>
+          </div>
+        </button>
 
-      <!-- Grand Main Heading -->
-      <h1 class="hero-title">
-        नैमिषारण्य तपोभूमि
-        <span class="hero-subtitle">वेद, शास्त्र एवं पुराणों की आधारभूमि</span>
-      </h1>
+        <button class="hero-shrine-btn" data-slide-index="1" aria-label="श्री हनुमान गढ़ी">
+          <div class="hero-shrine-thumb">
+            <img src="~/assets/images/hero-02.jpg" alt="हनुमान गढ़ी" loading="eager" />
+          </div>
+          <div class="hero-shrine-meta">
+            <span class="hero-shrine-name">हनुमान गढ़ी</span>
+            <span class="hero-shrine-tag">सिद्ध पीठ</span>
+          </div>
+        </button>
 
-      <!-- Short Crisp Line -->
-      <p class="hero-desc">
-        88,000 ऋषियों की पावन ज्ञानभूमि • चक्रतीर्थ एवं माँ ललिता देवी शक्तिपीठ धाम
-      </p>
+        <button class="hero-shrine-btn" data-slide-index="2" aria-label="मनु शतरूपा तपस्थान">
+          <div class="hero-shrine-thumb">
+            <img src="~/assets/images/hero-03.jpg" alt="मनु शतरूपा" loading="eager" />
+          </div>
+          <div class="hero-shrine-meta">
+            <span class="hero-shrine-name">मनु शतरूपा</span>
+            <span class="hero-shrine-tag">23,000 वर्ष तपस्थली</span>
+          </div>
+        </button>
 
-      <!-- Streamlined Action CTAs -->
-      <div class="hero-actions">
-        <div class="hero-actions-primary">
-          <a href="#booking" class="btn btn-hero-gold">
-            <i class="fa-solid fa-hands-praying"></i> दर्शन / अनुष्ठान बुक करें
-          </a>
-          <a href="#tirthas" class="btn btn-hero-glass">
-            <i class="fa-solid fa-gopuram"></i> प्रमुख दर्शनीय स्थल देखें
-          </a>
-        </div>
-      </div>
-
-      <!-- Card Indicator Dots -->
-      <div class="hero-deck-nav" id="hero-deck-nav" role="tablist" aria-label="Card Controls">
-        <button class="deck-dot active" aria-label="कार्ड 1: भूतेश्वर नाथ" data-deck-dot="0"></button>
-        <button class="deck-dot" aria-label="कार्ड 2: हनुमान गढ़ी" data-deck-dot="1"></button>
-        <button class="deck-dot" aria-label="कार्ड 3: मनु शतरूपा" data-deck-dot="2"></button>
-        <button class="deck-dot" aria-label="कार्ड 4: व्यास गद्दी" data-deck-dot="3"></button>
+        <button class="hero-shrine-btn" data-slide-index="3" aria-label="व्यास गद्दी">
+          <div class="hero-shrine-thumb">
+            <img src="~/assets/images/hero-04.jpg" alt="व्यास गद्दी" loading="eager" />
+          </div>
+          <div class="hero-shrine-meta">
+            <span class="hero-shrine-name">व्यास गद्दी</span>
+            <span class="hero-shrine-tag">18 पुराण रचना स्थली</span>
+          </div>
+        </button>
       </div>
     </div>
   </div>

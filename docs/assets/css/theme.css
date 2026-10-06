@@ -688,274 +688,285 @@ img {
   position: relative;
   min-height: 85vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 5rem 0;
+  padding: 5.5rem 1rem 3rem 1rem;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 20%, rgba(217, 119, 6, 0.25) 0%, rgba(14, 8, 4, 0.98) 75%), #0a0604;
+  background-color: #0b0705;
 }
 
-.hero-backdrop {
+/* Full Background Image Slider */
+.hero-bg-slider {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 50%, rgba(245, 158, 11, 0.12) 0%, transparent 65%);
-  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   z-index: 0;
 }
 
-/* CARDS DECK BEHIND THE TEXT */
-.hero-behind-cards {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 1150px;
-  height: 480px;
-  z-index: 1;
-  pointer-events: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-deck-card {
-  position: absolute;
-  width: 250px;
-  height: 360px;
-  border-radius: 18px;
-  overflow: hidden;
-  background: #140b06;
-  border: 2px solid rgba(245, 158, 11, 0.45);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 25px rgba(217, 119, 6, 0.18);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  user-select: none;
-}
-
-.hero-deck-card .deck-card-img {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.hero-deck-card .deck-card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.6s ease;
-}
-
-.hero-deck-card .deck-card-overlay {
+.hero-slide {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(14, 8, 4, 0.2) 0%, rgba(14, 8, 4, 0.4) 40%, rgba(14, 8, 4, 0.92) 100%);
-  transition: background 0.3s ease;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.05);
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 6s ease-out, visibility 1.2s;
 }
 
-.hero-deck-card .deck-card-label {
+.hero-slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+/* Tasteful Sacred Overlay - Keeps the photo bright & visible in center */
+.hero-overlay {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1rem;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.hero-deck-card .deck-tag {
-  align-self: flex-start;
-  background: rgba(245, 158, 11, 0.25);
-  border: 1px solid var(--gold);
-  color: #FEF3C7;
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 0.2rem 0.55rem;
-  border-radius: 9999px;
-  backdrop-filter: blur(4px);
-}
-
-.hero-deck-card .deck-card-label h4 {
-  font-family: var(--font-hindi);
-  color: #FFFFFF;
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin: 0;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-}
-
-/* Fanned out placement behind the center text on Desktop */
-.hero-deck-card.card-1 {
-  left: calc(50% - 470px);
-  transform: rotate(-10deg) translateY(10px) scale(0.92);
+  inset: 0;
+  background: linear-gradient(180deg, rgba(14, 8, 4, 0.65) 0%, rgba(14, 8, 4, 0.40) 35%, rgba(14, 8, 4, 0.50) 65%, rgba(14, 8, 4, 0.90) 100%);
   z-index: 1;
+  pointer-events: none;
 }
 
-.hero-deck-card.card-2 {
-  left: calc(50% - 230px);
-  transform: rotate(-4deg) translateY(-10px) scale(0.97);
-  z-index: 2;
-}
-
-.hero-deck-card.card-3 {
-  left: calc(50% - 20px);
-  transform: rotate(4deg) translateY(-10px) scale(0.97);
-  z-index: 2;
-}
-
-.hero-deck-card.card-4 {
-  left: calc(50% + 220px);
-  transform: rotate(10deg) translateY(10px) scale(0.92);
-  z-index: 1;
-}
-
-.hero-deck-card:hover,
-.hero-deck-card.active {
-  z-index: 5 !important;
-  border-color: #FBBF24;
-  box-shadow: 0 22px 55px rgba(245, 158, 11, 0.45), 0 0 35px rgba(217, 119, 6, 0.35);
-}
-
-.hero-deck-card:hover .deck-card-img img,
-.hero-deck-card.active .deck-card-img img {
-  transform: scale(1.08);
-}
-
-.hero-deck-card.card-1:hover, .hero-deck-card.card-1.active {
-  transform: rotate(-4deg) translateY(-25px) scale(1.04);
-}
-.hero-deck-card.card-2:hover, .hero-deck-card.card-2.active {
-  transform: rotate(0deg) translateY(-30px) scale(1.06);
-}
-.hero-deck-card.card-3:hover, .hero-deck-card.card-3.active {
-  transform: rotate(0deg) translateY(-30px) scale(1.06);
-}
-.hero-deck-card.card-4:hover, .hero-deck-card.card-4.active {
-  transform: rotate(4deg) translateY(-25px) scale(1.04);
-}
-
-/* FOREGROUND: TEXT GLASS SHIELD DIRECTLY IN FRONT */
+/* Hero Content - Clean, Open, No Dark Box */
 .hero-content {
   position: relative;
-  z-index: 6;
+  z-index: 2;
   max-width: 860px;
   color: #FFFFFF;
   text-align: center;
   margin: 0 auto;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.hero-text-glass-shield {
-  background: rgba(14, 8, 4, 0.74);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1.5px solid rgba(245, 158, 11, 0.45);
-  border-radius: 24px;
-  padding: 2.4rem 2.5rem 2rem 2.5rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 35px rgba(217, 119, 6, 0.15);
-  margin: 0 auto;
+.hero-sacred-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: rgba(245, 158, 11, 0.22);
+  border: 1px solid rgba(245, 158, 11, 0.6);
+  color: #FDE68A;
+  padding: 0.45rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
-.hero-deck-nav {
+.hero-sacred-badge i {
+  color: #F59E0B;
+}
+
+.hero-title {
+  font-family: var(--font-hindi);
+  font-size: clamp(2.3rem, 6vw, 4.4rem);
+  font-weight: 900;
+  color: #FFFFFF;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  text-shadow: 0 3px 20px rgba(0, 0, 0, 0.95), 0 6px 35px rgba(0, 0, 0, 0.85);
+}
+
+.hero-subtitle {
+  display: block;
+  font-size: clamp(1.2rem, 3.2vw, 2.1rem);
+  font-weight: 700;
+  margin-top: 0.45rem;
+  background: linear-gradient(135deg, #FEF08A 0%, #F59E0B 60%, #EA580C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.9));
+}
+
+.hero-desc {
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  color: #F8FAFC;
+  margin: 0 auto 1.85rem auto;
+  max-width: 680px;
+  line-height: 1.6;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95), 0 4px 20px rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2.25rem;
+}
+
+/* 4 Shrine Photo Cards Dock at bottom of Hero */
+.hero-shrine-dock {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 900px;
+  margin-top: auto;
+}
+
+.hero-dock-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  margin-top: 1.25rem;
+  gap: 0.5rem;
+  color: #FDE68A;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
 }
 
-.deck-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1.5px solid var(--gold);
-  background: rgba(255, 255, 255, 0.25);
+.hero-shrine-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.85rem;
+  width: 100%;
+}
+
+.hero-shrine-btn {
+  background: rgba(18, 10, 6, 0.75);
+  border: 1.5px solid rgba(245, 158, 11, 0.35);
+  border-radius: 12px;
+  padding: 0.45rem 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
   cursor: pointer;
-  padding: 0;
-  transition: all 0.3s ease;
+  text-align: left;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #FFFFFF;
 }
 
-.deck-dot.active {
-  width: 26px;
-  border-radius: 9999px;
-  background: var(--gold);
-  box-shadow: 0 0 10px var(--gold-glow);
+.hero-shrine-btn:hover {
+  background: rgba(30, 16, 8, 0.9);
+  border-color: #F59E0B;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.25);
 }
 
-/* Tablet & Mobile Responsiveness */
-@media (max-width: 992px) {
-  .hero-behind-cards {
-    max-width: 800px;
-    height: 420px;
-  }
-  .hero-deck-card {
-    width: 210px;
-    height: 310px;
-  }
-  .hero-deck-card.card-1 {
-    left: calc(50% - 340px);
-  }
-  .hero-deck-card.card-2 {
-    left: calc(50% - 170px);
-  }
-  .hero-deck-card.card-3 {
-    left: calc(50% - 10px);
-  }
-  .hero-deck-card.card-4 {
-    left: calc(50% + 150px);
-  }
+.hero-shrine-btn.active {
+  background: rgba(45, 24, 10, 0.95);
+  border-color: #FBBF24;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.4), inset 0 0 8px rgba(245, 158, 11, 0.2);
 }
 
+.hero-shrine-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid rgba(245, 158, 11, 0.5);
+}
+
+.hero-shrine-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-shrine-meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.hero-shrine-name {
+  font-family: var(--font-hindi);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.hero-shrine-btn.active .hero-shrine-name {
+  color: #FDE68A;
+}
+
+.hero-shrine-tag {
+  font-size: 0.7rem;
+  color: #CBD5E1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0.15rem;
+}
+
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
   .hero-section {
-    padding: 3.5rem 0;
-    min-height: auto;
+    min-height: 82vh;
+    padding: 3.5rem 0.85rem 2rem 0.85rem;
+    justify-content: space-between;
   }
-  .hero-behind-cards {
-    position: absolute;
+  .hero-content {
+    margin-top: auto;
+    margin-bottom: 1.5rem;
+  }
+  .hero-sacred-badge {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.95rem;
+    margin-bottom: 0.85rem;
+  }
+  .hero-title {
+    margin-bottom: 0.75rem;
+  }
+  .hero-desc {
+    font-size: 0.92rem;
+    margin-bottom: 1.35rem;
+    padding: 0 0.5rem;
+  }
+  .hero-actions {
+    margin-bottom: 0;
+    gap: 0.75rem;
+    width: 100%;
+  }
+  .hero-actions .btn {
     width: 100%;
     max-width: 320px;
-    height: 320px;
-    top: 48%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    justify-content: center;
   }
-  .hero-deck-card {
-    position: absolute;
-    width: 240px;
-    height: 290px;
-    top: 50%;
-    left: 50%;
-    opacity: 0.45;
+  .hero-shrine-dock {
+    margin-top: 1.75rem;
   }
-  .hero-deck-card.card-1 {
-    transform: translate(-50%, -50%) rotate(-8deg) scale(0.9);
-    z-index: 1;
+  .hero-shrine-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
   }
-  .hero-deck-card.card-2 {
-    transform: translate(-50%, -50%) rotate(-3deg) scale(0.95);
-    z-index: 2;
+  .hero-shrine-btn {
+    padding: 0.35rem 0.5rem;
+    gap: 0.5rem;
   }
-  .hero-deck-card.card-3 {
-    transform: translate(-50%, -50%) rotate(3deg) scale(0.95);
-    z-index: 2;
+  .hero-shrine-thumb {
+    width: 38px;
+    height: 38px;
   }
-  .hero-deck-card.card-4 {
-    transform: translate(-50%, -50%) rotate(8deg) scale(0.9);
-    z-index: 1;
+  .hero-shrine-name {
+    font-size: 0.78rem;
   }
-  .hero-deck-card.active {
-    opacity: 0.95;
-    transform: translate(-50%, -50%) rotate(0deg) scale(1) !important;
-    z-index: 4 !important;
-  }
-  .hero-text-glass-shield {
-    padding: 1.75rem 1.15rem 1.5rem 1.15rem;
-    border-radius: 18px;
-    background: rgba(14, 8, 4, 0.78);
+  .hero-shrine-tag {
+    font-size: 0.64rem;
   }
 }
 
