@@ -454,11 +454,65 @@
   }
 
   /* ==========================================================================
+     10. HERO BACKGROUND SLIDER (smallsizephotoes)
+     ========================================================================== */
+  function initHeroBackgroundSlider() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.hero-dot');
+    if (!slides.length) return;
+
+    let currentIndex = 0;
+    let timer = null;
+
+    function goToSlide(index) {
+      slides[currentIndex].classList.remove('active');
+      if (dots[currentIndex]) {
+        dots[currentIndex].classList.remove('active');
+        dots[currentIndex].setAttribute('aria-selected', 'false');
+      }
+      currentIndex = (index + slides.length) % slides.length;
+      slides[currentIndex].classList.add('active');
+      if (dots[currentIndex]) {
+        dots[currentIndex].classList.add('active');
+        dots[currentIndex].setAttribute('aria-selected', 'true');
+      }
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      timer = setInterval(() => {
+        goToSlide(currentIndex + 1);
+      }, 5000);
+    }
+
+    function stopAutoPlay() {
+      if (timer) clearInterval(timer);
+    }
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        goToSlide(idx);
+        startAutoPlay();
+      });
+    });
+
+    // Pause on hover over hero content for comfort
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+      heroContent.addEventListener('mouseenter', stopAutoPlay);
+      heroContent.addEventListener('mouseleave', startAutoPlay);
+    }
+
+    startAutoPlay();
+  }
+
+  /* ==========================================================================
      INITIALIZATION ON DOM LOAD
      ========================================================================== */
   document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initNavigation();
+    initHeroBackgroundSlider();
     initGallery();
     initBookingEngine();
     initContactAndNewsletter();
