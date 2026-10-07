@@ -138,21 +138,31 @@
         </div>
       </a>
 
-      <!-- Desktop & Mobile Navigation Links -->
+      <!-- Backdrop for Off-Canvas Sidebar Menu -->
+      <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
+
+      <!-- Off-Canvas Sidebar Menu (PC & Mobile) -->
       <nav aria-label="Main Navigation">
         <ul class="nav-menu" id="nav-menu">
+          <li class="nav-drawer-header">
+            <div class="nav-drawer-brand">
+              <img src="./assets/images/logo.png" alt="नैमिषारण्य" width="34" height="34" />
+              <span>नैमिषारण्य तपोभूमि</span>
+            </div>
+            <button type="button" class="nav-drawer-close" id="nav-drawer-close" aria-label="मेनू बंद करें">&times;</button>
+          </li>
+          <li><a href="#hero" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a></li>
           <li><a href="#services" class="nav-link nav-acharya-link"><i class="fa-solid fa-hands-praying"></i> सुयोग्य आचार्य सेवा</a></li>
-          <li><a href="#hero" class="nav-link active">Home</a></li>
-          <li><a href="#history" class="nav-link">तपोभूमि महिमा</a></li>
-          <li><a href="#tirthas" class="nav-link">प्रमुख दर्शनीय स्थल</a></li>
-          <li><a href="#gallery" class="nav-link">दर्शन गैलरी</a></li>
-          <li><a href="#services" class="nav-link">हमारी सेवाएं</a></li>
-          <li><a href="#facilities" class="nav-link">सुविधाएं व पैकेज</a></li>
-          <li><a href="#about-us" class="nav-link">हमारे बारे में</a></li>
-          <li><a href="#aarti-schedule" class="nav-link">आरती समय</a></li>
-          <li><a href="#booking" class="nav-link">बुकिंग</a></li>
-          <li><a href="#contact" class="nav-link">संपर्क</a></li>
-          <li class="mobile-menu-cta" style="margin-top:0.5rem;">
+          <li><a href="#history" class="nav-link"><i class="fa-solid fa-om"></i> तपोभूमि महिमा</a></li>
+          <li><a href="#tirthas" class="nav-link"><i class="fa-solid fa-gopuram"></i> प्रमुख दर्शनीय स्थल</a></li>
+          <li><a href="#gallery" class="nav-link"><i class="fa-solid fa-images"></i> दर्शन गैलरी</a></li>
+          <li><a href="#services" class="nav-link"><i class="fa-solid fa-bell"></i> हमारी सेवाएं</a></li>
+          <li><a href="#facilities" class="nav-link"><i class="fa-solid fa-hotel"></i> सुविधाएं व पैकेज</a></li>
+          <li><a href="#about-us" class="nav-link"><i class="fa-solid fa-circle-info"></i> हमारे बारे में</a></li>
+          <li><a href="#aarti-schedule" class="nav-link"><i class="fa-solid fa-clock"></i> आरती समय</a></li>
+          <li><a href="#booking" class="nav-link"><i class="fa-solid fa-calendar-check"></i> बुकिंग</a></li>
+          <li><a href="#contact" class="nav-link"><i class="fa-solid fa-phone"></i> संपर्क</a></li>
+          <li class="mobile-menu-cta" style="margin-top:0.75rem;">
             <a href="#booking" class="btn btn-primary" style="width:100%; justify-content:center; padding:0.75rem 1rem;">
               <i class="fa-solid fa-hands-praying"></i> अनुष्ठान / यात्रा बुक करें
             </a>
@@ -182,8 +192,8 @@
           <i class="fa-solid fa-hands-praying"></i> अनुष्ठान / यात्रा बुक करें
         </a>
 
-        <!-- Mobile Menu Hamburger -->
-        <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <!-- Hamburger Menu Button (PC & Mobile) -->
+        <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" title="Menu / मेनू">
           <i class="fa-solid fa-bars"></i>
         </button>
       </div>

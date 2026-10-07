@@ -60,6 +60,8 @@
     const header = document.querySelector('.main-header');
     const toggleBtn = document.getElementById('mobile-nav-toggle');
     const navMenu = document.getElementById('nav-menu');
+    const navBackdrop = document.getElementById('nav-backdrop');
+    const closeBtn = document.getElementById('nav-drawer-close');
 
     // Sticky shadow on scroll
     window.addEventListener('scroll', () => {
@@ -70,23 +72,57 @@
       }
     }, { passive: true });
 
-    // Mobile menu toggle
+    function openNav() {
+      navMenu?.classList.add('open');
+      navBackdrop?.classList.add('open');
+      toggleBtn?.setAttribute('aria-expanded', 'true');
+      if (toggleBtn) {
+        toggleBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+      }
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeNav() {
+      navMenu?.classList.remove('open');
+      navBackdrop?.classList.remove('open');
+      toggleBtn?.setAttribute('aria-expanded', 'false');
+      if (toggleBtn) {
+        toggleBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      }
+      document.body.style.overflow = '';
+    }
+
     if (toggleBtn && navMenu) {
-      toggleBtn.addEventListener('click', () => {
-        const isOpen = navMenu.classList.toggle('open');
-        toggleBtn.innerHTML = isOpen 
-          ? '<i class="fa-solid fa-xmark"></i>' 
-          : '<i class="fa-solid fa-bars"></i>';
-        toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (navMenu.classList.contains('open')) {
+          closeNav();
+        } else {
+          openNav();
+        }
+      });
+
+      closeBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeNav();
+      });
+
+      navBackdrop?.addEventListener('click', () => {
+        closeNav();
       });
 
       // Close menu when clicking link
-      navMenu.querySelectorAll('.nav-link').forEach(link => {
+      navMenu.querySelectorAll('.nav-link, .mobile-menu-cta a').forEach(link => {
         link.addEventListener('click', () => {
-          navMenu.classList.remove('open');
-          toggleBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
-          toggleBtn.setAttribute('aria-expanded', 'false');
+          closeNav();
         });
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+          closeNav();
+        }
       });
     }
   }
