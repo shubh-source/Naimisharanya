@@ -514,10 +514,288 @@
   }
 
   /* ==========================================================================
+     MULTI-LANGUAGE TRANSLATION ENGINE & MODAL SYSTEM
+     Regional (Telugu, Tamil, Kannada, Gujarati, Marathi, Bengali, Punjabi, Malayalam, Odia)
+     International (French, Japanese, Chinese, Spanish, German, Russian)
+     Default: Hindi & English
+     ========================================================================== */
+  const LANG_STORAGE_KEY = 'naimisharanya_selected_lang';
+  const LANG_DISMISSED_KEY = 'naimisharanya_lang_dismissed';
+
+  const LANGUAGE_MAP = {
+    'hi': { name: 'Hindi', flag: '🇮🇳', native: 'हिन्दी' },
+    'en': { name: 'English', flag: '🇬🇧', native: 'English' },
+    'te': { name: 'Telugu', flag: '🇮🇳', native: 'తెలుగు' },
+    'ta': { name: 'Tamil', flag: '🇮🇳', native: 'தமிழ்' },
+    'kn': { name: 'Kannada', flag: '🇮🇳', native: 'ಕನ್ನಡ' },
+    'gu': { name: 'Gujarati', flag: '🇮🇳', native: 'ગુજરાતી' },
+    'mr': { name: 'Marathi', flag: '🇮🇳', native: 'मराठी' },
+    'bn': { name: 'Bengali', flag: '🇮🇳', native: 'বাংলা' },
+    'pa': { name: 'Punjabi', flag: '🇮🇳', native: 'ਪੰਜਾਬੀ' },
+    'ml': { name: 'Malayalam', flag: '🇮🇳', native: 'മലയാളം' },
+    'or': { name: 'Odia', flag: '🇮🇳', native: 'ଓଡ଼ିଆ' },
+    'fr': { name: 'French', flag: '🇫🇷', native: 'Français' },
+    'ja': { name: 'Japanese', flag: '🇯🇵', native: '日本語' },
+    'zh-CN': { name: 'Chinese', flag: '🇨🇳', native: '中文' },
+    'es': { name: 'Spanish', flag: '🇪🇸', native: 'Español' },
+    'de': { name: 'German', flag: '🇩🇪', native: 'Deutsch' },
+    'ru': { name: 'Russian', flag: '🇷🇺', native: 'Русский' }
+  };
+
+  function getCookie(name) {
+    const v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return v ? v[2] : null;
+  }
+
+  function setCookie(name, value, days) {
+    const d = new Date();
+    d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * (days || 30));
+    const expires = 'expires=' + d.toUTCString();
+    document.cookie = name + '=' + value + ';path=/;' + expires;
+    document.cookie = name + '=' + value + ';path=/;domain=' + window.location.hostname + ';' + expires;
+    const parts = window.location.hostname.split('.');
+    if (parts.length > 1) {
+      document.cookie = name + '=' + value + ';path=/;domain=.' + parts.slice(-2).join('.') + ';' + expires;
+    }
+  }
+
+  function deleteCookie(name) {
+    document.cookie = name + '=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = name + '=;path=/;domain=' + window.location.hostname + ';expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    const parts = window.location.hostname.split('.');
+    if (parts.length > 1) {
+      document.cookie = name + '=;path=/;domain=.' + parts.slice(-2).join('.') + ';expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }
+  }
+
+  function initMultiLanguageEngine() {
+    // 1. Ensure Google Translate container exists
+    let gtElem = document.getElementById('google_translate_element');
+    if (!gtElem) {
+      gtElem = document.createElement('div');
+      gtElem.id = 'google_translate_element';
+      gtElem.style.display = 'none';
+      gtElem.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(gtElem);
+    }
+
+    // 2. Setup Google Translate API Callback
+    window.googleTranslateElementInit = function () {
+      try {
+        if (window.google && window.google.translate) {
+          new window.google.translate.TranslateElement({
+            pageLanguage: 'hi',
+            includedLanguages: 'hi,en,te,ta,kn,gu,mr,bn,pa,ml,or,fr,ja,zh-CN,es,de,ru',
+            autoDisplay: false
+          }, 'google_translate_element');
+
+          const savedLang = localStorage.getItem(LANG_STORAGE_KEY);
+          if (savedLang && savedLang !== 'hi') {
+            setTimeout(() => applyTranslate(savedLang), 350);
+          }
+        }
+      } catch (err) {
+        console.warn('Google Translate initialization:', err);
+      }
+    };
+
+    // 3. Inject Google Translate Script dynamically if not present
+    if (!document.getElementById('google-translate-script')) {
+      const script = document.createElement('script');
+      script.id = 'google-translate-script';
+      script.type = 'text/javascript';
+      script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+
+    // Determine current language
+    let currentLang = localStorage.getItem(LANG_STORAGE_KEY);
+    const cookieVal = getCookie('googtrans');
+    if (cookieVal) {
+      const match = cookieVal.match(/\/hi\/([a-zA-Z-]+)/);
+      if (match && match[1]) {
+        currentLang = match[1];
+      }
+    }
+    if (!currentLang) currentLang = 'hi';
+    updateLanguageUI(currentLang);
+
+    // 4. Modal Pop-up on First Visit
+    const modal = document.getElementById('lang-welcome-modal');
+    const isDismissed = localStorage.getItem(LANG_DISMISSED_KEY);
+    if (!isDismissed && modal) {
+      setTimeout(() => {
+        openLanguageModal();
+      }, 700);
+    }
+
+    // 5. Setup Global Event Listeners for Language Interactions
+    document.addEventListener('click', (e) => {
+      // Language buttons (pill, cards, mini-options, chips)
+      const langBtn = e.target.closest('[data-lang]');
+      if (langBtn) {
+        const lang = langBtn.getAttribute('data-lang');
+        if (lang) {
+          e.preventDefault();
+          setPortalLanguage(lang);
+        }
+        return;
+      }
+
+      // Open Modal buttons
+      const openModalBtn = e.target.closest('[data-open-lang-modal], .lang-strip-more-btn, .top-bar-lang-btn');
+      if (openModalBtn) {
+        e.preventDefault();
+        openLanguageModal();
+        return;
+      }
+
+      // Close Modal buttons
+      const closeModalBtn = e.target.closest('#lang-modal-close, #lang-modal-continue-btn');
+      if (closeModalBtn) {
+        e.preventDefault();
+        closeLanguageModal();
+        return;
+      }
+
+      // Dropdown toggle
+      const trigger = e.target.closest('#lang-menu-trigger');
+      const menu = document.getElementById('lang-dropdown-menu');
+      if (trigger && menu) {
+        e.preventDefault();
+        const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+        trigger.setAttribute('aria-expanded', !isExpanded);
+        menu.classList.toggle('show');
+        return;
+      }
+
+      // Click outside dropdown
+      if (menu && menu.classList.contains('show')) {
+        if (!e.target.closest('.lang-dropdown-wrapper')) {
+          menu.classList.remove('show');
+          const trg = document.getElementById('lang-menu-trigger');
+          if (trg) trg.setAttribute('aria-expanded', 'false');
+        }
+      }
+
+      // Click on modal backdrop
+      if (modal && e.target === modal) {
+        closeLanguageModal();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLanguageModal();
+        const menu = document.getElementById('lang-dropdown-menu');
+        if (menu) menu.classList.remove('show');
+      }
+    });
+  }
+
+  function setPortalLanguage(langCode) {
+    if (!langCode) return;
+    localStorage.setItem(LANG_STORAGE_KEY, langCode);
+    localStorage.setItem(LANG_DISMISSED_KEY, 'true');
+
+    updateLanguageUI(langCode);
+
+    if (langCode === 'hi') {
+      deleteCookie('googtrans');
+      const select = document.querySelector('.goog-te-combo');
+      if (select) {
+        select.value = 'hi';
+        select.dispatchEvent(new Event('change'));
+      }
+      const currentCookie = getCookie('googtrans');
+      if (currentCookie && currentCookie !== '/hi/hi') {
+        window.location.reload();
+      }
+    } else {
+      setCookie('googtrans', '/hi/' + langCode, 30);
+      applyTranslate(langCode);
+    }
+
+    closeLanguageModal();
+    const menu = document.getElementById('lang-dropdown-menu');
+    if (menu) menu.classList.remove('show');
+  }
+
+  function applyTranslate(langCode) {
+    const select = document.querySelector('.goog-te-combo');
+    if (select) {
+      select.value = langCode;
+      select.dispatchEvent(new Event('change'));
+    } else {
+      let attempts = 0;
+      const interval = setInterval(() => {
+        attempts++;
+        const sel = document.querySelector('.goog-te-combo');
+        if (sel) {
+          sel.value = langCode;
+          sel.dispatchEvent(new Event('change'));
+          clearInterval(interval);
+        } else if (attempts > 12) {
+          clearInterval(interval);
+          if (!window.location.hash.includes('translated')) {
+            window.location.reload();
+          }
+        }
+      }, 250);
+    }
+  }
+
+  function updateLanguageUI(langCode) {
+    const langInfo = LANGUAGE_MAP[langCode] || { name: langCode, flag: '🌐', native: langCode };
+
+    document.querySelectorAll('[data-lang]').forEach(el => {
+      const itemLang = el.getAttribute('data-lang');
+      if (itemLang === langCode) {
+        el.classList.add('active');
+        el.setAttribute('aria-pressed', 'true');
+      } else {
+        el.classList.remove('active');
+        el.setAttribute('aria-pressed', 'false');
+      }
+    });
+
+    const currentLabel = document.querySelector('.lang-current-label');
+    if (currentLabel) {
+      currentLabel.textContent = langCode === 'hi' ? 'भाषा' : (langInfo.flag + ' ' + (langInfo.native || langInfo.name));
+    }
+  }
+
+  function openLanguageModal() {
+    const modal = document.getElementById('lang-welcome-modal');
+    if (modal) {
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeLanguageModal() {
+    const modal = document.getElementById('lang-welcome-modal');
+    if (modal) {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      localStorage.setItem(LANG_DISMISSED_KEY, 'true');
+    }
+  }
+
+  window.openLanguageModal = openLanguageModal;
+  window.closeLanguageModal = closeLanguageModal;
+  window.setPortalLanguage = setPortalLanguage;
+
+  /* ==========================================================================
      INITIALIZATION ON DOM LOAD
      ========================================================================== */
   document.addEventListener('DOMContentLoaded', () => {
     initTheme();
+    initMultiLanguageEngine();
     initNavigation();
     initHeroPhotoSlider();
     initGallery();
