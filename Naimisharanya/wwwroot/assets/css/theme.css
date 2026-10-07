@@ -3483,6 +3483,12 @@ body {
   display: none !important;
 }
 
+/* Modal Non-Translate Lock */
+.notranslate,
+[translate="no"] {
+  -webkit-user-select: auto;
+}
+
 @media (max-width: 768px) {
   .lang-modal-container {
     padding: 1.5rem 1rem;

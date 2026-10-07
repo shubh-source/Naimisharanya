@@ -662,11 +662,38 @@
 
   function openWebTranslate(targetLang) {
     closeLanguageModal();
+    
+    // Update active state in modal
+    document.querySelectorAll('.lang-card-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === (targetLang || 'hi'));
+    });
+
+    // Resolve clean canonical base URL (prevent nesting translate.goog)
+    let baseUrl = 'https://shubh-source.github.io/Naimisharanya/';
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical && canonical.href) {
+      baseUrl = canonical.href;
+    } else if (window.location.hostname.includes('translate.goog')) {
+      const realHost = window.location.hostname.replace('.translate.goog', '').replace(/--/g, '-');
+      baseUrl = window.location.protocol + '//' + realHost + window.location.pathname;
+    } else {
+      baseUrl = window.location.origin + window.location.pathname;
+    }
+
     if (!targetLang || targetLang === 'hi') {
+      // Return to original Hindi page if currently inside Google Translate proxy
+      if (window.location.hostname.includes('translate.goog')) {
+        window.location.href = baseUrl;
+      }
       return;
     }
-    const currentUrl = encodeURIComponent(window.location.href);
-    window.open('https://translate.google.com/translate?sl=hi&tl=' + targetLang + '&u=' + currentUrl, '_blank', 'noopener,noreferrer');
+
+    const translateUrl = 'https://translate.google.com/translate?sl=hi&tl=' + encodeURIComponent(targetLang) + '&u=' + encodeURIComponent(baseUrl);
+    if (window.location.hostname.includes('translate.goog')) {
+      window.location.href = translateUrl;
+    } else {
+      window.open(translateUrl, '_blank', 'noopener,noreferrer');
+    }
   }
 
   window.openLanguageModal = openLanguageModal;

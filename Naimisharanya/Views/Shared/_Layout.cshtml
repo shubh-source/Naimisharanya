@@ -63,8 +63,8 @@
           <a href="https://x.com/NNaimisharanya?t=hu_mvR_1_H41j3ghCw2nIA&s=09" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
           <a href="https://www.linkedin.com/in/naimisharanya-pravasam-494b59381?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
-        <button type="button" class="top-bar-lang-btn" onclick="openLanguageModal()" title="भाषा चुनें / Select Language" style="background:none; border:none; color:var(--text-light); font-size:0.82rem; cursor:pointer; display:inline-flex; align-items:center; gap:0.35rem; padding:0 0.5rem;">
-          <i class="fa-solid fa-earth-asia" style="color:var(--gold);"></i> <span>Language / भाषा</span>
+        <button type="button" class="top-bar-lang-btn notranslate" onclick="openLanguageModal()" title="भाषा चुनें / Select Language" translate="no" style="background:none; border:none; color:var(--text-light); font-size:0.82rem; cursor:pointer; display:inline-flex; align-items:center; gap:0.35rem; padding:0 0.5rem;">
+          <i class="fa-solid fa-earth-asia" style="color:var(--gold);"></i> <span class="notranslate" translate="no">Language / भाषा</span>
         </button>
       </div>
     </div>
@@ -127,9 +127,9 @@
       <!-- Actions -->
       <div class="nav-actions">
         <!-- Normal Language Button (Tap to Select Language) -->
-        <button type="button" class="btn-lang-normal" onclick="openLanguageModal()" title="भाषा बदलें / Select Language" aria-label="Select Language">
+        <button type="button" class="btn-lang-normal notranslate" onclick="openLanguageModal()" title="भाषा बदलें / Select Language" aria-label="Select Language" translate="no">
           <i class="fa-solid fa-language"></i>
-          <span>Language / भाषा</span>
+          <span class="notranslate" translate="no">Language / भाषा</span>
         </button>
 
         <a href="#booking" class="btn btn-primary" style="padding:0.55rem 1.15rem; font-size:0.88rem;">
@@ -307,120 +307,120 @@
        WELCOME LANGUAGE SELECTION MODAL POP-UP
        Multi-Lingual Experience: Regional & International
        ========================================================================== -->
-  <div class="lang-modal-overlay" id="lang-welcome-modal" role="dialog" aria-modal="true" aria-labelledby="lang-modal-heading" aria-hidden="true">
-    <div class="lang-modal-container">
-      <button type="button" class="lang-modal-close" id="lang-modal-close" aria-label="बंद करें">&times;</button>
+  <div class="lang-modal-overlay notranslate" id="lang-welcome-modal" role="dialog" aria-modal="true" aria-labelledby="lang-modal-heading" aria-hidden="true" translate="no">
+    <div class="lang-modal-container notranslate" translate="no">
+      <button type="button" class="lang-modal-close notranslate" id="lang-modal-close" aria-label="बंद करें" translate="no">&times;</button>
       
-      <div class="lang-modal-header">
-        <div class="lang-modal-om"><i class="fa-solid fa-om"></i></div>
-        <h2 class="lang-modal-title" id="lang-modal-heading">जय नैमिषारण्य धाम</h2>
-        <p class="lang-modal-subtitle">
+      <div class="lang-modal-header notranslate" translate="no">
+        <div class="lang-modal-om notranslate" translate="no"><i class="fa-solid fa-om"></i></div>
+        <h2 class="lang-modal-title notranslate" id="lang-modal-heading" translate="no">जय नैमिषारण्य धाम</h2>
+        <p class="lang-modal-subtitle notranslate" translate="no">
           कृपया अपनी पसंदीदा भाषा चुनें • Welcome, please choose your preferred language
         </p>
       </div>
 
-      <div class="lang-modal-group-title">
+      <div class="lang-modal-group-title notranslate" translate="no">
         <i class="fa-solid fa-earth-asia"></i> भारतीय क्षेत्रीय भाषाएं (Indian Regional Languages)
       </div>
-      <div class="lang-modal-grid">
-        <button type="button" class="lang-card-btn active" data-lang="hi">
-          <span class="lang-card-flag">🇮🇳</span>
-          <span class="lang-card-native">हिन्दी</span>
-          <span class="lang-card-eng">Hindi (मूल भाषा)</span>
+      <div class="lang-modal-grid notranslate" translate="no">
+        <button type="button" class="lang-card-btn notranslate active" data-lang="hi" translate="no">
+          <span class="lang-card-flag notranslate" translate="no">🇮🇳</span>
+          <span class="lang-card-native notranslate" translate="no">हिन्दी</span>
+          <span class="lang-card-eng notranslate" translate="no">Hindi (मूल भाषा)</span>
         </button>
-        <button type="button" class="lang-card-btn" data-lang="en">
-          <span class="lang-card-flag">🇬🇧</span>
-          <span class="lang-card-native">English</span>
-          <span class="lang-card-eng">English</span>
+        <button type="button" class="lang-card-btn notranslate" data-lang="en" translate="no">
+          <span class="lang-card-flag notranslate" translate="no">🇬🇧</span>
+          <span class="lang-card-native notranslate" translate="no">English</span>
+          <span class="lang-card-eng notranslate" translate="no">English</span>
         </button>
-        <button type="button" class="lang-card-btn" data-lang="te">
-          <span class="lang-card-flag">🇮🇳</span>
-          <span class="lang-card-native">తెలుగు</span>
-          <span class="lang-card-eng">Telugu</span>
+        <button type="button" class="lang-card-btn notranslate" data-lang="te" translate="no">
+          <span class="lang-card-flag notranslate" translate="no">🇮🇳</span>
+          <span class="lang-card-native notranslate" translate="no">తెలుగు</span>
+          <span class="lang-card-eng notranslate" translate="no">Telugu</span>
         </button>
-        <button type="button" class="lang-card-btn" data-lang="ta">
-          <span class="lang-card-flag">🇮🇳</span>
-          <span class="lang-card-native">தமிழ்</span>
-          <span class="lang-card-eng">Tamil</span>
+        <button type="button" class="lang-card-btn notranslate" data-lang="ta" translate="no">
+          <span class="lang-card-flag notranslate" translate="no">🇮🇳</span>
+          <span class="lang-card-native notranslate" translate="no">தமிழ்</span>
+          <span class="lang-card-eng notranslate" translate="no">Tamil</span>
         </button>
-        <button type="button" class="lang-card-btn" data-lang="kn">
-          <span class="lang-card-flag">🇮🇳</span>
-          <span class="lang-card-native">ಕನ್ನಡ</span>
-          <span class="lang-card-eng">Kannada</span>
+        <button type="button" class="lang-card-btn notranslate" data-lang="kn" translate="no">
+          <span class="lang-card-flag notranslate" translate="no">ಕನ್ನಡ</span>
+          <span class="lang-card-native notranslate" translate="no">ಕನ್ನಡ</span>
+          <span class="lang-card-eng notranslate" translate="no">Kannada</span>
         </button>
-        <button type="button" class="lang-card-btn" data-lang="gu">
-          <span class="lang-card-flag">🇮🇳</span>
-          <span class="lang-card-native">ગુજરાતી</span>
-          <span class="lang-card-eng">Gujarati</span>
+        <button type="button" class="lang-card-btn notranslate" data-lang="gu" translate="no">
+          <span class="lang-card-flag notranslate" translate="no">🇮🇳</span>
+          <span class="lang-card-native notranslate" translate="no">ગુજરાતી</span>
+          <span class="lang-card-eng notranslate" translate="no">Gujarati</span>
         </button>
-        <button type="button" class="lang-card-btn" data-lang="mr">
-          <span class="lang-card-flag">🇮🇳</span>
-          <span class="lang-card-native">मराठी</span>
-          <span class="lang-card-eng">Marathi</span>
+        <button type="button" class="lang-card-btn notranslate" data-lang="mr" translate="no">
+          <span class="lang-card-flag notranslate" translate="no">🇮🇳</span>
+          <span class="lang-card-native notranslate" translate="no">मराठी</span>
+          <span class="lang-card-eng notranslate" translate="no">Marathi</span>
         </button>
-        <button type="button" class="lang-card-btn" data-lang="bn">
-          <span class="lang-card-flag">🇮🇳</span>
-          <span class="lang-card-native">বাংলা</span>
-          <span class="lang-card-eng">Bengali</span>
+        <button type="button" class="lang-card-btn notranslate" data-lang="bn" translate="no">
+          <span class="lang-card-flag notranslate" translate="no">🇮🇳</span>
+          <span class="lang-card-native notranslate" translate="no">বাংলা</span>
+          <span class="lang-card-eng notranslate" translate="no">Bengali</span>
         </button>
-        <button type="button" class="lang-card-btn" data-lang="pa">
-          <span class="lang-card-flag">🇮🇳</span>
-          <span class="lang-card-native">ਪੰਜਾਬੀ</span>
-          <span class="lang-card-eng">Punjabi</span>
+        <button type="button" class="lang-card-btn notranslate" data-lang="pa" translate="no">
+          <span class="lang-card-flag notranslate" translate="no">🇮🇳</span>
+          <span class="lang-card-native notranslate" translate="no">ਪੰਜਾਬੀ</span>
+          <span class="lang-card-eng notranslate" translate="no">Punjabi</span>
         </button>
-        <button type="button" class="lang-card-btn" data-lang="ml">
-          <span class="lang-card-flag">🇮🇳</span>
-          <span class="lang-card-native">മലയാളം</span>
-          <span class="lang-card-eng">Malayalam</span>
+        <button type="button" class="lang-card-btn notranslate" data-lang="ml" translate="no">
+          <span class="lang-card-flag notranslate" translate="no">🇮🇳</span>
+          <span class="lang-card-native notranslate" translate="no">മലയാളം</span>
+          <span class="lang-card-eng notranslate" translate="no">Malayalam</span>
         </button>
-        <button type="button" class="lang-card-btn" data-lang="or">
-          <span class="lang-card-flag">🇮🇳</span>
-          <span class="lang-card-native">ଓଡ଼ିଆ</span>
-          <span class="lang-card-eng">Odia</span>
+        <button type="button" class="lang-card-btn notranslate" data-lang="or" translate="no">
+          <span class="lang-card-flag notranslate" translate="no">🇮🇳</span>
+          <span class="lang-card-native notranslate" translate="no">ଓଡ଼ିଆ</span>
+          <span class="lang-card-eng notranslate" translate="no">Odia</span>
         </button>
       </div>
 
-      <div class="lang-modal-group-title">
+      <div class="lang-modal-group-title notranslate" translate="no">
         <i class="fa-solid fa-globe"></i> अंतर्राष्ट्रीय भाषाएं (International Languages)
       </div>
-      <div class="lang-modal-grid">
-        <button type="button" class="lang-card-btn" data-lang="fr">
-          <span class="lang-card-flag">🇫🇷</span>
-          <span class="lang-card-native">Français</span>
-          <span class="lang-card-eng">French</span>
+      <div class="lang-modal-grid notranslate" translate="no">
+        <button type="button" class="lang-card-btn notranslate" data-lang="fr" translate="no">
+          <span class="lang-card-flag notranslate" translate="no">🇫🇷</span>
+          <span class="lang-card-native notranslate" translate="no">Français</span>
+          <span class="lang-card-eng notranslate" translate="no">French</span>
         </button>
-        <button type="button" class="lang-card-btn" data-lang="ja">
-          <span class="lang-card-flag">🇯🇵</span>
-          <span class="lang-card-native">日本語</span>
-          <span class="lang-card-eng">Japanese</span>
+        <button type="button" class="lang-card-btn notranslate" data-lang="ja" translate="no">
+          <span class="lang-card-flag notranslate" translate="no">🇯🇵</span>
+          <span class="lang-card-native notranslate" translate="no">日本語</span>
+          <span class="lang-card-eng notranslate" translate="no">Japanese</span>
         </button>
-        <button type="button" class="lang-card-btn" data-lang="zh-CN">
-          <span class="lang-card-flag">🇨🇳</span>
-          <span class="lang-card-native">简体中文</span>
-          <span class="lang-card-eng">Chinese</span>
+        <button type="button" class="lang-card-btn notranslate" data-lang="zh-CN" translate="no">
+          <span class="lang-card-flag notranslate" translate="no">🇨🇳</span>
+          <span class="lang-card-native notranslate" translate="no">简体中文</span>
+          <span class="lang-card-eng notranslate" translate="no">Chinese</span>
         </button>
-        <button type="button" class="lang-card-btn" data-lang="es">
-          <span class="lang-card-flag">🇪🇸</span>
-          <span class="lang-card-native">Español</span>
-          <span class="lang-card-eng">Spanish</span>
+        <button type="button" class="lang-card-btn notranslate" data-lang="es" translate="no">
+          <span class="lang-card-flag notranslate" translate="no">🇪🇸</span>
+          <span class="lang-card-native notranslate" translate="no">Español</span>
+          <span class="lang-card-eng notranslate" translate="no">Spanish</span>
         </button>
-        <button type="button" class="lang-card-btn" data-lang="de">
-          <span class="lang-card-flag">🇩🇪</span>
-          <span class="lang-card-native">Deutsch</span>
-          <span class="lang-card-eng">German</span>
+        <button type="button" class="lang-card-btn notranslate" data-lang="de" translate="no">
+          <span class="lang-card-flag notranslate" translate="no">🇩🇪</span>
+          <span class="lang-card-native notranslate" translate="no">Deutsch</span>
+          <span class="lang-card-eng notranslate" translate="no">German</span>
         </button>
-        <button type="button" class="lang-card-btn" data-lang="ru">
-          <span class="lang-card-flag">🇷🇺</span>
-          <span class="lang-card-native">Русский</span>
-          <span class="lang-card-eng">Russian</span>
+        <button type="button" class="lang-card-btn notranslate" data-lang="ru" translate="no">
+          <span class="lang-card-flag notranslate" translate="no">🇷🇺</span>
+          <span class="lang-card-native notranslate" translate="no">Русский</span>
+          <span class="lang-card-eng notranslate" translate="no">Russian</span>
         </button>
       </div>
 
-      <div class="lang-modal-footer">
-        <span style="font-size:0.85rem; color:var(--text-muted);">
-          <i class="fa-solid fa-circle-info" style="color:var(--gold);"></i> शीर्ष मेन्यू से किसी भी समय भाषा बदल सकते हैं।
+      <div class="lang-modal-footer notranslate" translate="no">
+        <span style="font-size:0.85rem; color:var(--text-muted);" class="notranslate" translate="no">
+          <i class="fa-solid fa-circle-info" style="color:var(--gold);"></i> शीर्ष मेन्यू से किसी भी समय भाषा बदल सकते हैं • You can change language anytime
         </span>
-        <button type="button" class="btn btn-primary" id="lang-modal-continue-btn" style="padding:0.6rem 1.4rem;">
+        <button type="button" class="btn btn-primary notranslate" id="lang-modal-continue-btn" style="padding:0.6rem 1.4rem;" translate="no">
           <i class="fa-solid fa-check"></i> जारी रखें (Continue)
         </button>
       </div>
