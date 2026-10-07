@@ -233,6 +233,19 @@
       });
     });
 
+    // Avatar click to view full size photo in lightbox
+    document.querySelectorAll('.leader-avatar, .contact-leader-avatar').forEach(avatar => {
+      avatar.addEventListener('click', () => {
+        const img = avatar.querySelector('img');
+        if (img && lightbox && lightboxImg && lightboxCaption) {
+          lightboxImg.src = img.src;
+          lightboxCaption.innerHTML = '<strong>पं पुरुषोत्तम शास्त्री</strong> — संस्थापक एवं पीठाधीश, नैमिष टूरिस्ट सर्विसेज "नैमिषारण्य प्रवासम"';
+          lightbox.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+
     if (lightboxClose && lightbox) {
       lightboxClose.addEventListener('click', closeLightbox);
       lightbox.addEventListener('click', (e) => {
