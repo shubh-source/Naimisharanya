@@ -100,7 +100,7 @@
     { id: 'bhog', name: 'Madhyahna Bhog (Lalita Devi Temple Closed 12:00-12:30)', start: '12:00', end: '12:30' },
     { id: 'vishram', name: 'Madhyahna Vishram (Temple Closed)', start: '13:00', end: '15:59' },
     { id: 'sandhya', name: 'Maha Sandhya Aarti & Deep Daan', start: '18:30', end: '19:30' },
-    { id: 'shayan', name: 'Shayan Aarti & Temple Closing', start: '21:00', end: '21:30' }
+    { id: 'shayan', name: 'Shayan Aarti (08:30 PM) - All Temples Close by 09:00 PM', start: '20:30', end: '21:00' }
   ];
 
   function updateLiveAartiStatus() {
