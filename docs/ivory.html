@@ -141,26 +141,6 @@
       <!-- Desktop & Mobile Navigation Links -->
       <nav aria-label="Main Navigation">
         <ul class="nav-menu" id="nav-menu">
-          <!-- Mobile Sidebar Language Picker -->
-          <li class="mobile-lang-item">
-            <div class="mobile-lang-title">
-              <span><i class="fa-solid fa-language" style="color:var(--gold);"></i> भाषा चुनें / Choose Language:</span>
-              <button type="button" class="lang-strip-more-btn" style="padding:0.2rem 0.5rem; font-size:0.75rem;" onclick="openLanguageModal()">और भी ▾</button>
-            </div>
-            <div class="mobile-lang-chips">
-              <button type="button" class="m-lang-chip active" data-lang="hi">🇮🇳 हिन्दी</button>
-              <button type="button" class="m-lang-chip" data-lang="en">🇬🇧 English</button>
-              <button type="button" class="m-lang-chip" data-lang="te">తెలుగు</button>
-              <button type="button" class="m-lang-chip" data-lang="ta">தமிழ்</button>
-              <button type="button" class="m-lang-chip" data-lang="kn">ಕನ್ನಡ</button>
-              <button type="button" class="m-lang-chip" data-lang="gu">ગુજરાતી</button>
-              <button type="button" class="m-lang-chip" data-lang="mr">मराठी</button>
-              <button type="button" class="m-lang-chip" data-lang="bn">বাংলা</button>
-              <button type="button" class="m-lang-chip" data-lang="fr">Français</button>
-              <button type="button" class="m-lang-chip" data-lang="ja">日本語</button>
-              <button type="button" class="m-lang-chip" data-lang="zh-CN">中文</button>
-            </div>
-          </li>
           <li><a href="#services" class="nav-link nav-acharya-link"><i class="fa-solid fa-hands-praying"></i> सुयोग्य आचार्य सेवा</a></li>
           <li><a href="#hero" class="nav-link active">Home</a></li>
           <li><a href="#history" class="nav-link">तपोभूमि महिमा</a></li>
@@ -192,49 +172,11 @@
 
       <!-- Actions -->
       <div class="nav-actions">
-        <!-- Quick Hindi / English Switcher pill -->
-        <div class="quick-lang-pill" title="भाषा बदलें / Quick Language Switch">
-          <button type="button" class="lang-pill-btn active" data-lang="hi">हिन्दी</button>
-          <span class="lang-pill-sep">|</span>
-          <button type="button" class="lang-pill-btn" data-lang="en">ENG</button>
-        </div>
-
-        <!-- Multi-Language Dropdown Trigger (Beside Mobile Menu Toggle) -->
-        <div class="lang-dropdown-wrapper">
-          <button type="button" class="btn-lang-trigger" id="lang-menu-trigger" aria-haspopup="true" aria-expanded="false" title="सभी भाषाएं / All Languages">
-            <i class="fa-solid fa-language"></i>
-            <span class="lang-current-label">भाषा</span>
-            <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i>
-          </button>
-          <div class="lang-dropdown-menu" id="lang-dropdown-menu">
-            <div class="lang-dropdown-header">
-              <span><i class="fa-solid fa-earth-asia" style="color:var(--gold);"></i> भाषा चुनें / Select Language</span>
-            </div>
-            <div class="lang-dropdown-section-title">भारतीय क्षेत्रीय भाषाएं (Indian)</div>
-            <div class="lang-grid-mini">
-              <button type="button" class="lang-opt-btn active" data-lang="hi"><span class="lang-flag">🇮🇳</span> <span class="lang-name">हिन्दी (Hindi)</span></button>
-              <button type="button" class="lang-opt-btn" data-lang="en"><span class="lang-flag">🇬🇧</span> <span class="lang-name">English</span></button>
-              <button type="button" class="lang-opt-btn" data-lang="te"><span class="lang-flag">🇮🇳</span> <span class="lang-name">తెలుగు (Telugu)</span></button>
-              <button type="button" class="lang-opt-btn" data-lang="ta"><span class="lang-flag">🇮🇳</span> <span class="lang-name">தமிழ் (Tamil)</span></button>
-              <button type="button" class="lang-opt-btn" data-lang="kn"><span class="lang-flag">🇮🇳</span> <span class="lang-name">ಕನ್ನಡ (Kannada)</span></button>
-              <button type="button" class="lang-opt-btn" data-lang="gu"><span class="lang-flag">🇮🇳</span> <span class="lang-name">ગુજરાતી (Gujarati)</span></button>
-              <button type="button" class="lang-opt-btn" data-lang="mr"><span class="lang-flag">🇮🇳</span> <span class="lang-name">मराठी (Marathi)</span></button>
-              <button type="button" class="lang-opt-btn" data-lang="bn"><span class="lang-flag">🇮🇳</span> <span class="lang-name">বাংলা (Bengali)</span></button>
-              <button type="button" class="lang-opt-btn" data-lang="pa"><span class="lang-flag">🇮🇳</span> <span class="lang-name">ਪੰਜਾਬੀ (Punjabi)</span></button>
-              <button type="button" class="lang-opt-btn" data-lang="ml"><span class="lang-flag">🇮🇳</span> <span class="lang-name">മലയാളം (Malayalam)</span></button>
-              <button type="button" class="lang-opt-btn" data-lang="or"><span class="lang-flag">🇮🇳</span> <span class="lang-name">ଓଡ଼ିଆ (Odia)</span></button>
-            </div>
-            <div class="lang-dropdown-section-title">अंतर्राष्ट्रीय भाषाएं (International)</div>
-            <div class="lang-grid-mini">
-              <button type="button" class="lang-opt-btn" data-lang="fr"><span class="lang-flag">🇫🇷</span> <span class="lang-name">Français</span></button>
-              <button type="button" class="lang-opt-btn" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span class="lang-name">日本語 (Japanese)</span></button>
-              <button type="button" class="lang-opt-btn" data-lang="zh-CN"><span class="lang-flag">🇨🇳</span> <span class="lang-name">中文 (Chinese)</span></button>
-              <button type="button" class="lang-opt-btn" data-lang="es"><span class="lang-flag">🇪🇸</span> <span class="lang-name">Español</span></button>
-              <button type="button" class="lang-opt-btn" data-lang="de"><span class="lang-flag">🇩🇪</span> <span class="lang-name">Deutsch</span></button>
-              <button type="button" class="lang-opt-btn" data-lang="ru"><span class="lang-flag">🇷🇺</span> <span class="lang-name">Русский</span></button>
-            </div>
-          </div>
-        </div>
+        <!-- Normal Language Button (Tap to Select Language) -->
+        <button type="button" class="btn-lang-normal" onclick="openLanguageModal()" title="भाषा बदलें / Select Language" aria-label="Select Language">
+          <i class="fa-solid fa-language"></i>
+          <span>Language / भाषा</span>
+        </button>
 
         <a href="#booking" class="btn btn-primary" style="padding:0.55rem 1.15rem; font-size:0.88rem;">
           <i class="fa-solid fa-hands-praying"></i> अनुष्ठान / यात्रा बुक करें
@@ -247,41 +189,6 @@
       </div>
     </div>
   </header>
-
-  <!-- ==========================================================================
-       PAGE TOP MULTI-LANGUAGE FILTER BAR
-       Regional (Telugu, Tamil, Kannada, Gujarati, Marathi, Bengali...) & Global
-       ========================================================================== -->
-  <section class="lang-strip-bar" aria-label="Multi-Language Filter Bar">
-    <div class="container lang-strip-container">
-      <div class="lang-strip-label">
-        <i class="fa-solid fa-language" style="color:var(--primary);"></i>
-        <span>भाषा / Language:</span>
-      </div>
-      <div class="lang-strip-scroll" role="toolbar" aria-label="Language options">
-        <button type="button" class="lang-strip-chip active" data-lang="hi">🇮🇳 हिन्दी (Hindi)</button>
-        <button type="button" class="lang-strip-chip" data-lang="en">🇬🇧 English</button>
-        <button type="button" class="lang-strip-chip" data-lang="te">🇮🇳 తెలుగు (Telugu)</button>
-        <button type="button" class="lang-strip-chip" data-lang="ta">🇮🇳 தமிழ் (Tamil)</button>
-        <button type="button" class="lang-strip-chip" data-lang="kn">🇮🇳 ಕನ್ನಡ (Kannada)</button>
-        <button type="button" class="lang-strip-chip" data-lang="gu">🇮🇳 ગુજરાતી (Gujarati)</button>
-        <button type="button" class="lang-strip-chip" data-lang="mr">🇮🇳 मराठी (Marathi)</button>
-        <button type="button" class="lang-strip-chip" data-lang="bn">🇮🇳 বাংলা (Bengali)</button>
-        <button type="button" class="lang-strip-chip" data-lang="pa">🇮🇳 ਪੰਜਾਬੀ (Punjabi)</button>
-        <button type="button" class="lang-strip-chip" data-lang="ml">🇮🇳 മലയാളം (Malayalam)</button>
-        <button type="button" class="lang-strip-chip" data-lang="or">🇮🇳 ଓଡ଼ିଆ (Odia)</button>
-        <button type="button" class="lang-strip-chip" data-lang="fr">🇫🇷 Français</button>
-        <button type="button" class="lang-strip-chip" data-lang="ja">🇯🇵 日本語 (Japanese)</button>
-        <button type="button" class="lang-strip-chip" data-lang="zh-CN">🇨🇳 中文 (Chinese)</button>
-        <button type="button" class="lang-strip-chip" data-lang="es">🇪🇸 Español</button>
-        <button type="button" class="lang-strip-chip" data-lang="de">🇩🇪 Deutsch</button>
-        <button type="button" class="lang-strip-chip" data-lang="ru">🇷🇺 Русский</button>
-      </div>
-      <button type="button" class="lang-strip-more-btn" onclick="openLanguageModal()" title="सभी भाषाएं देखें">
-        <i class="fa-solid fa-globe"></i> और भी...
-      </button>
-    </div>
-  </section>
 
   <main id="main-content">
     <!-- ==========================================================================

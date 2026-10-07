@@ -621,18 +621,9 @@
     if (!currentLang) currentLang = 'hi';
     updateLanguageUI(currentLang);
 
-    // 4. Modal Pop-up on First Visit
-    const modal = document.getElementById('lang-welcome-modal');
-    const isDismissed = localStorage.getItem(LANG_DISMISSED_KEY);
-    if (!isDismissed && modal) {
-      setTimeout(() => {
-        openLanguageModal();
-      }, 700);
-    }
-
-    // 5. Setup Global Event Listeners for Language Interactions
+    // 4. Setup Global Event Listeners for Language Interactions (strictly on user tap)
     document.addEventListener('click', (e) => {
-      // Language buttons (pill, cards, mini-options, chips)
+      // Language selection cards
       const langBtn = e.target.closest('[data-lang]');
       if (langBtn) {
         const lang = langBtn.getAttribute('data-lang');
@@ -643,8 +634,8 @@
         return;
       }
 
-      // Open Modal buttons
-      const openModalBtn = e.target.closest('[data-open-lang-modal], .lang-strip-more-btn, .top-bar-lang-btn');
+      // Open Modal on normal button tap
+      const openModalBtn = e.target.closest('[data-open-lang-modal], .btn-lang-normal, .top-bar-lang-btn');
       if (openModalBtn) {
         e.preventDefault();
         openLanguageModal();
@@ -659,27 +650,8 @@
         return;
       }
 
-      // Dropdown toggle
-      const trigger = e.target.closest('#lang-menu-trigger');
-      const menu = document.getElementById('lang-dropdown-menu');
-      if (trigger && menu) {
-        e.preventDefault();
-        const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
-        trigger.setAttribute('aria-expanded', !isExpanded);
-        menu.classList.toggle('show');
-        return;
-      }
-
-      // Click outside dropdown
-      if (menu && menu.classList.contains('show')) {
-        if (!e.target.closest('.lang-dropdown-wrapper')) {
-          menu.classList.remove('show');
-          const trg = document.getElementById('lang-menu-trigger');
-          if (trg) trg.setAttribute('aria-expanded', 'false');
-        }
-      }
-
       // Click on modal backdrop
+      const modal = document.getElementById('lang-welcome-modal');
       if (modal && e.target === modal) {
         closeLanguageModal();
       }
