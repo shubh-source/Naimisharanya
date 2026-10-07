@@ -86,6 +86,7 @@
           <li><a href="#hero" class="nav-link active">Home</a></li>
           <li><a href="#history" class="nav-link">तपोभूमि महिमा</a></li>
           <li><a href="#tirthas" class="nav-link">प्रमुख दर्शनीय स्थल</a></li>
+        <li><a href="#gallery" class="nav-link">दर्शन गैलरी</a></li>
           <li><a href="#services" class="nav-link">हमारी सेवाएं</a></li>
           <li><a href="#facilities" class="nav-link">सुविधाएं व पैकेज</a></li>
           <li><a href="#about-us" class="nav-link">हमारे बारे में</a></li>
@@ -126,6 +127,14 @@
   <!-- Page Body -->
   <main id="main-content">
     @RenderBody()
+    <!-- Lightbox Modal for Gallery -->
+    <div class="lightbox-overlay" id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="चित्र दर्शन">
+      <div class="lightbox-content">
+        <button class="lightbox-close" id="lightbox-close" type="button" aria-label="बंद करें">&times;</button>
+        <img id="lightbox-img" src="" alt="नैमिषारण्य दर्शन" />
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+      </div>
+    </div>
   </main>
 
   <!-- Site Footer -->
