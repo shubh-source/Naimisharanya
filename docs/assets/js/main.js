@@ -517,120 +517,48 @@
      MULTI-LANGUAGE TRANSLATION ENGINE & MODAL SYSTEM
      Regional (Telugu, Tamil, Kannada, Gujarati, Marathi, Bengali, Punjabi, Malayalam, Odia)
      International (French, Japanese, Chinese, Spanish, German, Russian)
-     Default: Hindi & English
+  /* ==========================================================================
+     MULTI-LANGUAGE PILGRIM ASSISTANCE SYSTEM (No Google Toolbar / Clean & Native)
+     Telugu, Tamil, Kannada, Gujarati, Marathi, Bengali, English, International
      ========================================================================== */
-  const LANG_STORAGE_KEY = 'naimisharanya_selected_lang';
-  const LANG_DISMISSED_KEY = 'naimisharanya_lang_dismissed';
 
-  const LANGUAGE_MAP = {
-    'hi': { name: 'Hindi', flag: '🇮🇳', native: 'हिन्दी' },
-    'en': { name: 'English', flag: '🇬🇧', native: 'English' },
-    'te': { name: 'Telugu', flag: '🇮🇳', native: 'తెలుగు' },
-    'ta': { name: 'Tamil', flag: '🇮🇳', native: 'தமிழ்' },
-    'kn': { name: 'Kannada', flag: '🇮🇳', native: 'ಕನ್ನಡ' },
-    'gu': { name: 'Gujarati', flag: '🇮🇳', native: 'ગુજરાતી' },
-    'mr': { name: 'Marathi', flag: '🇮🇳', native: 'मराठी' },
-    'bn': { name: 'Bengali', flag: '🇮🇳', native: 'বাংলা' },
-    'pa': { name: 'Punjabi', flag: '🇮🇳', native: 'ਪੰਜਾਬੀ' },
-    'ml': { name: 'Malayalam', flag: '🇮🇳', native: 'മലയാളം' },
-    'or': { name: 'Odia', flag: '🇮🇳', native: 'ଓଡ଼ିଆ' },
-    'fr': { name: 'French', flag: '🇫🇷', native: 'Français' },
-    'ja': { name: 'Japanese', flag: '🇯🇵', native: '日本語' },
-    'zh-CN': { name: 'Chinese', flag: '🇨🇳', native: '中文' },
-    'es': { name: 'Spanish', flag: '🇪🇸', native: 'Español' },
-    'de': { name: 'German', flag: '🇩🇪', native: 'Deutsch' },
-    'ru': { name: 'Russian', flag: '🇷🇺', native: 'Русский' }
-  };
+  // Purge legacy Google Translate cookies & remove any Google Translate banners immediately
+  function purgeGoogleTranslate() {
+    const cookies = ['googtrans', 'googtrans_en', 'googtrans_hi', '__utma', '__utmz'];
+    const domains = [window.location.hostname, '.' + window.location.hostname, ''];
+    const paths = ['/', '/Naimisharanya', '/Naimisharanya/'];
+    cookies.forEach(c => {
+      domains.forEach(d => {
+        paths.forEach(p => {
+          document.cookie = c + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=' + p + ';' + (d ? ' domain=' + d + ';' : '');
+        });
+      });
+    });
 
-  function getCookie(name) {
-    const v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-    return v ? v[2] : null;
-  }
+    const elementsToRemove = document.querySelectorAll('.goog-te-banner-frame, iframe[id=":1.container"], #goog-gt-tt, .goog-te-balloon-frame, #google_translate_element, #google-translate-script, .skiptranslate');
+    elementsToRemove.forEach(el => {
+      try { el.remove(); } catch (e) {}
+    });
 
-  function setCookie(name, value, days) {
-    const d = new Date();
-    d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * (days || 30));
-    const expires = 'expires=' + d.toUTCString();
-    document.cookie = name + '=' + value + ';path=/;' + expires;
-    document.cookie = name + '=' + value + ';path=/;domain=' + window.location.hostname + ';' + expires;
-    const parts = window.location.hostname.split('.');
-    if (parts.length > 1) {
-      document.cookie = name + '=' + value + ';path=/;domain=.' + parts.slice(-2).join('.') + ';' + expires;
+    if (document.body) {
+      document.body.style.top = '0px';
+      document.body.classList.remove('translated-ltr', 'translated-rtl');
     }
   }
-
-  function deleteCookie(name) {
-    document.cookie = name + '=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    document.cookie = name + '=;path=/;domain=' + window.location.hostname + ';expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    const parts = window.location.hostname.split('.');
-    if (parts.length > 1) {
-      document.cookie = name + '=;path=/;domain=.' + parts.slice(-2).join('.') + ';expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    }
-  }
+  purgeGoogleTranslate();
+  window.addEventListener('DOMContentLoaded', purgeGoogleTranslate);
 
   function initMultiLanguageEngine() {
-    // 1. Ensure Google Translate container exists
-    let gtElem = document.getElementById('google_translate_element');
-    if (!gtElem) {
-      gtElem = document.createElement('div');
-      gtElem.id = 'google_translate_element';
-      gtElem.style.display = 'none';
-      gtElem.setAttribute('aria-hidden', 'true');
-      document.body.appendChild(gtElem);
-    }
+    purgeGoogleTranslate();
 
-    // 2. Setup Google Translate API Callback
-    window.googleTranslateElementInit = function () {
-      try {
-        if (window.google && window.google.translate) {
-          new window.google.translate.TranslateElement({
-            pageLanguage: 'hi',
-            includedLanguages: 'hi,en,te,ta,kn,gu,mr,bn,pa,ml,or,fr,ja,zh-CN,es,de,ru',
-            autoDisplay: false
-          }, 'google_translate_element');
-
-          const savedLang = localStorage.getItem(LANG_STORAGE_KEY);
-          if (savedLang && savedLang !== 'hi') {
-            setTimeout(() => applyTranslate(savedLang), 350);
-          }
-        }
-      } catch (err) {
-        console.warn('Google Translate initialization:', err);
-      }
-    };
-
-    // 3. Inject Google Translate Script dynamically if not present
-    if (!document.getElementById('google-translate-script')) {
-      const script = document.createElement('script');
-      script.id = 'google-translate-script';
-      script.type = 'text/javascript';
-      script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-      script.async = true;
-      document.body.appendChild(script);
-    }
-
-    // Determine current language
-    let currentLang = localStorage.getItem(LANG_STORAGE_KEY);
-    const cookieVal = getCookie('googtrans');
-    if (cookieVal) {
-      const match = cookieVal.match(/\/hi\/([a-zA-Z-]+)/);
-      if (match && match[1]) {
-        currentLang = match[1];
-      }
-    }
-    if (!currentLang) currentLang = 'hi';
-    updateLanguageUI(currentLang);
-
-    // 4. Setup Global Event Listeners for Language Interactions (strictly on user tap)
+    // Event listener for opening/closing the language modal and selecting languages
     document.addEventListener('click', (e) => {
-      // Language selection cards
+      // Language selection card click
       const langBtn = e.target.closest('[data-lang]');
       if (langBtn) {
+        e.preventDefault();
         const lang = langBtn.getAttribute('data-lang');
-        if (lang) {
-          e.preventDefault();
-          setPortalLanguage(lang);
-        }
+        openWebTranslate(lang);
         return;
       }
 
@@ -661,82 +589,8 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeLanguageModal();
-        const menu = document.getElementById('lang-dropdown-menu');
-        if (menu) menu.classList.remove('show');
       }
     });
-  }
-
-  function setPortalLanguage(langCode) {
-    if (!langCode) return;
-    localStorage.setItem(LANG_STORAGE_KEY, langCode);
-    localStorage.setItem(LANG_DISMISSED_KEY, 'true');
-
-    updateLanguageUI(langCode);
-
-    if (langCode === 'hi') {
-      deleteCookie('googtrans');
-      const select = document.querySelector('.goog-te-combo');
-      if (select) {
-        select.value = 'hi';
-        select.dispatchEvent(new Event('change'));
-      }
-      const currentCookie = getCookie('googtrans');
-      if (currentCookie && currentCookie !== '/hi/hi') {
-        window.location.reload();
-      }
-    } else {
-      setCookie('googtrans', '/hi/' + langCode, 30);
-      applyTranslate(langCode);
-    }
-
-    closeLanguageModal();
-    const menu = document.getElementById('lang-dropdown-menu');
-    if (menu) menu.classList.remove('show');
-  }
-
-  function applyTranslate(langCode) {
-    const select = document.querySelector('.goog-te-combo');
-    if (select) {
-      select.value = langCode;
-      select.dispatchEvent(new Event('change'));
-    } else {
-      let attempts = 0;
-      const interval = setInterval(() => {
-        attempts++;
-        const sel = document.querySelector('.goog-te-combo');
-        if (sel) {
-          sel.value = langCode;
-          sel.dispatchEvent(new Event('change'));
-          clearInterval(interval);
-        } else if (attempts > 12) {
-          clearInterval(interval);
-          if (!window.location.hash.includes('translated')) {
-            window.location.reload();
-          }
-        }
-      }, 250);
-    }
-  }
-
-  function updateLanguageUI(langCode) {
-    const langInfo = LANGUAGE_MAP[langCode] || { name: langCode, flag: '🌐', native: langCode };
-
-    document.querySelectorAll('[data-lang]').forEach(el => {
-      const itemLang = el.getAttribute('data-lang');
-      if (itemLang === langCode) {
-        el.classList.add('active');
-        el.setAttribute('aria-pressed', 'true');
-      } else {
-        el.classList.remove('active');
-        el.setAttribute('aria-pressed', 'false');
-      }
-    });
-
-    const currentLabel = document.querySelector('.lang-current-label');
-    if (currentLabel) {
-      currentLabel.textContent = langCode === 'hi' ? 'भाषा' : (langInfo.flag + ' ' + (langInfo.native || langInfo.name));
-    }
   }
 
   function openLanguageModal() {
@@ -754,13 +608,21 @@
       modal.classList.remove('open');
       modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
-      localStorage.setItem(LANG_DISMISSED_KEY, 'true');
     }
+  }
+
+  function openWebTranslate(targetLang) {
+    closeLanguageModal();
+    if (!targetLang || targetLang === 'hi') {
+      return;
+    }
+    const currentUrl = encodeURIComponent(window.location.href);
+    window.open('https://translate.google.com/translate?sl=hi&tl=' + targetLang + '&u=' + currentUrl, '_blank', 'noopener,noreferrer');
   }
 
   window.openLanguageModal = openLanguageModal;
   window.closeLanguageModal = closeLanguageModal;
-  window.setPortalLanguage = setPortalLanguage;
+  window.openWebTranslate = openWebTranslate;
 
   /* ==========================================================================
      INITIALIZATION ON DOM LOAD
