@@ -317,7 +317,62 @@
         console.warn('LocalStorage booking error:', err);
       }
 
-      // 2. Also POST to backend ASP.NET Core endpoint if running with backend
+      // 2. Send email via FormSubmit AJAX to naimishtouristservices@gmail.com
+      // with automated confirmation reply to devotee's email
+      const OWNER_EMAIL = 'naimishtouristservices@gmail.com';
+      try {
+        const emailPayload = {
+          _subject: `नई नैमिषारण्य तीर्थ बुकिंग/इन्क्वायरी [${bookingToken}] - ${name}`,
+          _captcha: 'false',
+          _template: 'table',
+          'टोकन_संख्या': bookingToken,
+          'श्रद्धालु_का_नाम': name,
+          'मोबाइल_नंबर': phone,
+          'ईमेल_पता': email || 'प्रदान नहीं किया गया',
+          'चयनित_सेवा': service,
+          'दर्शन_दिनांक': date || 'आगामी',
+          'यात्री_संख्या': pilgrims,
+          'विशेष_आग्रह_संदेश': specialReq || 'कोई विशेष आग्रह नहीं'
+        };
+
+        if (email) {
+          emailPayload['email'] = email;
+          emailPayload['_replyto'] = email;
+          emailPayload['_autoresponse'] = `सादर प्रणाम, जय श्री सीताराम!
+
+आपकी नैमिषारण्य तीर्थ दर्शन एवं पूजा-अनुष्ठान संबंधी इन्क्वायरी सफलतापूर्वक प्राप्त हो चुकी है।
+
+बुकिंग विवरण:
+• टोकन / संदर्भ: ${bookingToken}
+• सेवा: ${service}
+• श्रद्धालु का नाम: ${name}
+• मोबाइल नंबर: ${phone}
+• दर्शन तिथि: ${date || 'आगामी'}
+• यात्री संख्या: ${pilgrims}
+${specialReq ? `• विशेष आग्रह: ${specialReq}\n` : ''}
+नैमिष टूरिस्ट सर्विसेज के अधिकृत प्रतिनिधि शीघ्र ही आपसे संपर्क करेंगे।
+
+तीर्थ सेवा संपर्क सूत्र:
+पंडित पुरुषोत्तम शर्मा
+फोन / व्हाट्सएप: 09935935573
+ईमेल: naimishtouristservices@gmail.com
+नैमिष टूरिस्ट सर्विसेज "नैमिषारण्य प्रवासम" (स्था. 2005)
+नैमिषारण्य धाम, सीतापुर (उत्तर प्रदेश)`;
+        }
+
+        await fetch(`https://formsubmit.co/ajax/${OWNER_EMAIL}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(emailPayload)
+        });
+      } catch (err) {
+        console.warn('FormSubmit booking error:', err);
+      }
+
+      // 3. Also POST to backend ASP.NET Core endpoint if running with backend
       try {
         const contactData = new FormData();
         contactData.append('name', name);
@@ -333,7 +388,7 @@
         // Backend optional for static GitHub Pages
       }
 
-      // 3. Show Visual Confirmation Modal
+      // 4. Show Visual Confirmation Modal
       setTimeout(() => {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalText;
@@ -343,7 +398,10 @@
 
         if (tokenDisplay) tokenDisplay.innerText = bookingToken;
         if (summaryDisplay) {
-          summaryDisplay.innerHTML = `<strong>${service}</strong> booked for <strong>${name}</strong> (${pilgrims} Pilgrim/s) on <strong>${date || 'Upcoming Darshan'}</strong>. Our Teerth Purohit Sewak will contact you at <strong>${phone}</strong>.`;
+          const emailNotice = email 
+            ? `<div style="margin-top:0.6rem; padding:0.5rem; background:rgba(217,119,6,0.1); border-radius:6px; color:var(--primary); font-size:0.88rem;"><i class="fa-solid fa-envelope-circle-check"></i> कन्फर्मेशन ईमेल <strong>${email}</strong> पर भेज दिया गया है।</div>` 
+            : '';
+          summaryDisplay.innerHTML = `<strong>${service}</strong> booked for <strong>${name}</strong> (${pilgrims} Pilgrim/s) on <strong>${date || 'Upcoming Darshan'}</strong>. Our Teerth Purohit Sewak will contact you at <strong>${phone}</strong>.${emailNotice}`;
         }
 
         if (modal) {
@@ -400,6 +458,53 @@
           localStorage.setItem('naimisharanya_inquiries', JSON.stringify(inquiries));
         } catch (e) {}
 
+        // Send email via FormSubmit AJAX to naimishtouristservices@gmail.com with auto-confirmation
+        const OWNER_EMAIL = 'naimishtouristservices@gmail.com';
+        try {
+          const contactPayload = {
+            _subject: `नई त्वरित पूछताछ (Quick Enquiry) - ${name}`,
+            _captcha: 'false',
+            _template: 'table',
+            'नाम': name,
+            'मोबाइल_नंबर': phone,
+            'ईमेल_पता': email || 'प्रदान नहीं किया गया',
+            'पूछताछ_संदेश': message
+          };
+
+          if (email) {
+            contactPayload['email'] = email;
+            contactPayload['_replyto'] = email;
+            contactPayload['_autoresponse'] = `सादर प्रणाम, जय श्री सीताराम!
+
+आपकी नैमिषारण्य तीर्थ पूछताछ (Enquiry) हमें सफलतापूर्वक प्राप्त हो चुकी है।
+
+विवरण:
+• नाम: ${name}
+• मोबाइल नंबर: ${phone}
+• पूछताछ संदेश: ${message}
+
+हमारी अधिकृत तीर्थ सेवा टीम शीघ्र ही आपसे फोन / WhatsApp पर संपर्क करेगी।
+
+तीर्थ सेवा संपर्क सूत्र:
+पंडित पुरुषोत्तम शर्मा
+फोन / व्हाट्सएप: 09935935573
+ईमेल: naimishtouristservices@gmail.com
+नैमिष टूरिस्ट सर्विसेज "नैमिषारण्य प्रवासम" (स्था. 2005)
+नैमिषारण्य धाम, सीतापुर (उत्तर प्रदेश)`;
+          }
+
+          await fetch(`https://formsubmit.co/ajax/${OWNER_EMAIL}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(contactPayload)
+          });
+        } catch (err) {
+          console.warn('Contact FormSubmit error:', err);
+        }
+
         // Backend submit
         try {
           await fetch('/Home/SubmitContact', { method: 'POST', body: fd });
@@ -408,7 +513,10 @@
         setTimeout(() => {
           btn.disabled = false;
           btn.innerHTML = 'Send Message';
-          showToast('धन्यवाद! आपका संदेश सफलतापूर्वक भेज दिया गया है। (Message sent successfully)');
+          const successMsg = email 
+            ? 'धन्यवाद! आपकी इन्क्वायरी प्राप्त हो गई है। आपके ईमेल पर कन्फर्मेशन भेज दिया गया है।'
+            : 'धन्यवाद! आपका संदेश सफलतापूर्वक भेज दिया गया है। हम शीघ्र ही संपर्क करेंगे।';
+          showToast(successMsg);
           contactForm.reset();
         }, 500);
       });
@@ -433,6 +541,35 @@
           }
         } catch (e) {}
 
+        const OWNER_EMAIL = 'naimishtouristservices@gmail.com';
+        try {
+          await fetch(`https://formsubmit.co/ajax/${OWNER_EMAIL}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              _subject: `नया समाचार पत्र सदस्य (Newsletter Subscription) - ${email}`,
+              _captcha: 'false',
+              _template: 'table',
+              'email': email,
+              '_replyto': email,
+              '_autoresponse': `सादर प्रणाम, जय श्री सीताराम!
+
+नैमिषारण्य तपोभूमि समाचार पत्र (Newsletter) से जुड़ने के लिए आपका हार्दिक धन्यवाद।
+
+आपको आगामी पावन तिथियों (एकादशी, पूर्णिमा, अमावस्या, प्रदोष, नवरात्र आदि) एवं तीर्थ दर्शन संबंधी पावन जानकारी नियमित रूप से प्राप्त होती रहेगी।
+
+तीर्थ सेवा संपर्क सूत्र:
+पंडित पुरुषोत्तम शर्मा
+फोन / व्हाट्सएप: 09935935573
+ईमेल: naimishtouristservices@gmail.com
+नैमिष टूरिस्ट सर्विसेज "नैमिषारण्य प्रवासम"`
+            })
+          });
+        } catch (err) {}
+
         try {
           const fd = new FormData();
           fd.append('email-1', email);
@@ -441,7 +578,7 @@
 
         setTimeout(() => {
           btn.disabled = false;
-          showToast('धन्यवाद! आप नैमिषारण्य समाचार पत्र से जुड़ गए हैं। (Subscribed successfully)');
+          showToast('धन्यवाद! आप नैमिषारण्य समाचार पत्र से जुड़ गए हैं। (Confirmation sent to your email)');
           newsletterForm.reset();
         }, 500);
       });

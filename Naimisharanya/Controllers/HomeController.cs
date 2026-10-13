@@ -71,6 +71,39 @@ namespace Naimisharanya.Controllers
 
                 _logger.LogInformation("New contact inquiry received from {Name} ({Phone}, {Email})", inquiry.Name, inquiry.Phone, inquiry.Email);
 
+                // Asynchronously dispatch email notification and devotee confirmation
+                _ = Task.Run(async () =>
+                {
+                    try
+                    {
+                        using var client = new HttpClient();
+                        var payload = new Dictionary<string, string>
+                        {
+                            ["_subject"] = $"नई नैमिषारण्य तीर्थ इन्क्वायरी - {inquiry.Name}",
+                            ["_captcha"] = "false",
+                            ["_template"] = "table",
+                            ["नाम"] = inquiry.Name,
+                            ["मोबाइल"] = inquiry.Phone,
+                            ["ईमेल"] = string.IsNullOrWhiteSpace(inquiry.Email) ? "प्रदान नहीं किया गया" : inquiry.Email,
+                            ["संदेश"] = inquiry.Message
+                        };
+
+                        if (!string.IsNullOrWhiteSpace(inquiry.Email))
+                        {
+                            payload["email"] = inquiry.Email;
+                            payload["_replyto"] = inquiry.Email;
+                            payload["_autoresponse"] = "सादर प्रणाम, जय श्री सीताराम!\n\nआपकी नैमिषारण्य तीर्थ दर्शन एवं पूजा-अनुष्ठान संबंधी इन्क्वायरी सफलतापूर्वक प्राप्त हो चुकी है।\n\nहमारी अधिकृत तीर्थ सेवा टीम शीघ्र ही आपसे फोन / WhatsApp पर संपर्क करेगी।\n\nतीर्थ सेवा संपर्क सूत्र:\nपंडित पुरुषोत्तम शर्मा\nफोन / व्हाट्सएप: 09935935573\nईमेल: naimishtouristservices@gmail.com\nनैमिष टूरिस्ट सर्विसेज \"नैमिषारण्य प्रवासम\" (स्था. 2005)\nनैमिषारण्य धाम, सीतापुर (उत्तर प्रदेश)";
+                        }
+
+                        var content = new FormUrlEncodedContent(payload);
+                        await client.PostAsync("https://formsubmit.co/ajax/naimishtouristservices@gmail.com", content);
+                    }
+                    catch (Exception emailEx)
+                    {
+                        _logger.LogWarning(emailEx, "Background email dispatch error");
+                    }
+                });
+
                 return Json(new { success = true, message = "धन्यवाद! आपका संदेश सफलतापूर्वक दर्ज कर लिया गया है। हम शीघ्र ही आपसे संपर्क करेंगे।" });
             }
             catch (Exception ex)
