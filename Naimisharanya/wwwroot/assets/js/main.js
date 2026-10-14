@@ -239,7 +239,12 @@
         const img = avatar.querySelector('img');
         if (img && lightbox && lightboxImg && lightboxCaption) {
           lightboxImg.src = img.src;
-          lightboxCaption.innerHTML = '<strong>पं पुरुषोत्तम शास्त्री</strong> — संस्थापक एवं पीठाधीश, नैमिष टूरिस्ट सर्विसेज "नैमिषारण्य प्रवासम"';
+          const isAnand = (img.src && img.src.includes('anand-gupta')) || (img.alt && img.alt.includes('आनंद'));
+          if (isAnand) {
+            lightboxCaption.innerHTML = '<strong>आनंद गुप्ता</strong> — प्रबंधक एवं टूरिस्ट गाइड, नैमिष टूरिस्ट सर्विसेज "नैमिषारण्य प्रवासम"';
+          } else {
+            lightboxCaption.innerHTML = '<strong>पं पुरुषोत्तम शास्त्री</strong> — संस्थापक एवं पीठाधीश, नैमिष टूरिस्ट सर्विसेज "नैमिषारण्य प्रवासम"';
+          }
           lightbox.classList.add('open');
           document.body.style.overflow = 'hidden';
         }
